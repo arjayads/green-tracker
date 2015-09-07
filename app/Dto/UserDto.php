@@ -24,13 +24,11 @@ class UserDto
         {
             foreach($rows as $data)
             {
-                $user['employee_id'] = $data->employee_id;
+                $user['id_number'] = $data->id_number;
                 $user['first_name'] = $data->first_name;
                 $user['last_name'] = $data->last_name;
                 $user['birthday'] = $data->birthday;
                 $user['sex'] = $data->sex;
-                $user['position'] = $data->position;
-                $user['department'] = $data->department;
 
                 $result[] = $user;
             }

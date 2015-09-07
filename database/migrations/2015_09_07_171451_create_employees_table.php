@@ -9,7 +9,8 @@ class CreateEmployeesTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */public function up()
+     */
+    public function up()
     {
         Schema::create('employees', function (Blueprint $table)
         {
@@ -17,19 +18,20 @@ class CreateEmployeesTable extends Migration
 
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->string('employee_id');
+            $table->string('id_number');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
-            $table->string('sex', 1);
+            $table->char('sex', 1);
             $table->date('birthday');
-            $table->unsignedInteger('department_id')->index();
-            $table->unsignedInteger('position_id')->index();
+            $table->unsignedInteger('shift_id')->index();
+            $table->unsignedInteger('supervisor_id')->index()->nullable();
+            $table->smallInteger('active');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('shift_id')->references('id')->on('shift')->onDelete('restrict');
+            $table->foreign('supervisor_id')->references('id')->on('employees')->onDelete('set null');
         });
     }
 

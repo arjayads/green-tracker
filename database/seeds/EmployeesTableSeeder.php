@@ -14,36 +14,36 @@ class EmployeesTableSeeder extends Seeder
         DB::table('employees')->insert([
             [
                 'user_id'       => '1',
-                'employee_id'   => 'GWO-0422',
+                'id_number'   => 'GWO-0422',
                 'first_name'    => 'Jim',
                 'last_name'     => 'Callanta',
                 'middle_name'   => 'Hitgano',
                 'sex'           => 'M',
                 'birthday'      => '1990-11-20',
-                'department_id' => '2',
-                'position_id'   => '7'
+                'active'        => '1',
+                'shift_id'      => '1'
             ],
             [
                 'user_id'       => '2',
-                'employee_id'   => 'GWO-0530',
+                'id_number'   => 'GWO-0530',
                 'first_name'    => 'Arjay',
                 'last_name'     => 'Adong',
                 'middle_name'   => 'test',
                 'sex'           => 'M',
                 'birthday'      => '1990-11-20',
-                'department_id' => '2',
-                'position_id'   => '5'
+                'active'        => '1',
+                'shift_id'      => '1'
             ],
             [
                 'user_id'       => '2',
-                'employee_id'   => 'GWO-0130',
+                'id_number'   => 'GWO-0130',
                 'first_name'    => 'first_test',
                 'last_name'     => 'last_test',
                 'middle_name'   => 'middle_test',
                 'sex'           => 'M',
                 'birthday'      => '1990-11-20',
-                'department_id' => '2',
-                'position_id'   => '8'
+                'active'        => '1',
+                'shift_id'      => '1'
             ],
         ]);
     }

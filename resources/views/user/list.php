@@ -20,18 +20,14 @@
                     <th>Employee ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Department</th>
-                    <th>Position</th>
                     <th>Sex</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="user in s = (user | filter:query)">
-                    <td>{{user.employee_id}}</td>
+                    <td>{{user.id_number}}</td>
                     <td>{{user.first_name}}</td>
                     <td>{{user.last_name}}</td>
-                    <td>{{user.department}}</td>
-                    <td>{{user.position}}</td>
                     <td>{{user.sex}}</td>
                 </tr>
                 </tbody>

@@ -16,12 +16,17 @@ class Employee extends Model
         'last_name',
         'middle_name',
         'sex',
-        'department_id',
-        'position_id',
+        'shift_id',
+        'supervisor_id'
     ];
 
     public function user()
     {
         return $this->belongsTo('app\Models\User', 'user_id');
+    }
+
+    public function shift()
+    {
+        return $this->belongsTo('app\Models\Shift', 'shift_id');
     }
 }

@@ -18,7 +18,7 @@ Route::get('/', function () {
 // data and actions
 Route::group(['prefix' => 'user'], function () {
 //    Route::get('/', ['as' => 'my-account', 'uses' => 'Auth\UserController@show']);
-//    Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
+    Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
 
     Route::get('list', ['as' => 'user-list', 'uses' => 'Auth\UserController@userList']);
 //    Route::get('{id}', ['as' => 'user-account', 'uses' => 'Auth\UserController@show']);

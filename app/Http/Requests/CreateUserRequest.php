@@ -23,12 +23,9 @@ class CreateUserRequest extends Request
     {
         return [
             'email'         => 'required|email|unique:users',
-            'password'      => 'required|confirmed|min:3',
             'first_name'    => 'required',
             'last_name'     => 'required',
-            'sex'           => 'required',
-            'department_id' => 'required|exists:departments,id',
-            'position_id'   => 'required|exists:positions,id'
+            'sex'           => 'required'
         ];
     }
 }

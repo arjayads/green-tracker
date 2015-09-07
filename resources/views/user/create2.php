@@ -56,36 +56,24 @@
         </div>
 
         <div style="margin-top: 10px;"></div>
+
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
-                    <label class="input-label" for="password">Password</label>
+                    <label class="input-label" for="email">Sex</label>
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-leaf"></i></span>
-                        <input required="" placeholder="Enter password" type="password" id="password"  ng-model="user.password" class="form-control">
+                        <select name="sex" ng-model="user.sex" required="" class="form-control">
+                            <option value="">Select sex</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
-                    <form-error err_field="errors.password"></form-error>
-                </div>
-            </div>
-        </div>
-        <div style="margin-top: 10px;"></div>
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="col-md-2 col-lg-2">
-                    <label class="input-label" for="password_confirmation">Confirm Password</label>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-leaf"></i></span>
-                        <input required="" placeholder="Confirm password" type="password" id="password_confirmation" ng-model="user.password" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <form-error err_field="errors.password_confirmation"></form-error>
+                    <form-error err_field="errors.sex"></form-error>
                 </div>
             </div>
         </div>

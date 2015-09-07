@@ -15,17 +15,17 @@ class UsersTableSeeder extends Seeder
             [
                 'email'    => 'jimcallanta@verticalops.com',
                 'password' => Hash::make('default'),
-                'status'   => 'ACTIVE'
+                'active'   => '1'
             ],
             [
                 'email'    => 'arjay@verticalops.com',
                 'password' => Hash::make('default'),
-                'status'   => 'ACTIVE'
+                'active'   => '1'
             ],
             [
                 'email'    => 'test@verticalops.com',
                 'password' => Hash::make('default'),
-                'status'   => 'ACTIVE'
+                'active'   => '1'
             ],
         ]);
     }

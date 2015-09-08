@@ -17,12 +17,11 @@
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
-
+    };
 
     angular.module('social', [
         'ui.router',
         'ui.bootstrap',
         'oc.lazyLoad'
-    ])
+    ]);
 })();

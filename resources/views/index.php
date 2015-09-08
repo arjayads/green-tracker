@@ -30,17 +30,16 @@
 
             </div>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+        <script src="js/angular/angular-ui-router.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+
+        <script src="js/ocLazyLoad/ocLazyLoad.js"></script>
+        <script src="js/toastr/toastr.min.js"></script>
+        <script src="js/datepicker/datepicker.js"></script>
+
+        <script src="js/app.js"></script>
+        <script src="js/routes.js"></script>
     </body>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-    <script src="js/angular/angular-ui-router.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
-
-    <script src="js/ocLazyLoad/ocLazyLoad.js"></script>
-    <script src="js/toastr/toastr.min.js"></script>
-    <script src="js/datepicker/datepicker.js"></script>
-
-    <script src="js/app.js"></script>
-    <script src="js/routes.js"></script>
-
 </html>

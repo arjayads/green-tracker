@@ -7,6 +7,8 @@ use app\Models\User;
 use app\Models\Employee;
 use app\ResponseEntity;
 use app\Services\UserService;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class UserServiceImpl implements UserService
 {
@@ -20,33 +22,38 @@ class UserServiceImpl implements UserService
 
         try
         {
-            $user = new User();
-            $user->email = $params['email'];
-            $user->password = bcrypt($params['password']);
-            $user->status = 'ACTIVE';
-            $user->save();
-
-            $employee = new Employee();
-            $employee->user_id = 10;
-            $employee->employee_id = Config::get('hris_system.employee_id_prefix') . 10;
-            $employee->first_name = $params['first_name'];
-            $employee->last_name = $params['last_name'];
-            $employee->middle_name = $params['middle_name'];
-            $employee->sex = $params['sex'];
-            $employee->birthday = '1990-11-20';
-            $employee->department_id = $params['department_id'];
-            $employee->position_id = $params['position_id'];
-            $ok = $employee->save();
-
-            if ($ok)
+            DB::transaction(function() use (&$response, $params)
             {
-                $response->setSuccess(true);
-                $response->setMessages(['Employee successfully created!']);
-            }
-            else
-            {
-                $response->setMessages(['Failed to create employee!']);
-            }
+                $user = new User();
+                $user->email = $params['email'];
+                $temp_password = str_random(8);
+                $user->password = bcrypt($temp_password);
+                $user->active = '1';
+                $user->save();
+
+                $employee = new Employee();
+                $employee->user_id = $user->id;
+                $employee->id_number = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
+                $employee->first_name = $params['first_name'];
+                $employee->last_name = $params['last_name'];
+                $employee->middle_name = $params['middle_name'];
+                $employee->sex = $params['sex'];
+                $employee->birthday = Carbon::createFromFormat('m/d/Y', $params['birthday']);
+                $ok = $employee->save();
+
+                if ($ok)
+                {
+                    $response->setSuccess(true);
+                    $response->setMessages([
+                        'Employee successfully created!', 
+                        'Password for new user: ' . $temp_password
+                    ]);
+                }
+                else
+                {
+                    $response->setMessages(['Failed to create employee!']);
+                }
+            });
         }
         catch (\Exception $ex)
         {

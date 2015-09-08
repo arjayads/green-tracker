@@ -44,26 +44,30 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/create',
             templateUrl: '/html/sales/create',
             controller: 'createSaleCtrl',
-            pageTitle: "Add sale"
+            pageTitle: "Add Sale"
         })
 
         .state('sales.detail', {
             url:  '/{id}/detail',
             templateUrl: '/html/sales/detail',
-            controller: 'saleDetailCtrl'
+            controller: 'saleDetailCtrl',
+            pageTitle: "Sale Detail"
         })
 
         .state('user', {
             url:  '/user/list',
             templateUrl: '/html/user/list',
             controller: 'userListCtrl',
+            pageTitle: "User List",
             resolve: {
                 store: function ($ocLazyLoad) {
                     return $ocLazyLoad.load(
                         {
                             name: "user",
                             files: [
-                                js('/module/user')
+                                js('/module/user'),
+                                js('/directives/form-error'),
+                                js('/filters/date-filter')
                             ]
                         }
                     )
@@ -74,13 +78,15 @@ function config($stateProvider, $urlRouterProvider) {
         .state('user.create', {
             url:  '^/user/create',
             templateUrl: '/html/user/create',
-            controller: 'createUserCtrl'
+            controller: 'createUserCtrl',
+            pageTitle: "Add User"
         })
 
         .state('myProfile', {
             url:  '/profile',
             templateUrl: '/html/user/profile',
             controller: 'mainCtrl',
+            pageTitle: "My Profile",
             resolve: {
                 store: function ($ocLazyLoad) {
                     return $ocLazyLoad.load(

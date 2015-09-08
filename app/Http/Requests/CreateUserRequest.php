@@ -22,10 +22,12 @@ class CreateUserRequest extends Request
     public function rules()
     {
         return [
+            'id_number'     => 'required|numeric',
             'email'         => 'required|email|unique:users',
             'first_name'    => 'required',
             'last_name'     => 'required',
-            'sex'           => 'required'
+            'sex'           => 'required',
+            'birthday'      => 'required'
         ];
     }
 }

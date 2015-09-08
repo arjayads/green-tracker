@@ -6,10 +6,10 @@ user.controller('userListCtrl', ['$scope', '$http', '$rootScope', '$state',
     function($scope, $http, $rootScope, $state) {
         $rootScope.pageTitle = $state.current.pageTitle;
 
-        $scope.user = [];
+        $scope.users = [];
 
         $http.get('/user/list').success(function(data) {
-            $scope.user = data;
+            $scope.users = data;
         }).error(function() {
             toastr.error('Something went wrong!');
         });
@@ -21,6 +21,7 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
         $rootScope.pageTitle = $state.current.pageTitle;
 
         $scope.save = "Create";
+        $scope.user = {};
 
         $scope.createUser = function(){
             if ($scope.submitting) return; // prevent multiple submission

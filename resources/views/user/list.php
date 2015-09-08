@@ -24,7 +24,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="user in s = (user | filter:query)">
+                <tr ng-repeat="user in s = (users | filter:query)">
                     <td>{{user.id_number}}</td>
                     <td>{{user.first_name}}</td>
                     <td>{{user.last_name}}</td>

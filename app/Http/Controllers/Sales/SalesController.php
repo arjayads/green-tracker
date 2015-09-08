@@ -35,14 +35,16 @@ class SalesController extends Controller
             'customer.phone_number.required' => 'The customer phone number is required.',
         ];
 
-        $v = Validator::make($request->all(), [
+        $rules = [
             'product_id' => 'required|min:1',
             'date_sold' => 'required',
             'order_number' => 'required|unique:sales,order_number|max:30',
             'customer.first_name' => 'required|max:255',
             'customer.last_name' => 'required|max:255',
             'customer.phone_number' => 'required|max:15'
-        ], $messages);
+        ];
+
+        $v = Validator::make($request->all(), $rules, $messages);
 
         if ($v->fails())
         {

@@ -30,7 +30,6 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
             $scope.errors = {};
 
             var postData = $scope.user;
-            console.log(JSON.stringify(postData));
 
             //validate
             if (undefined == $scope.user.id_number || $scope.user.id_number == '') {
@@ -63,6 +62,10 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
                 }
             }).error(function(data) {
                 toastr.error('Something went wrong!');
+                $.each(data.messages, function(index, value) {
+                    $scope.errors[index] = value;
+                });
+               
                 $scope.submitting = false;
                 $scope.save = "Create";
             });

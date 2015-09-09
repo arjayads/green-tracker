@@ -40,6 +40,24 @@
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
+                    <label class="input-label" for="middle_name">Middle name</label>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                        <input required="" placeholder="Enter middle name" type="text" id="middle_name" ng-model="user.middle_name" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <form-error err_field="errors.middle_name"></form-error>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 10px;"></div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-2 col-lg-2">
                     <label class="input-label" for="last_name">Last name</label>
                 </div>
                 <div class="col-md-5 col-lg-5">
@@ -108,6 +126,27 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <form-error err_field="errors.birthday"></form-error>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 10px;"></div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-2 col-lg-2">
+                    <label class="input-label" for="shift">Shift</label>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        <select required="" class="form-control" id="shift" ng-model="selectedShift"
+                                ng-options="shift.description for shift in shifts track by shifts.id">
+                            <option value="">Select shift</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <form-error err_field="errors.shift"></form-error>
                 </div>
             </div>
         </div>

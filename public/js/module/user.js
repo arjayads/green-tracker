@@ -1,5 +1,6 @@
 var user = angular.module('user', [
-
+    'dirFormError',
+    'dateFilters'
 ]);
 
 user.controller('userListCtrl', ['$scope', '$http', '$rootScope', '$state',
@@ -23,6 +24,16 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
         $scope.save = "Create";
         $scope.user = {};
 
+        $scope.loadShifts = function() {
+            $http.get('/shift/list').success(function(data) {
+                $scope.shifts = data;
+            }).error(function() {
+                toastr.error('Something went wrong!');
+            });
+        }
+
+        $scope.loadShifts();
+
         $scope.createUser = function(){
             if ($scope.submitting) return; // prevent multiple submission
             $scope.save = 'Creating...';
@@ -38,6 +49,9 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
             if (undefined == $scope.user.first_name || $scope.user.first_name == '') {
                 $scope.errors['first_name'] = 'Please enter first name';
             }
+            if (undefined == $scope.user.middle_name || $scope.user.middle_name == '') {
+                $scope.errors['middle_name'] = 'Please enter middle name';
+            }
             if (undefined == $scope.user.last_name || $scope.user.last_name == '') {
                 $scope.errors['last_name'] = 'Please enter last name';
             }
@@ -50,19 +64,35 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
             if (undefined == $scope.user.birthday || $scope.user.birthday == '') {
                 $scope.errors['birthday'] = 'Please enter birthday';
             }
+            if (undefined == $scope.selectedShift || $scope.selectedShift == '') {
+                $scope.errors['shift'] = 'Please select shift';
+            } else {
+                postData['shift_id'] = $scope.selectedShift.id;
+            }
 
             $http.post('/user/create', postData).success(function(data) {
                 if (data.success) {
                     $state.go('user', {}, {reload: true}); // redirect to main
                     toastr.success('User successfully created');
                 } else {
-                    $.each(data.messages, function(index, value) {
+                    var messages;
+                    if(typeof data.messages !== 'undefined'){
+                        messages = data.messages;
+                    }else{
+                        messages = data;
+                    }
+                    $.each(messages, function(index, value) {
                         $scope.errors[index] = value;
-                    });
+                    }); 
                 }
             }).error(function(data) {
                 toastr.error('Something went wrong!');
-                $.each(data.messages, function(index, value) {
+                if(typeof data.messages !== 'undefined'){
+                    messages = data.messages;
+                }else{
+                    messages = data;
+                }
+                $.each(messages, function(index, value) {
                     $scope.errors[index] = value;
                 });
                

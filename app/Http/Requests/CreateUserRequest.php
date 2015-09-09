@@ -25,9 +25,11 @@ class CreateUserRequest extends Request
             'id_number'     => 'required|numeric',
             'email'         => 'required|email|unique:users',
             'first_name'    => 'required',
+            'middle_name'   => 'required',
             'last_name'     => 'required',
             'sex'           => 'required',
-            'birthday'      => 'required'
+            'birthday'      => 'required',
+            'shift_id'      => 'required'
         ];
     }
 }

@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
-                    <form-error err_field="errors.shift"></form-error>
+                    <form-error err_field="errors.shift_id"></form-error>
                 </div>
             </div>
         </div>

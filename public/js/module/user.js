@@ -34,6 +34,18 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
 
         $scope.loadShifts();
 
+        $scope.displayErrors = function(data){
+            var messages;
+            if(typeof data.messages !== 'undefined'){
+                messages = data.messages;
+            }else{
+                messages = data;
+            }
+            $.each(messages, function(index, value) {
+                $scope.errors[index] = value;
+            }); 
+        }
+
         $scope.createUser = function(){
             if ($scope.submitting) return; // prevent multiple submission
             $scope.save = 'Creating...';
@@ -44,28 +56,28 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
 
             //validate
             if (undefined == $scope.user.id_number || $scope.user.id_number == '') {
-                $scope.errors['id_number'] = 'Please enter ID Number';
+                $scope.errors['id_number'] = ['Please enter ID Number'];
             }
             if (undefined == $scope.user.first_name || $scope.user.first_name == '') {
-                $scope.errors['first_name'] = 'Please enter first name';
+                $scope.errors['first_name'] = ['Please enter first name'];
             }
             if (undefined == $scope.user.middle_name || $scope.user.middle_name == '') {
-                $scope.errors['middle_name'] = 'Please enter middle name';
+                $scope.errors['middle_name'] = ['Please enter middle name'];
             }
             if (undefined == $scope.user.last_name || $scope.user.last_name == '') {
-                $scope.errors['last_name'] = 'Please enter last name';
+                $scope.errors['last_name'] = ['Please enter last name'];
             }
             if (undefined == $scope.user.email || $scope.user.email == '') {
-                $scope.errors['email'] = 'Please enter email';
+                $scope.errors['email'] = ['Please enter email'];
             }
             if (undefined == $scope.user.sex || $scope.user.sex == '') {
-                $scope.errors['sex'] = 'Please select sex';
+                $scope.errors['sex'] = ['Please select sex'];
             }
             if (undefined == $scope.user.birthday || $scope.user.birthday == '') {
-                $scope.errors['birthday'] = 'Please enter birthday';
+                $scope.errors['birthday'] = ['Please enter birthday'];
             }
             if (undefined == $scope.selectedShift || $scope.selectedShift == '') {
-                $scope.errors['shift'] = 'Please select shift';
+                $scope.errors['shift_id'] = ['Please select shift'];
             } else {
                 postData['shift_id'] = $scope.selectedShift.id;
             }
@@ -75,26 +87,11 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
                     $state.go('user', {}, {reload: true}); // redirect to main
                     toastr.success('User successfully created');
                 } else {
-                    var messages;
-                    if(typeof data.messages !== 'undefined'){
-                        messages = data.messages;
-                    }else{
-                        messages = data;
-                    }
-                    $.each(messages, function(index, value) {
-                        $scope.errors[index] = value;
-                    }); 
+                    $scope.displayErrors(data);
                 }
             }).error(function(data) {
                 toastr.error('Something went wrong!');
-                if(typeof data.messages !== 'undefined'){
-                    messages = data.messages;
-                }else{
-                    messages = data;
-                }
-                $.each(messages, function(index, value) {
-                    $scope.errors[index] = value;
-                });
+                $scope.displayErrors(data);
                
                 $scope.submitting = false;
                 $scope.save = "Create";

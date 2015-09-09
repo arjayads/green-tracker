@@ -40,6 +40,7 @@ class UserServiceImpl implements UserService
                 $employee->sex = $params['sex'];
                 $employee->birthday = Carbon::createFromFormat('m/d/Y', $params['birthday']);
                 $employee->shift_id = $params['shift_id'];
+                $employee->active = '1';
                 $ok = $employee->save();
 
                 if ($ok)

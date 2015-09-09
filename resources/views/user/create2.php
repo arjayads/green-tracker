@@ -140,7 +140,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                         <select required="" class="form-control" id="shift" ng-model="selectedShift"
-                                ng-options="shift.description for shift in shifts track by shifts.id">
+                                ng-options="shift.description for shift in shifts track by shift.id">
                             <option value="">Select shift</option>
                         </select>
                     </div>

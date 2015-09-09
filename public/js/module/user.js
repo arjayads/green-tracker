@@ -36,7 +36,7 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
 
         $scope.displayErrors = function(data){
             var messages;
-            if(typeof data.messages !== 'undefined'){
+            if(undefined != data.messages){
                 messages = data.messages;
             }else{
                 messages = data;

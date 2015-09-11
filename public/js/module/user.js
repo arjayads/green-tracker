@@ -85,7 +85,9 @@ user.controller('createUserCtrl', ['$scope', '$http', '$rootScope', '$state',
             $http.post('/user/create', postData).success(function(data) {
                 if (data.success) {
                     $state.go('user', {}, {reload: true}); // redirect to main
-                    toastr.success('User successfully created');
+                    toastr.options.timeOut = 0;
+                    toastr.options.extendedTimeOut = 0;
+                    toastr.success(data.messages[1], data.messages[0]);
                 } else {
                     $scope.displayErrors(data);
                 }

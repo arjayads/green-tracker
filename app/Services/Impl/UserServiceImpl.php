@@ -26,14 +26,14 @@ class UserServiceImpl implements UserService
             {
                 $user = new User();
                 $user->email = $params['email'];
-                $temp_password = str_random(8);
-                $user->password = bcrypt($temp_password);
+                $id_number = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
+                $user->password = bcrypt($id_number); //default password is the ID Number of the employee
                 $user->active = '1';
                 $user->save();
 
                 $employee = new Employee();
                 $employee->user_id = $user->id;
-                $employee->id_number = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
+                $employee->id_number = $id_number;
                 $employee->first_name = $params['first_name'];
                 $employee->last_name = $params['last_name'];
                 $employee->middle_name = $params['middle_name'];
@@ -46,10 +46,7 @@ class UserServiceImpl implements UserService
                 if ($ok)
                 {
                     $response->setSuccess(true);
-                    $response->setMessages([
-                        'Employee successfully created!', 
-                        'Password for new user: ' . $temp_password
-                    ]);
+                    $response->setMessages(['Employee successfully created!']);
                 }
                 else
                 {

@@ -205,7 +205,7 @@
 @section('javascript')
     <script src="{{asset('js/datepicker/datepicker.js')}}"></script>
     <script src="{{asset('js/app/directives/form-error.js')}}"></script>
-    <script src="{{asset('js/app/modules/sale.js')}}"></script>
+    <script src="{{asset('js/app/modules/sale-create.js')}}"></script>
 
     <script>
         $(function () {

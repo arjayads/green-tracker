@@ -43,7 +43,12 @@ class SalesController extends Controller
 
     public function detail($id)
     {
-        return $this->saleDto->findById($id);
+        $sale = $this->saleDto->findById($id);
+        if ($sale) {
+            return view('sale.detail', ['sale' => $sale]);
+        } else {
+            abort(404);
+        }
     }
 
     public function statuses()

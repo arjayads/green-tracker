@@ -1,11 +1,11 @@
-var profileApp = angular.module('sale', ['dirFormError']);
+var saleApp = angular.module('sale', ['dirFormError']);
 
-profileApp.config(['$interpolateProvider', function($interpolateProvider) {
+saleApp.config(['$interpolateProvider', function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
 }]);
 
-profileApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
+saleApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.title = 'Create sale';
     $scope.showForm = true;
 

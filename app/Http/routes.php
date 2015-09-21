@@ -22,6 +22,10 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::group(['prefix' => 'sales'], function () {
+    Route::get('listing', function () {
+        return view('sale.list');
+    });
+
     Route::get('create', function () {
         return view('sale.create', ['patientId' => null]);
     });
@@ -43,22 +47,11 @@ Route::group(['prefix' => 'shift'], function () {
 });
 
 // view providers
-
 Route::get('/main', function () {
     return view('main');
 });
 
 Route::group(['prefix' => 'html'], function () {
-
-    Route::group(['prefix' => 'sales'], function () {
-        Route::get('list', function () {
-            return view('sales.list');
-        });
-
-        Route::get('detail', function () {
-            return view('sales.detail');
-        });
-    });
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', function () {

@@ -11,8 +11,6 @@ class SaleStatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sale_statuses')->truncate();
-
         DB::table('sale_statuses')->insert([
             [
                 'status'    => 'Dupe Sale'

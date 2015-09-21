@@ -23,19 +23,17 @@ class SalesController extends Controller
         $this->saleDto = new SaleDto();
     }
 
-    // actions
     public function store(CreateSaleRequest $request)
     {
         return  $this->saleService->save($request->all())->toArray();
     }
-    // data
+
     public function process(Request $request)
     {
         $params = $request->all();
         return $this->saleService->process($params['sale_id'], $params['status_id'])->toArray();
     }
 
-    // data
     public function salesList()
     {
         return $this->saleDto->lists();

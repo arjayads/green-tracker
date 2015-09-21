@@ -10,6 +10,7 @@ use app\Models\User;
 use app\ResponseEntity;
 use app\Services\SaleService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SaleServiceImpl implements SaleService
@@ -25,7 +26,7 @@ class SaleServiceImpl implements SaleService
         {
             DB::transaction(function() use (&$response, $params)
             {
-                $user = User::find(1);
+                $user = User::find(Auth::user()->id);
                 $product = Product::find($params['product_id']);
 
                 $cust = new Customer();

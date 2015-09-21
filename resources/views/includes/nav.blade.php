@@ -26,7 +26,7 @@
                         <li><a ui-sref="sales">Sales</a></li>
                         <li><a ui-sref="user">User</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a ui-sref="myProfile">My Profile</a></li>
+                        <li><a href="/auth/logout">Log Off</a></li>
                     </ul>
                 </li>
             </ul>

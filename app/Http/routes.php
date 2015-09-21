@@ -11,8 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['middleware' => 'auth', function () {
     return view('profile');
+}]);
+
+// Authentication routes...
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('login', 'Auth\AuthController@getLogin');
+    Route::post('login', 'Auth\AuthController@postLogin');
+    Route::get('logout', 'Auth\AuthController@getLogout');
 });
 
 // data and actions
@@ -47,10 +54,6 @@ Route::group(['prefix' => 'shift'], function () {
 });
 
 // view providers
-Route::get('/main', function () {
-    return view('main');
-});
-
 Route::group(['prefix' => 'html'], function () {
 
     Route::group(['prefix' => 'user'], function () {
@@ -59,9 +62,6 @@ Route::group(['prefix' => 'html'], function () {
         });
         Route::get('create', function () {
             return view('user.create2');
-        });
-        Route::get('profile', function () {
-            return view('user.profile');
         });
     });
 });

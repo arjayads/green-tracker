@@ -12,19 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('profile');
 });
 
 // data and actions
 Route::group(['prefix' => 'user'], function () {
-//    Route::get('/', ['as' => 'my-account', 'uses' => 'Auth\UserController@show']);
     Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
-
     Route::get('list', ['as' => 'user-list', 'uses' => 'Auth\UserController@userList']);
-//    Route::get('{id}', ['as' => 'user-account', 'uses' => 'Auth\UserController@show']);
-
 });
+
 Route::group(['prefix' => 'sales'], function () {
+    Route::get('create', function () {
+        return view('sale.create', ['patientId' => null]);
+    });
+
     Route::post('create', ['uses' => 'Sales\SalesController@store']);
     Route::post('process', ['uses' => 'Sales\SalesController@process']);
     Route::get('list', ['as' => 'sales-list', 'uses' => 'Sales\SalesController@salesList']);
@@ -52,10 +53,6 @@ Route::group(['prefix' => 'html'], function () {
     Route::group(['prefix' => 'sales'], function () {
         Route::get('list', function () {
             return view('sales.list');
-        });
-
-        Route::get('create', function () {
-            return view('sales.create');
         });
 
         Route::get('detail', function () {

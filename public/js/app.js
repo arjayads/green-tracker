@@ -18,10 +18,18 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
-
-    angular.module('social', [
-        'ui.router',
-        'ui.bootstrap',
-        'oc.lazyLoad'
-    ]);
 })();
+
+
+var buildFormErrors = function($scopeError, data) {
+    try {
+        for (var property in data) {
+            if (data.hasOwnProperty(property)) {
+                $scopeError[property] = data[property];
+            }
+        }
+    } catch (e) {
+        console.log(e);
+    }
+    return $scopeError;
+}

@@ -14,6 +14,7 @@
         <div id="primary" class="content-area mg-t-10 mg-b-10">
             <main id="main" class="site-main" role="main">
                 <div class="container">
+                    <a href="/user" class="btn btn-primary">Back to list</a>
                     <h2><% title %></h2>
                     <form method="POST" ng-submit="createUser()">
                         <div class="row">

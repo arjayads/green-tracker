@@ -13,6 +13,7 @@ class UserRepo
             ->leftJoin('shifts', 'employees.shift_id', '=', 'shifts.id')
             ->select(
                 'users.email',
+                'employees.id as employee_id',
                 'employees.id_number',
                 'employees.first_name',
                 'employees.middle_name',

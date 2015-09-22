@@ -25,6 +25,7 @@ class UserDto
             foreach($rows as $data)
             {
                 $user['id_number'] = $data->id_number;
+                $user['employee_id'] = $data->employee_id;
                 $user['first_name'] = $data->first_name;
                 $user['last_name'] = $data->last_name;
                 $user['sex'] = $data->sex;

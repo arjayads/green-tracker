@@ -55,6 +55,10 @@ Route::group(['prefix' => 'campaign'], function () {
     Route::get('{campaignId}/products', ['uses' => 'CampaignController@products']);
 });
 
+Route::group(['prefix' => 'employee'], function () {
+    Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
+});
+
 Route::group(['prefix' => 'shift'], function () {
     Route::get('list', ['uses' => 'ShiftController@shiftList']);
 });

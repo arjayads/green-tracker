@@ -28,15 +28,19 @@ userApp.controller('listCtrl', ['$scope', '$http',
 
         });
 
-        $scope.buildCellUrl = function(obj) {
-            return '#';
+        $scope.buildCellUrl = function(empId) {
+            return '/employee/' + empId + '/detail' ;
         }
 
         $scope.gridOptions1 = {
             paginationPageSizes: [15, 30, 45],
             paginationPageSize: 15,
             columnDefs: [
-                {field: 'id_number', enableSorting: true, enableHiding: false },
+                {
+                    field: 'id_number', enableSorting: true, enableHiding: false,
+                    cellTemplate: '<a href="{{grid.appScope.buildCellUrl(row.entity.employee_id)}}" class="ui-grid-cell-contents">{{row.entity.id_number}}</a>'
+
+                },
                 {field: 'email', enableSorting: true, enableHiding: false },
                 {field: 'full_name', enableSorting: true, enableHiding: false },
                 {field: 'sex', enableSorting: true, enableHiding: false },

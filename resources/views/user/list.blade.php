@@ -2,6 +2,17 @@
 
 @section('title', 'Sales')
 
+@section('css')
+    <link href="{{asset('css/ui-grid/ui-grid.min.css')}}" rel="stylesheet" type="text/css">
+
+    <style>
+        .list {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+@stop
+
 @section('content')
 
 <div  ng-app="user">
@@ -24,26 +35,7 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-12 col-lg-12">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Email</th>
-                                    <th>Name</th>
-                                    <th>Sex</th>
-                                    <th>Shift</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="user in s = (users | filter:query)">
-                                    <td><% user.id_number %></td>
-                                    <td><% user.email %></td>
-                                    <td><% user.last_name %>, <% user.first_name %> <% user.middle_name %></td>
-                                    <td><% user.sex %></td>
-                                    <td><% user.shift %></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div ui-grid="gridOptions1" ui-grid-pagination class="list"></div>
                         </div>
                     </div>
                 </div>
@@ -54,5 +46,6 @@
 
 @stop
 @section('javascript')
+    <script src="{{asset('js/ui-grid/ui-grid.min.js')}}"></script>
     <script src="{{asset('js/app/modules/user-list.js')}}"></script>
 @stop

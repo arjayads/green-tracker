@@ -46,5 +46,22 @@ class EmployeesTableSeeder extends Seeder
                 'shift_id'      => '1'
             ],
         ]);
+
+        $r = range(4, 104);
+        foreach($r as $v) {
+            DB::table('employees')->insert(
+                [
+                    'user_id'    =>  $v,
+                    'id_number'   => 'GWO-'.($v*1000),
+                    'first_name'    => 'John'.$v,
+                    'last_name'     => 'Doe'.$v,
+                    'middle_name'   => 'Foo'.$v,
+                    'sex'           =>  $v % 2 == 0 ? 'Male' : 'Female',
+                    'birthday'      => '1990-11-20',
+                    'active'        => '1',
+                    'shift_id'      => '1'
+                ]
+            );
+        }
     }
 }

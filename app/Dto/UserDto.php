@@ -15,9 +15,9 @@ class UserDto
         $this->userRepo = new UserRepo();
     }
 
-    function lists()
+    function lists($q)
     {
-        $rows = $this->userRepo->findAll();
+        $rows = $this->userRepo->findAll($q);
 
         $result = [];
         if ($rows)
@@ -31,6 +31,7 @@ class UserDto
                 $user['email'] = $data->email;
                 $user['middle_name'] = $data->middle_name;
                 $user['shift'] = $data->shift;
+                $user['full_name'] = $data->last_name . ', ' . $data->first_name . ' ' . $data->last_name;
 
                 $result[] = $user;
             }

@@ -28,5 +28,17 @@ class UsersTableSeeder extends Seeder
                 'active'   => '1'
             ],
         ]);
+
+        $r = range(4, 104);
+        foreach($r as $v) {
+            DB::table('users')->insert(
+                [
+                    'id'    =>  $v,
+                    'email'    => 'john' . $v . '@verticalops.com',
+                    'password' => Hash::make('john' . $v),
+                    'active'   => '1'
+                ]
+            );
+        }
     }
 }

@@ -10,6 +10,7 @@ use app\Models\Employee;
 use app\Models\User;
 use app\Services\Impl\UserServiceImpl;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -29,6 +30,6 @@ class UserController extends Controller
 
     public function userList()
     {
-        return $this->userDto->lists();
+        return $this->userDto->lists(Input::get('q'));
     }
 }

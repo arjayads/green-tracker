@@ -24,12 +24,12 @@ class CreateUserRequest extends Request
         return [
             'id_number'     => 'required|numeric',
             'email'         => 'required|email|unique:users',
-            'first_name'    => 'required',
-            'middle_name'   => 'required',
-            'last_name'     => 'required',
-            'sex'           => 'required',
-            'birthday'      => 'required',
-            'shift_id'      => 'required'
+            'first_name'    => 'required|max:255',
+            'middle_name'   => 'required|max:255',
+            'last_name'     => 'required|max:255',
+            'sex'           => 'required|in:Male,Female',
+            'birthday'      => 'required|date',
+            'shift_id'      => 'required|numeric'
         ];
     }
 }

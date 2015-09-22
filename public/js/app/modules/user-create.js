@@ -48,6 +48,7 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
                 }, 3000);
             } else {
                 toastr.error('Something went wrong!');
+                $scope.errors = buildFormErrors($scope.errors, data.messages);
                 resetSubmitBtn();
             }
         }).error(function(data, a) {

@@ -31,6 +31,7 @@ class SaleRepo
                 'employees.first_name as user_first_name',
                 'employees.last_name as user_last_name'
             )
+            ->groupBy('sales.id')
             ->get();
     }
 

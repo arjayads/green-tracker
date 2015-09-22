@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="col-md-2 col-lg-2" style="text-align: right !important;">
-                            <a class="btn btn-primary" href="#">Create</a>
+                            <a class="btn btn-primary" href="/user/create">Create</a>
                         </div>
                     </div>
                     <hr/>

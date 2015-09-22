@@ -29,7 +29,7 @@ userApp.controller('listCtrl', ['$scope', '$http',
         });
 
         $scope.buildCellUrl = function(empId) {
-            return '/employee/' + empId + '/detail' ;
+            return '/user/' + empId + '/detail' ;
         }
 
         $scope.gridOptions1 = {

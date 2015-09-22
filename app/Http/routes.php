@@ -30,6 +30,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('create', function () {
         return view('user.create');
     });
+    Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
     Route::get('list', ['as' => 'user-list', 'uses' => 'Auth\UserController@userList']);
     Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
 });
@@ -55,9 +56,6 @@ Route::group(['prefix' => 'campaign'], function () {
     Route::get('{campaignId}/products', ['uses' => 'CampaignController@products']);
 });
 
-Route::group(['prefix' => 'employee'], function () {
-    Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
-});
 
 Route::group(['prefix' => 'shift'], function () {
     Route::get('list', ['uses' => 'ShiftController@shiftList']);

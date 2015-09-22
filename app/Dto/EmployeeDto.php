@@ -14,6 +14,6 @@ use app\Models\Employee;
 class EmployeeDto {
 
     function findById($id) {
-        return Employee::find($id);
+        return Employee::with('user', 'shift')->find($id);
     }
 }

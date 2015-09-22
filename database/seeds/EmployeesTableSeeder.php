@@ -18,7 +18,7 @@ class EmployeesTableSeeder extends Seeder
                 'first_name'    => 'Jim',
                 'last_name'     => 'Callanta',
                 'middle_name'   => 'Hitgano',
-                'sex'           => 'M',
+                'sex'           => 'Male',
                 'birthday'      => '1990-11-20',
                 'active'        => '1',
                 'shift_id'      => '1'
@@ -29,7 +29,7 @@ class EmployeesTableSeeder extends Seeder
                 'first_name'    => 'Arjay',
                 'last_name'     => 'Adong',
                 'middle_name'   => 'test',
-                'sex'           => 'M',
+                'sex'           => 'Male',
                 'birthday'      => '1990-11-20',
                 'active'        => '1',
                 'shift_id'      => '1'
@@ -37,10 +37,10 @@ class EmployeesTableSeeder extends Seeder
             [
                 'user_id'       => '2',
                 'id_number'   => 'GWO-0130',
-                'first_name'    => 'first_test',
-                'last_name'     => 'last_test',
-                'middle_name'   => 'middle_test',
-                'sex'           => 'M',
+                'first_name'    => 'Ben',
+                'last_name'     => 'Ten',
+                'middle_name'   => '20',
+                'sex'           => 'Female',
                 'birthday'      => '1990-11-20',
                 'active'        => '1',
                 'shift_id'      => '1'

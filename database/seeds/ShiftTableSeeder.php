@@ -11,7 +11,7 @@ class ShiftTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('shift')->insert([
+        DB::table('shifts')->insert([
             [
                 'description' => 'Night shift',
                 'log_in' => '22:00',

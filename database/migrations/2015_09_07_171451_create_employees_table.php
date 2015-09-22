@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
-            $table->char('sex', 1);
+            $table->enum('sex', ['Male', 'Female']);
             $table->date('birthday');
             $table->unsignedInteger('shift_id')->index();
             $table->unsignedInteger('supervisor_id')->index()->nullable();
@@ -31,7 +31,7 @@ class CreateEmployeesTable extends Migration
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->foreign('shift_id')->references('id')->on('shift')->onDelete('restrict');
+            $table->foreign('shift_id')->references('id')->on('shifts')->onDelete('restrict');
             $table->foreign('supervisor_id')->references('id')->on('employees')->onDelete('set null');
         });
     }

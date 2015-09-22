@@ -9,6 +9,7 @@ use app\ResponseEntity;
 use app\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserServiceImpl implements UserService
 {
@@ -27,7 +28,7 @@ class UserServiceImpl implements UserService
                 $user = new User();
                 $user->email = $params['email'];
                 $id_number = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
-                $user->password = bcrypt($id_number); //default password is the ID Number of the employee
+                $user->password = Hash::make($id_number); //default password is the ID Number of the employee
                 $user->active = '1';
                 $user->save();
 

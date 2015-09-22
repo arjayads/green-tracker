@@ -13,16 +13,13 @@ class GroupsTableSeeder extends Seeder
     {
         DB::table('groups')->insert([
             [
-                'name'       => 'administrator',
-                'permission' => ''
+                'name'       => 'Administrator'
             ],
             [
-                'name'       => 'dev team',
-                'permission' => ''
+                'name'       => 'Manager',
             ],
             [
-                'name'       => 'agents',
-                'permission' => ''
+                'name'       => 'Agent',
             ],
         ]);
     }

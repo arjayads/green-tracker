@@ -19,9 +19,7 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.selectedCampaign = {};
         $scope.user = {'birthday' : $.datepicker.formatDate('mm/dd/yy', new Date())};
         resetSubmitBtn();
-    }
-
-    $scope.resetForm();
+    } 
 
     $scope.loadShifts = function() {
         $http.get('/shift/list').success(function(data) {
@@ -31,7 +29,7 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
-    $scope.createUser = function(){
+    $scope.save = function(){
         if ($scope.submitting) return; // prevent multiple submission
         $scope.save = 'Creating...';
         $scope.submitting = true;
@@ -60,7 +58,7 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
-
+    $scope.resetForm();
     $scope.loadShifts();
 
 }]);

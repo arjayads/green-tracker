@@ -1,11 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: gwdev1
+ * Date: 9/23/15
+ * Time: 4:20 AM
+ */
 
 namespace app\Repositories;
 
+
 use Illuminate\Support\Facades\DB;
 
-class UserRepo
-{
+class EmployeeRepo {
+
     function findAll($query)
     {
         $q = DB::table('employees')
@@ -31,4 +38,5 @@ class UserRepo
 
         return $q->get();
     }
+
 }

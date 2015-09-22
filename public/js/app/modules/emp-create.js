@@ -6,7 +6,7 @@ userApp.config(['$interpolateProvider', function($interpolateProvider) {
 }]);
 
 userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.title = 'Create user';
+    $scope.title = 'Create Employee';
     $scope.showForm = true;
 
     var resetSubmitBtn = function() {
@@ -40,11 +40,11 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         var postData = $scope.user;
         postData['shift_id'] = $scope.selectedShift.id;
 
-        $http.post('/user/create', postData).success(function(data) {
+        $http.post('/emp/create', postData).success(function(data) {
             if (data.success) {
                 toastr.success('User successfully created');
                 setTimeout(function() {
-                    window.location = "/user";
+                    window.location = "/emp";
                 }, 3000);
             } else {
                 toastr.error('Something went wrong!');

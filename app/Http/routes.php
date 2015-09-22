@@ -23,16 +23,16 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 // data and actions
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'emp'], function () {
     Route::get('/', function () {
-        return view('user.list');
+        return view('emp.list');
     });
     Route::get('create', function () {
-        return view('user.create');
+        return view('emp.create');
     });
     Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
-    Route::get('list', ['as' => 'user-list', 'uses' => 'Auth\UserController@userList']);
-    Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
+    Route::get('list', ['as' => 'emp-list', 'uses' => 'EmployeeController@empList']);
+    Route::post('create', ['as' => 'store-emp', 'uses' => 'EmployeeController@store']);
 });
 
 Route::group(['prefix' => 'sales'], function () {

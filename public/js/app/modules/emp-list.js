@@ -7,9 +7,9 @@ userApp.config(['$interpolateProvider', function($interpolateProvider) {
 
 userApp.controller('listCtrl', ['$scope', '$http',
     function($scope, $http) {
-        var defUrl = '/user/list';
+        var defUrl = '/emp/list';
 
-        var getUsers = function(url) {
+        var getEmps = function(url) {
             $http.get(url).success(function(data) {
                 $scope.gridOptions1.data = data;
             }).error(function() {
@@ -20,16 +20,16 @@ userApp.controller('listCtrl', ['$scope', '$http',
         $scope.$watch('query', function(searchText, oldValue) {
             if (searchText !== undefined && $.trim(searchText).length >= 3) {
                 var q = 'q='+ encodeURIComponent(searchText);
-                getUsers(defUrl+'?'+q);
+                getEmps(defUrl+'?'+q);
             } else
             if (searchText === undefined || $.trim(searchText).length == 0) {
-                getUsers(defUrl);
+                getEmps(defUrl);
             }
 
         });
 
         $scope.buildCellUrl = function(empId) {
-            return '/user/' + empId + '/detail' ;
+            return '/emp/' + empId + '/detail' ;
         }
 
         $scope.gridOptions1 = {
@@ -51,7 +51,7 @@ userApp.controller('listCtrl', ['$scope', '$http',
             }
         };
 
-        getUsers(defUrl);
+        getEmps(defUrl);
 
     }
 ]);

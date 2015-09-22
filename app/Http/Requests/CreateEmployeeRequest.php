@@ -2,7 +2,7 @@
 
 namespace app\Http\Requests;
 
-class CreateUserRequest extends Request
+class CreateEmployeeRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class CreateUserRequest extends Request
             'id_number'     => 'required|numeric',
             'email'         => 'required|email|unique:users',
             'first_name'    => 'required|max:255',
-            'middle_name'   => 'required|max:255',
+            'middle_name'   => 'max:255',
             'last_name'     => 'required|max:255',
             'sex'           => 'required|in:Male,Female',
             'birthday'      => 'required|date',

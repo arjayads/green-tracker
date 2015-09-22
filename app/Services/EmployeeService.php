@@ -1,18 +1,19 @@
 <?php
 
-namespace app\Services\Impl;
+namespace app\Services;
 
-use Illuminate\Support\Facades\Config;
-use app\Models\User;
+
 use app\Models\Employee;
+use app\Models\User;
 use app\ResponseEntity;
-use app\Services\UserService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserServiceImpl implements UserService
+class EmployeeService implements BaseService
 {
+
     public function __construct()
     {
     }
@@ -43,7 +44,7 @@ class UserServiceImpl implements UserService
                     $employee->id_number = $idNumber;
                     $employee->first_name = $params['first_name'];
                     $employee->last_name = $params['last_name'];
-                    $employee->middle_name = $params['middle_name'];
+                    $employee->middle_name = isset($params['middle_name']) ?: '';
                     $employee->sex = $params['sex'];
                     $employee->birthday = Carbon::createFromFormat('m/d/Y', $params['birthday']);
                     $employee->shift_id = $params['shift_id'];

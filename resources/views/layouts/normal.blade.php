@@ -16,11 +16,11 @@
         <meta content="" name="author"/>
 
         <!-- Favicons -->
-        <link rel="apple-touch-icon" href="images/ico/60.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="images/ico/76.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="images/ico/120.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="images/ico/152.png">
-        <link rel="icon" type="image/x-icon" href="images/ico/favicon.png"/>
+        <link rel="apple-touch-icon" href="/images/ico/60.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/ico/76.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/images/ico/120.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/images/ico/152.png">
+        <link rel="icon" type="image/x-icon" href="/images/ico/favicon.png"/>
 
         <!-- Google fonts -->
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>

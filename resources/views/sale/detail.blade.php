@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="row">
                                 <div class="col-md-9 col-lg-9">
-                                    <a href="/sales/listing" class="btn btn-primary">Back to list</a>
+                                    <a href="/sales" class="btn btn-primary">Back to list</a>
                                 </div>
                                 <div class="col-md-3 col-lg-3">
                                     <div class="row">

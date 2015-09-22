@@ -10,12 +10,15 @@ class UserRepo
     {
         return DB::table('employees')
             ->join('users', 'employees.user_id', '=', 'users.id')
+            ->leftJoin('shifts', 'employees.shift_id', '=', 'shifts.id')
             ->select(
+                'users.email',
                 'employees.id_number',
                 'employees.first_name',
+                'employees.middle_name',
                 'employees.last_name',
-                'employees.birthday',
-                'employees.sex'
+                'employees.sex',
+                'shifts.description as shift'
             )
             ->get();
     }

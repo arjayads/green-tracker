@@ -27,8 +27,10 @@ class UserDto
                 $user['id_number'] = $data->id_number;
                 $user['first_name'] = $data->first_name;
                 $user['last_name'] = $data->last_name;
-                $user['birthday'] = $data->birthday;
                 $user['sex'] = $data->sex;
+                $user['email'] = $data->email;
+                $user['middle_name'] = $data->middle_name;
+                $user['shift'] = $data->shift;
 
                 $result[] = $user;
             }

@@ -31,31 +31,4 @@ class UserController extends Controller
     {
         return $this->userDto->lists();
     }
-
-//    public function show($id = null)
-//    {
-//        if (!$id) {
-////            $id = Auth::user()->id;
-//            $id = 1;
-//        }
-//
-//        $user = User::with('employee')->whereId($id)->first();
-//
-//        print json_encode($user);
-//    }
-//
-//    public function index()
-//    {
-//        $users = User::with('employee')->get();
-//
-//        $this->data['users'] = json_encode($users);
-//
-//        return view('user.index', $this->data);
-////        print json_encode($users);
-//    }
-//
-//    public function create()
-//    {
-//        return view('user.create', $this->data);
-//    }
 }

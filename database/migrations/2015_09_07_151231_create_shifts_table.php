@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShiftTable extends Migration
+class CreateShiftsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateShiftTable extends Migration
      */
     public function up()
     {
-        Schema::create('shift', function (Blueprint $table)
+        Schema::create('shifts', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
 
@@ -22,7 +22,9 @@ class CreateShiftTable extends Migration
             $table->time('log_out');
             $table->date('start_date');
             $table->date('end_date');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
         });
     }
 
@@ -33,6 +35,6 @@ class CreateShiftTable extends Migration
      */
     public function down()
     {
-        Schema::drop('shift');
+        Schema::drop('shifts');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shift extends Model
 {
-    protected $table = 'shift';
+    protected $table = 'shifts';
 
     protected $fillable = ['description', 'log_in', 'log_out', 'start_date', 'end_date'];
 

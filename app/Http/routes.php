@@ -24,12 +24,16 @@ Route::group(['prefix' => 'auth'], function () {
 
 // data and actions
 Route::group(['prefix' => 'user'], function () {
-    Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
+    Route::get('/', function () {
+        return view('user.list');
+    });
     Route::get('list', ['as' => 'user-list', 'uses' => 'Auth\UserController@userList']);
+
+    Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
 });
 
 Route::group(['prefix' => 'sales'], function () {
-    Route::get('listing', function () {
+    Route::get('/', function () {
         return view('sale.list');
     });
 

@@ -10,11 +10,11 @@ class ShiftRepo
     {
         if (count($fields))
         {
-            return DB::table('shift')->select($fields)->get();
+            return DB::table('shifts')->select($fields)->get();
         }
         else
         {
-            return DB::table('shift')->get();
+            return DB::table('shifts')->get();
         }
     }
 }

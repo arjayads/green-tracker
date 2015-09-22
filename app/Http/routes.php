@@ -31,7 +31,6 @@ Route::group(['prefix' => 'user'], function () {
         return view('user.create');
     });
     Route::get('list', ['as' => 'user-list', 'uses' => 'Auth\UserController@userList']);
-
     Route::post('create', ['as' => 'store-user', 'uses' => 'Auth\UserController@store']);
 });
 
@@ -58,19 +57,6 @@ Route::group(['prefix' => 'campaign'], function () {
 
 Route::group(['prefix' => 'shift'], function () {
     Route::get('list', ['uses' => 'ShiftController@shiftList']);
-});
-
-// view providers
-Route::group(['prefix' => 'html'], function () {
-
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('list', function () {
-            return view('user.list');
-        });
-        Route::get('create', function () {
-            return view('user.create2');
-        });
-    });
 });
 
 // directives

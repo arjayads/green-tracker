@@ -17,56 +17,39 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.resetForm = function() {
         $scope.selectedProduct = {};
         $scope.selectedCampaign = {};
-        $scope.sale = {'date_sold' : $.datepicker.formatDate('mm/dd/yy', new Date())};
+        $scope.user = {'birthday' : $.datepicker.formatDate('mm/dd/yy', new Date())};
         resetSubmitBtn();
     }
 
     $scope.resetForm();
 
-    $scope.loadCampaigns = function() {
-        $http.get('/campaign/list').success(function(data) {
-            $scope.campaigns = data;
+    $scope.loadShifts = function() {
+        $http.get('/shift/list').success(function(data) {
+            $scope.shifts = data;
         }).error(function() {
             toastr.error('Something went wrong!');
         });
     }
 
-    $scope.setSelectedCampaign = function(sc) {
-        $scope.selectedCampaign  = sc;
-
-        // load products of the selected campaign
-        if (sc != null && sc !== undefined) {
-            $http.get('/campaign/' + $scope.selectedCampaign.id + '/products').success(function (data) {
-                $scope.products = data;
-            }).error(function () {
-                toastr.error('Something went wrong!');
-            });
-        } else {
-            $scope.products = [];
-        }
-    }
-
-
-    $scope.processForm = function() {
-
+    $scope.createUser = function(){
         if ($scope.submitting) return; // prevent multiple submission
-        $scope.save ='Saving...';
+        $scope.save = 'Creating...';
         $scope.submitting = true;
         $scope.errors = {};
 
-        var postData = $scope.sale;
-        if ($scope.selectedProduct !== undefined) {
-            postData['product_id'] = $scope.selectedProduct.id;
-        }
+        var postData = $scope.user;
+        postData['shift_id'] = $scope.selectedShift.id;
 
-        $http.post('/sales/create', postData).success(function(data) {
+        $http.post('/user/create', postData).success(function(data) {
             if (data.success) {
-                toastr.success('Sale successfully created');
-                $scope.resetForm();
+                toastr.success('User successfully created');
+                setTimeout(function() {
+                    window.location = "/user";
+                }, 3000);
             } else {
                 toastr.error('Something went wrong!');
+                resetSubmitBtn();
             }
-            resetSubmitBtn();
         }).error(function(data, a) {
             if (a == '422') {
                 $scope.errors = buildFormErrors($scope.errors, data);
@@ -76,5 +59,7 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
-    $scope.loadCampaigns();
+
+    $scope.loadShifts();
+
 }]);

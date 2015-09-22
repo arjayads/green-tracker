@@ -116,8 +116,8 @@
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
                                         <select id="sex" ng-model="user.sex" required="" class="form-control">
                                             <option value="">Select sex</option>
-                                            <option value="M">Male</option>
-                                            <option value="F">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                     </div>
                                 </div>

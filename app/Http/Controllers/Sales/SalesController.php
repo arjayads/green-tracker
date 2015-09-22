@@ -25,7 +25,8 @@ class SalesController extends Controller
 
     public function store(CreateSaleRequest $request)
     {
-        return  $this->saleService->save($request->all())->toArray();
+        $x = $this->saleService->save($request->all())->toArray();
+        var_dump($x);
     }
 
     public function process(Request $request)

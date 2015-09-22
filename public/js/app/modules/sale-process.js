@@ -33,7 +33,7 @@ saleApp.controller('processCtrl', ['$scope', '$http',
                         if (data.success) {
                             toastr.success('Sale successfully set as ' + sa.status);
                             setTimeout(function() {
-                                window.location = "/sales/listing";
+                                window.location = "/sales";
                             }, 3000);
                         } else {
                             toastr.error(data.messages[0]);

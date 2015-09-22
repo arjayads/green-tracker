@@ -6,21 +6,16 @@ use app\Dto\SaleDto;
 use app\Http\Controllers\Controller;
 use app\Http\Requests\CreateSaleRequest;
 use app\Models\SaleStatus;
-use app\ResponseEntity;
-use app\Services\Impl\SaleServiceImpl;
-use Illuminate\Support\Facades\Validator;
+use app\Services\SaleService;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
 
-    private $saleService;
-    private $saleDto;
-
-    public function __construct()
+    public function __construct(SaleService $saleService, SaleDto $saleDto)
     {
-        $this->saleService = new SaleServiceImpl();
-        $this->saleDto = new SaleDto();
+        $this->saleService = $saleService;
+        $this->saleDto = $saleDto;
     }
 
     public function store(CreateSaleRequest $request)

@@ -22,49 +22,66 @@ class EmployeeService implements BaseService
     {
         $response = new ResponseEntity();
 
-        try
+        DB::transaction(function() use (&$response, $params)
         {
-            DB::transaction(function() use (&$response, $params)
-            {
-                $idNumber = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
 
-                $e = Employee::where('id_number', '=', $idNumber)->first();
-                if ($e) {
+            $empId = intval(isset($params['empId']) ? $params['empId'] : 0);
+            $idNumber = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
+            $existingEmp = Employee::with('user')->find($empId);
+
+            // check for duplicate id_number
+            $tempEmp = Employee::where('id_number', '=', $idNumber)->first();
+            if ($tempEmp) {
+                if ($existingEmp && $existingEmp->id != $tempEmp->id && $tempEmp->id_number == $existingEmp->id_number) { // update
                     $response->setMessages(['id_number' => ['Id number is already taken']]);
-                } else {
+                    return $response;
+                } else
+                if (!$existingEmp && $tempEmp->id_number == $idNumber) { // new
+                    $response->setMessages(['id_number' => ['Id number is already taken']]);
+                    return $response;
+                }
+            }
 
+            if ($empId > 0 && !$existingEmp) {   // check when updating
+                $response->setMessages(['Employee is not available!']);
+                return $response;
+            } else {
+                if ($existingEmp) { // updat mode
+                    $user = $existingEmp->user;
+                    $user->email = $params['email'];
+                    $user->save();
+                } else {
                     $user = new User();
                     $user->email = $params['email'];
                     $user->password = Hash::make($idNumber); //default password is the ID Number of the employee
                     $user->active = '1';
                     $user->save();
-
-                    $employee = new Employee();
-                    $employee->user_id = $user->id;
-                    $employee->id_number = $idNumber;
-                    $employee->first_name = $params['first_name'];
-                    $employee->last_name = $params['last_name'];
-                    $employee->middle_name = isset($params['middle_name']) ?: '';
-                    $employee->sex = $params['sex'];
-                    $employee->birthday = Carbon::createFromFormat('m/d/Y', $params['birthday']);
-                    $employee->shift_id = $params['shift_id'];
-                    $employee->active = '1';
-                    $ok = $employee->save();
-
-                    if ($ok) {
-                        $response->setSuccess(true);
-                        $response->setMessages(['Employee successfully created!']);
-                    } else {
-                        $response->setMessages(['Failed to create employee!']);
-                    }
                 }
-            });
-        }
-        catch (\Exception $ex)
-        {
-            $response->setMessages([$ex->getMessage()]);
-        }
 
+                $employee = $existingEmp ? $existingEmp : new Employee();
+                $employee->user_id = $user->id;
+                $employee->id_number = $idNumber;
+                $employee->first_name = $params['first_name'];
+                $employee->last_name = $params['last_name'];
+
+                if (isset($params['middle_name'])) {
+                    $employee->middle_name = $params['middle_name'];
+                }
+                $employee->sex = $params['sex'];
+                $employee->birthday = Carbon::createFromFormat('m/d/Y', $params['birthday']);
+                $employee->shift_id = $params['shift_id'];
+                $employee->active = $existingEmp ? $existingEmp->active : '1';
+                $ok = $employee->save();
+
+                if ($ok) {
+                    $response->setSuccess(true);
+                    $response->setMessages(['Employee successfully ' . ($existingEmp ? 'saved' : 'created')]);
+                } else {
+                    $response->setMessages(['Failed to ' . (($existingEmp ? 'save' : 'create')) . ' employee!']);
+                }
+            }
+
+        });
         return $response;
     }
 }

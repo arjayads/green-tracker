@@ -30,6 +30,35 @@ class EmployeeController extends Controller
         }
     }
 
+
+    public function edit($id)
+    {
+        $e = $this->empDto->findById($id);
+        if ($e) {
+            return view('emp.edit', ['employee' => $e]);
+        } else {
+            abort(404);
+        }
+    }
+
+    public function getForEdit($id)
+    {
+        $data = [];
+        $e = $this->empDto->findById($id);
+        if ($e) {
+            $data['empId'] = $e->id;
+            $data['id_number'] = substr($e->id_number, 4);
+            $data['first_name'] = $e->first_name;
+            $data['middle_name'] = $e->middle_name;
+            $data['last_name'] = $e->last_name;
+            $data['sex'] = $e->sex;
+            $data['birthday'] = $e->birthday;
+            $data['email'] = $e->user->email;
+            $data['shift'] = ['id' => $e->shift->id];
+        }
+        return $data;
+    }
+
     public function empList()
     {
         return $this->empDto->lists(Input::get('q'));

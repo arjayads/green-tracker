@@ -1,6 +1,6 @@
 @extends('layouts.normal')
 
-@section('title', 'Create Employee')
+@section('title', 'Edit Employee')
 
 @section('css')
     <link href="{{asset('css/datapicker/datepicker3.css')}}" rel="stylesheet">
@@ -15,8 +15,9 @@
             <main id="main" class="site-main" role="main">
                 <div class="container">
                     <a href="/emp" class="btn btn-primary">Back to list</a>
-                    <h2>Create employee record</h2>
+                    <h2>Edit employee record</h2>
                     <hr/>
+                    <input type="hidden" ng-cloak ng-model="empId" ng-init="empId = {{$employee['id']}}">
                     @include('emp.form')
                 </div>
             </main>

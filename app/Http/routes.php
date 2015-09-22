@@ -31,6 +31,8 @@ Route::group(['prefix' => 'emp'], function () {
         return view('emp.create');
     });
     Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
+    Route::get('{id}/edit', ['uses' => 'EmployeeController@edit']);
+    Route::get('{id}/getForEdit', ['as' => 'emp-get', 'uses' => 'EmployeeController@getForEdit']);
     Route::get('list', ['as' => 'emp-list', 'uses' => 'EmployeeController@empList']);
     Route::post('create', ['as' => 'store-emp', 'uses' => 'EmployeeController@store']);
 });

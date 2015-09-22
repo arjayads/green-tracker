@@ -1,13 +1,13 @@
-var userApp = angular.module('user', ['dirFormError']);
+var employeeApp = angular.module('employee', ['dirFormError']);
 
-userApp.config(['$interpolateProvider', function($interpolateProvider) {
+employeeApp.config(['$interpolateProvider', function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
 }]);
 
-userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.title = 'Create Employee';
+employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.showForm = true;
+    $scope.updateMode = false;
 
     var resetSubmitBtn = function() {
         $scope.save = "Create";
@@ -17,9 +17,9 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.resetForm = function() {
         $scope.selectedProduct = {};
         $scope.selectedCampaign = {};
-        $scope.user = {'birthday' : $.datepicker.formatDate('mm/dd/yy', new Date())};
+        $scope.employee = {'birthday' : $.datepicker.formatDate('mm/dd/yy', new Date())};
         resetSubmitBtn();
-    } 
+    }
 
     $scope.loadShifts = function() {
         $http.get('/shift/list').success(function(data) {
@@ -29,18 +29,18 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     }
 
-    $scope.save = function(){
+    $scope.saveEmp = function(){
         if ($scope.submitting) return; // prevent multiple submission
         $scope.save = 'Creating...';
         $scope.submitting = true;
         $scope.errors = {};
 
-        var postData = $scope.user;
+        var postData = $scope.employee;
         postData['shift_id'] = $scope.selectedShift.id;
 
         $http.post('/emp/create', postData).success(function(data) {
             if (data.success) {
-                toastr.success('User successfully created');
+                toastr.success('Employee successfully created');
                 setTimeout(function() {
                     window.location = "/emp";
                 }, 3000);
@@ -57,6 +57,21 @@ userApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
             resetSubmitBtn();
         });
     }
+
+    $scope.$watch('empId', function(newValue, oldValue) {
+        $scope.empId = newValue;
+        if ($scope.empId !== undefined && parseInt($scope.empId) > 0) {
+            $scope.updateMode = true;
+
+            $http.get('/emp/'+$scope.empId+'/getForEdit').success(function(data) {
+                $scope.employee = data;
+                $scope.employee.birthday = $.datepicker.formatDate('mm/dd/yy', new Date(data.birthday));
+                $scope.selectedShift = data.shift;
+            }).error(function() {
+                toastr.error('Something went wrong!');
+            });
+        }
+    });
 
     $scope.resetForm();
     $scope.loadShifts();

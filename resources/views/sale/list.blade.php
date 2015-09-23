@@ -13,14 +13,14 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
                                 <div class="col-md-1 col-lg-1" style="padding-left: 0; padding-top: 10px">
-                                    <label class="input-label" for="campaign">Filter</label>
+                                    <label class="input-label" for="campaign">Campaign</label>
                                 </div>
                                 <div class="col-md-5 col-lg-5">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
                                         <select required="" ng-change="setSelectedCampaign()" class="form-control" id="campaign" ng-model="selectedCampaign"
                                                 ng-options="campaign.name for campaign in campaigns track by campaign.id">
-                                            <option value="">Select campaign</option>
+                                            <option value="">All</option>
                                         </select>
                                     </div>
                                 </div>

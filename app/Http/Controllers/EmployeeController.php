@@ -77,4 +77,9 @@ class EmployeeController extends Controller
             $query ?: ''
         );
     }
+
+    public function countFind() {
+        $query = Input::get('q');
+        return $this->empRepo->countFind($query ?: '' );
+    }
 }

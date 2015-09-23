@@ -30,6 +30,8 @@ Route::group(['prefix' => 'emp'], function () {
     Route::get('create', function () {
         return view('emp.create');
     });
+
+    Route::get('countFind', ['uses' => 'EmployeeController@countFind']);
     Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
     Route::get('{id}/edit', ['uses' => 'EmployeeController@edit']);
     Route::get('{id}/getForEdit', ['as' => 'emp-get', 'uses' => 'EmployeeController@getForEdit']);

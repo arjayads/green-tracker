@@ -30,18 +30,32 @@ class EmployeeRepo {
                     DB::raw("CONCAT(last_name, ', ', first_name, ' ', middle_name) as full_name")
                 ]
             );
-        if ($query && strlen($query) > 0) {
-            $q->where('employees.id_number', 'LIKE', ('%'.$query.'%'))
-                ->orWhere('employees.first_name', 'LIKE', ('%'.$query.'%'))
-                ->orWhere('employees.middle_name', 'LIKE', ('%'.$query.'%'))
-                ->orWhere('employees.last_name', 'LIKE', ('%'.$query.'%'))
-                ->orWhere('users.email', 'LIKE', ('%'.$query.'%'));
-        }
 
+        $q = $this->findWhereClause($q, $query);
         return $q->orderBy($sortCol, $direction)
             ->take($limit)
             ->skip($offset)
             ->get();
     }
 
+    function countFind($query = '') {
+        $q = DB::table('employees')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->leftJoin('shifts', 'employees.shift_id', '=', 'shifts.id');
+
+        $q = $this->findWhereClause($q, $query);
+        return $q->count();
+    }
+
+    private function findWhereClause($q, $kwary) {
+        if ($kwary && strlen($kwary) > 0) {
+            $q->where('employees.id_number', 'LIKE', ('%'.$kwary.'%'))
+                ->orWhere('employees.first_name', 'LIKE', ('%'.$kwary.'%'))
+                ->orWhere('employees.middle_name', 'LIKE', ('%'.$kwary.'%'))
+                ->orWhere('employees.last_name', 'LIKE', ('%'.$kwary.'%'))
+                ->orWhere('users.email', 'LIKE', ('%'.$kwary.'%'));
+        }
+
+        return $q;
+    }
 }

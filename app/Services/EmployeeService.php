@@ -24,8 +24,7 @@ class EmployeeService implements BaseService
 
         DB::transaction(function() use (&$response, $params)
         {
-
-            $empId = intval(isset($params['empId']) ? $params['empId'] : 0);
+            $empId = isset($params['empId']) ? intval($params['empId']) : 0;
             $idNumber = Config::get('hris_system.employee_id_prefix') . $params['id_number'];
             $existingEmp = Employee::with('user')->find($empId);
 
@@ -46,17 +45,14 @@ class EmployeeService implements BaseService
                 $response->setMessages(['Employee is not available!']);
                 return $response;
             } else {
-                if ($existingEmp) { // updat mode
-                    $user = $existingEmp->user;
-                    $user->email = $params['email'];
-                    $user->save();
-                } else {
-                    $user = new User();
-                    $user->email = $params['email'];
+
+                $user = $existingEmp ? $existingEmp->user : new User();
+                $user->email = $params['email'];
+                if (!$existingEmp) {    // for new employee user account
                     $user->password = Hash::make($idNumber); //default password is the ID Number of the employee
                     $user->active = '1';
-                    $user->save();
                 }
+                $user->save();
 
                 $employee = $existingEmp ? $existingEmp : new Employee();
                 $employee->user_id = $user->id;

@@ -1,10 +1,5 @@
-var userApp = angular.module('user', ['ngTouch', 'ui.grid', 'ui.grid.pagination']);
-
-userApp.config(['$interpolateProvider', function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-}]);
-
+var userApp = angular.module('user', ['config', 'ngTouch', 'ui.grid', 'ui.grid.pagination']);
+ 
 userApp.controller('listCtrl', ['$scope', '$http',
     function($scope, $http) {
         var defUrl = '/emp/list';

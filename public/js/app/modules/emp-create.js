@@ -1,9 +1,4 @@
-var employeeApp = angular.module('employee', ['dirFormError']);
-
-employeeApp.config(['$interpolateProvider', function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-}]);
+var employeeApp = angular.module('employee', ['dirFormError', 'config']);
 
 employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.showForm = true;

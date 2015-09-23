@@ -1,9 +1,4 @@
-var saleApp = angular.module('sale', []);
-
-saleApp.config(['$interpolateProvider', function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-}]);
+var saleApp = angular.module('sale', ['config']); 
 
 saleApp.controller('processCtrl', ['$scope', '$http',
     function($scope, $http) {

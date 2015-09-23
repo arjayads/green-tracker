@@ -1,9 +1,4 @@
-var saleApp = angular.module('sale', ['dirFormError']);
-
-saleApp.config(['$interpolateProvider', function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-}]);
+var saleApp = angular.module('sale', ['config', 'dirFormError']);
 
 saleApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.title = 'Create sale';

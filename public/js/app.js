@@ -18,6 +18,12 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+
+    angular.module('config', []).config(['$interpolateProvider', function($interpolateProvider) {
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
+    }]);
+
 })();
 
 

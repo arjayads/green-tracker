@@ -1,9 +1,5 @@
-var saleApp = angular.module('sale', []);
+var saleApp = angular.module('sale', ['config']);
 
-saleApp.config(['$interpolateProvider', function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-}]);
 saleApp.controller('listCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.sales = [];

@@ -1,6 +1,6 @@
 @extends('layouts.normal')
 
-@section('title', 'Sales')
+@section('title', 'Employees')
 
 @section('css')
     <link href="{{asset('css/ui-grid/ui-grid.min.css')}}" rel="stylesheet" type="text/css">

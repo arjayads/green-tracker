@@ -30,12 +30,13 @@ class EmployeeService implements BaseService
 
             // check for duplicate id_number
             $tempEmp = Employee::where('id_number', '=', $idNumber)->first();
+
             if ($tempEmp) {
-                if ($existingEmp && $existingEmp->id != $tempEmp->id && $tempEmp->id_number == $existingEmp->id_number) { // update
+                if (!$existingEmp) { // new
                     $response->setMessages(['id_number' => ['Id number is already taken']]);
                     return $response;
                 } else
-                if (!$existingEmp && $tempEmp->id_number == $idNumber) { // new
+                if ($existingEmp && $existingEmp->id != $tempEmp->id) { // update
                     $response->setMessages(['id_number' => ['Id number is already taken']]);
                     return $response;
                 }
@@ -71,6 +72,7 @@ class EmployeeService implements BaseService
 
                 if ($ok) {
                     $response->setSuccess(true);
+                    $response->setData(['empId' => $employee->id]);
                     $response->setMessages(['Employee successfully ' . ($existingEmp ? 'saved' : 'created')]);
                 } else {
                     $response->setMessages(['Failed to ' . (($existingEmp ? 'save' : 'create')) . ' employee!']);

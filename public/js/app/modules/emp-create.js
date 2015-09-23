@@ -38,15 +38,15 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
         var postData = $scope.employee;
         postData['shift_id'] = $scope.selectedShift.id;
 
-        $http.post('/emp/create', postData).success(function(data) {
-            if (data.success) {
+        $http.post('/emp/create', postData).success(function(d) {
+            if (d.success) {
                 toastr.success('Employee successfully created');
                 setTimeout(function() {
-                    window.location = "/emp";
+                    window.location = "/emp/" + d.data.empId + '/detail';
                 }, 3000);
             } else {
                 toastr.error('Something went wrong!');
-                $scope.errors = buildFormErrors($scope.errors, data.messages);
+                $scope.errors = buildFormErrors($scope.errors, d.messages);
                 resetSubmitBtn();
             }
         }).error(function(data, a) {

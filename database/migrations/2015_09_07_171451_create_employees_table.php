@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
 
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->string('id_number');
+            $table->string('id_number')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');

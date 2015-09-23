@@ -8,7 +8,7 @@
     <style>
         .list {
             width: 100%;
-            height: 500px;
+            height: 530px;
         }
     </style>
 @stop

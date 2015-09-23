@@ -45,8 +45,5 @@ userApp.controller('listCtrl', ['$scope', '$http',
                 $scope.grid1Api = gridApi;
             }
         };
-
-        getEmps(defUrl);
-
     }
 ]);

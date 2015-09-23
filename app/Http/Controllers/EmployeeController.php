@@ -4,15 +4,17 @@ namespace app\Http\Controllers;
 
 use app\Dto\EmployeeDto;
 use app\Http\Requests;
+use app\Repositories\EmployeeRepo;
 use app\Services\EmployeeService;
 use Illuminate\Support\Facades\Input;
 
 class EmployeeController extends Controller
 {
-    public function __construct(EmployeeService $empService, EmployeeDto $empDto)
+    public function __construct(EmployeeService $empService, EmployeeDto $empDto,  EmployeeRepo $empRepo)
     {
         $this->empService = $empService;
         $this->empDto = $empDto;
+        $this->empRepo = $empRepo;
     }
 
     public function store(Requests\CreateEmployeeRequest $request)
@@ -61,6 +63,18 @@ class EmployeeController extends Controller
 
     public function empList()
     {
-        return $this->empDto->lists(Input::get('q'));
+        $sortCol = Input::get('sortCol');
+        $direction = Input::get('direction');
+        $offset = Input::get('offset');
+        $limit = Input::get('limit');
+        $query = Input::get('q');
+
+        return $this->empRepo->find(
+            $sortCol ?: 'id_number',
+            in_array(strtoupper($direction), ['ASC', 'DESC']) ? $direction : 'ASC',
+            $offset ?: 0,
+            $limit ?: 15,
+            $query ?: ''
+        );
     }
 }

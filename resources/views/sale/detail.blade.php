@@ -9,7 +9,7 @@
             <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">
-                        <h2>Sales list</h2>
+                        <h2>Sale detail</h2>
                         <div class="row">
                             <div class="row">
                                 <div class="col-md-9 col-lg-9">

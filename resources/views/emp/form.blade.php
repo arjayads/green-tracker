@@ -156,7 +156,7 @@
             <div class="col-md-10 col-lg-10">
                 <fieldset ng-disabled="submitting">
                     <button ng-mousedown="submit = true" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <% save %></button>
-                    <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
+                    <button ng-click="resetForm()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
                 </fieldset>
             </div>
         </div>

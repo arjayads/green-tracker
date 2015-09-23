@@ -50,6 +50,7 @@ saleApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.errors = {};
 
         var postData = $scope.sale;
+        postData['date_sold'] = $('#date-sold').val();
         if ($scope.selectedProduct !== undefined) {
             postData['product_id'] = $scope.selectedProduct.id;
         }

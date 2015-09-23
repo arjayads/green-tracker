@@ -32,7 +32,8 @@ class CreateEmployeeRequest extends Request
             'last_name'     => 'required|max:255',
             'sex'           => 'required|in:Male,Female',
             'birthday'      => 'required|date',
-            'shift_id'      => 'required|numeric'
+            'shift_id'      => 'required|numeric',
+            'group_id'      => 'required|numeric'
         ];
 
         // update mode

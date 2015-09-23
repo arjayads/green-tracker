@@ -67,6 +67,10 @@ Route::group(['prefix' => 'shift'], function () {
     Route::get('list', ['uses' => 'ShiftController@shiftList']);
 });
 
+Route::group(['prefix' => 'group'], function () {
+    Route::get('list', ['uses' => 'GroupController@groupList']);
+});
+
 // directives
 Route::group(['prefix' => 'common'], function () {
     Route::get('form-field-error-msg', function () {

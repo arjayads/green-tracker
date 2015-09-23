@@ -4,6 +4,8 @@ namespace app\Http\Controllers;
 
 use app\Dto\EmployeeDto;
 use app\Http\Requests;
+use app\Models\Group;
+use app\Models\UserGroup;
 use app\Repositories\EmployeeRepo;
 use app\Services\EmployeeService;
 use Illuminate\Support\Facades\Input;
@@ -26,6 +28,9 @@ class EmployeeController extends Controller
     {
         $e = $this->empDto->findById($id);
         if ($e) {
+            $ug = UserGroup::where('user_id', $e->user->id)->first();
+            $e->group = $ug->group->name;
+
             return view('emp.detail', ['employee' => $e]);
         } else {
             abort(404);
@@ -48,6 +53,8 @@ class EmployeeController extends Controller
         $data = [];
         $e = $this->empDto->findById($id);
         if ($e) {
+            $ug = UserGroup::where('user_id', $e->user->id)->first();
+
             $data['empId'] = $e->id;
             $data['id_number'] = substr($e->id_number, 4);
             $data['first_name'] = $e->first_name;
@@ -57,6 +64,7 @@ class EmployeeController extends Controller
             $data['birthday'] = $e->birthday;
             $data['email'] = $e->user->email;
             $data['shift'] = ['id' => $e->shift->id];
+            $data['group'] = ['id' => $ug->group->id];
         }
         return $data;
     }

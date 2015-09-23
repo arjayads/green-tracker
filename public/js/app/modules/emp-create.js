@@ -13,6 +13,7 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
             $scope.employee = data;
             $scope.employee.birthday = $.datepicker.formatDate('mm/dd/yy', new Date(data.birthday));
             $scope.selectedShift = data.shift;
+            $scope.selectedGroup = data.group;
         }).error(function() {
             toastr.error('Something went wrong!');
         });
@@ -36,6 +37,14 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
         });
     }
 
+    $scope.loadGroups = function() {
+        $http.get('/group/list').success(function(data) {
+            $scope.groups = data;
+        }).error(function() {
+            toastr.error('Something went wrong!');
+        });
+    }
+
     $scope.saveEmp = function(){
         if ($scope.submitting) return; // prevent multiple submission
         $scope.save = 'Saving...';
@@ -45,6 +54,7 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
         var postData = $scope.employee;
         postData['birthday'] = $('#birthday').val();
         postData['shift_id'] = $scope.selectedShift.id;
+        postData['group_id'] = $scope.selectedGroup.id;
 
         $http.post('/emp/create', postData).success(function(d) {
             if (d.success) {
@@ -79,5 +89,6 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
 
     $scope.resetForm();
     $scope.loadShifts();
+    $scope.loadGroups();
 
 }]);

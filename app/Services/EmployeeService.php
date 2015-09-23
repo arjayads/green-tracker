@@ -5,6 +5,7 @@ namespace app\Services;
 
 use app\Models\Employee;
 use app\Models\User;
+use app\Models\UserGroup;
 use app\ResponseEntity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
@@ -47,6 +48,7 @@ class EmployeeService implements BaseService
                 return $response;
             } else {
 
+                // employee user account
                 $user = $existingEmp ? $existingEmp->user : new User();
                 $user->email = $params['email'];
                 if (!$existingEmp) {    // for new employee user account
@@ -55,6 +57,15 @@ class EmployeeService implements BaseService
                 }
                 $user->save();
 
+                // clear user group
+                UserGroup::where('user_id', $user->id)->delete();
+                // assign group
+                $ug = new UserGroup();
+                $ug->user_id = $user->id;
+                $ug->group_id = $params['group_id'];
+                $ug->save();
+
+                // employee records
                 $employee = $existingEmp ? $existingEmp : new Employee();
                 $employee->user_id = $user->id;
                 $employee->id_number = $idNumber;

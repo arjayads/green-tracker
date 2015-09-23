@@ -152,6 +152,27 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="col-md-2 col-lg-2">
+                <label class="input-label" for="group">User Group</label>
+            </div>
+            <div class="col-md-5 col-lg-5">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    <select required="" class="form-control" id="group" ng-model="selectedGroup"
+                            ng-options="group.name for group in groups track by group.id">
+                        <option value="">Select group</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-5">
+                <form-error err_field="errors.shift_id"></form-error>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 10px;"></div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-2 col-lg-2">
             </div>
             <div class="col-md-10 col-lg-10">
                 <fieldset ng-disabled="submitting">

@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', ['middleware' => 'auth', function () {
+Route::get('/', ['middleware' => 'auth', 'uses' => 'DefaultPageRouterController@forward']);
+
+Route::get('/profile', ['middleware' => 'auth', 'as' => 'profile', function () {
     return view('profile');
 }]);
 

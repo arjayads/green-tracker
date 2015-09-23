@@ -6,15 +6,20 @@ use Illuminate\Support\Facades\DB;
 
 class SaleRepo
 {
-    function findAll()
+    function findAll($campaignId)
     {
-        return DB::table('sales')
+        $q = DB::table('sales')
             ->join('customers', 'sales.customer_id', '=', 'customers.id')
             ->join('products', 'sales.product_id', '=', 'products.id')
             ->join('users', 'sales.user_id', '=', 'users.id')
             ->join('employees', 'users.id', '=', 'employees.user_id')
-            ->join('campaigns', 'products.campaign_id', '=', 'campaigns.id')
-            ->select(
+            ->join('campaigns', 'products.campaign_id', '=', 'campaigns.id');
+
+        if (intval($campaignId) > 0) {
+            $q->where('products.campaign_id', '=', $campaignId);
+        }
+
+        return $q->select(
                 'sales.id',
                 'sales.order_number',
                 'sales.date_sold',

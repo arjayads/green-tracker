@@ -8,6 +8,7 @@ use app\Http\Requests\CreateSaleRequest;
 use app\Models\SaleStatus;
 use app\Services\SaleService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class SalesController extends Controller
 {
@@ -31,7 +32,8 @@ class SalesController extends Controller
 
     public function salesList()
     {
-        return $this->saleDto->lists();
+        $campaignId = Input::get('campId');
+        return $this->saleDto->lists($campaignId);
     }
 
     public function detail($id)

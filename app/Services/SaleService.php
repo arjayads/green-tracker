@@ -22,52 +22,45 @@ class SaleService implements BaseService
     {
         $response = new ResponseEntity();
 
-        try
+        DB::transaction(function() use (&$response, $params)
         {
-            DB::transaction(function() use (&$response, $params)
+            $user = User::find(Auth::user()->id);
+            $product = Product::find($params['product_id']);
+
+            $cust = new Customer();
+            $cust->first_name = $params['customer']['first_name'];
+            $cust->last_name = $params['customer']['last_name'];
+            $cust->phone_number = $params['customer']['phone_number'];
+            $custCreated = $cust->save();
+
+            if ($custCreated && $product && $user)
             {
-                $user = User::find(Auth::user()->id);
-                $product = Product::find($params['product_id']);
+                $sale = new Sale();
+                $sale->user_id = $user->id;
+                $sale->product_id = $product->id;
+                $sale->customer_id = $cust->id;
+                $sale->date_sold = Carbon::createFromFormat('m/d/Y', $params['date_sold']);
+                $sale->remarks = isset($params['remarks']) ? $params['remarks'] : '';
+                $sale->order_number = $params['order_number'];
+                $sale->ninety_days = isset($params['ninety_days']) ?: 0;
 
-                $cust = new Customer();
-                $cust->first_name = $params['customer']['first_name'];
-                $cust->last_name = $params['customer']['last_name'];
-                $cust->phone_number = $params['customer']['phone_number'];
-                $custCreated = $cust->save();
+                $ok = $sale->save();
 
-                if ($custCreated && $product && $user)
+                if ($ok)
                 {
-                    $sale = new Sale();
-                    $sale->user_id = $user->id;
-                    $sale->product_id = $product->id;
-                    $sale->customer_id = $cust->id;
-                    $sale->date_sold = Carbon::createFromFormat('m/d/Y', $params['date_sold']);
-                    $sale->remarks = isset($params['remarks']) ? $params['remarks'] : '';
-                    $sale->order_number = $params['order_number'];
-                    $sale->ninety_days = isset($params['ninety_days']) ?: 0;
-
-                    $ok = $sale->save();
-
-                    if ($ok)
-                    {
-                        $response->setSuccess(true);
-                        $response->setMessages(['Sale successfully created!']);
-                    }
-                    else
-                    {
-                        $response->setMessages(['Failed to create sale!']);
-                    }
+                    $response->setSuccess(true);
+                    $response->setMessages(['Sale successfully created!']);
                 }
                 else
                 {
-                    $response->setMessages(['Entities not found']);
+                    $response->setMessages(['Failed to create sale!']);
                 }
-            });
-        }
-        catch (\Exception $ex)
-        {
-            $response->setMessages(['Exception: ' . $ex->getMessage()]);
-        }
+            }
+            else
+            {
+                $response->setMessages(['Entities not found']);
+            }
+        });
         return $response;
     }
 

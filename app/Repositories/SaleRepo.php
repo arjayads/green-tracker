@@ -34,7 +34,9 @@ class SaleRepo
                 'campaigns.name as campaign_name',
 
                 'employees.first_name as user_first_name',
-                'employees.last_name as user_last_name'
+                'employees.last_name as user_last_name',
+
+                'campaigns.id as campaign_id'
             )
             ->groupBy('sales.id')
             ->get();
@@ -72,7 +74,9 @@ class SaleRepo
                 'campaigns.name as campaign_name',
 
                 'employees.first_name as user_first_name',
-                'employees.last_name as user_last_name'
+                'employees.last_name as user_last_name',
+
+                'campaigns.id as campaign_id'
             );
         }
         return $query->first();

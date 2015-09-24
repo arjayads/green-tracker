@@ -55,6 +55,7 @@ class SaleDto
         $saleArr['id'] = $s->id;
         $saleArr['product_name'] = $s->product_name;
         $saleArr['campaign_name'] = $s->campaign_name;
+        $saleArr['campaign_id'] = $s->campaign_id;
 
         $saleArr['order_number'] = $s->order_number;
         $saleArr['date_sold'] = $s->date_sold;

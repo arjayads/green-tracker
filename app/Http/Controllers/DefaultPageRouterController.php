@@ -3,10 +3,8 @@
 namespace app\Http\Controllers;
 
 use app\Repositories\UserRepo;
-use Illuminate\Http\Request;
 
 use app\Http\Requests;
-use app\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class DefaultPageRouterController extends Controller
@@ -17,10 +15,11 @@ class DefaultPageRouterController extends Controller
     }
 
     function forward() {
-        $url = $this->userRepo->findDefaultUrl(Auth::user()->id);
-        if ($url) {
+        try {
+            $url = $this->userRepo->findDefaultUrl(Auth::user()->id);
             return redirect($url[0]);
+        }catch (\Exception $e) {
+            return redirect()->route('profile');
         }
-        return redirect()->route('profile');
     }
 }

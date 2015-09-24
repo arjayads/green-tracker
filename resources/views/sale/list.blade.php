@@ -5,6 +5,7 @@
 @section('content')
     <div  ng-app="sale">
         <div ng-controller="listCtrl">
+            <input type="hidden" ng-model="campaign" ng-init="campaign = {{ session('campaign') }}">
             <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">
@@ -54,7 +55,7 @@
                                     </thead>
                                     <tbody>
                                     <tr  ng-repeat="sale in s = (sales | filter:query) track by $index" style="cursor: pointer;">
-                                        <td><a href="/sales/<% sale.id %>/detail"><% sale.order_number %></a></td>
+                                        <td><a href="/sales/<% sale.id %>/detail?c=<% selectedCampaign.id %>"><% sale.order_number %></a></td>
                                         <td><% sale.campaign_name %></td>
                                         <td><% sale.product_name %></td>
                                         <td><% sale.date_sold | date:'MMM dd, yyyy' %></td>

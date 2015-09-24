@@ -30,14 +30,20 @@ class SalesController extends Controller
         return $this->saleService->process($params['sale_id'], $params['status_id'])->toArray();
     }
 
-    public function salesList()
+    public function salesList(Request $request)
     {
         $campaignId = Input::get('campId');
+        if (!$campaignId) {
+            $request->session()->forget('campaign');
+        }
         return $this->saleDto->lists($campaignId);
     }
 
     public function detail($id)
     {
+        $selectedCampaignFilter = Input::get('c');
+        session(['campaign' => $selectedCampaignFilter]);
+
         $sale = $this->saleDto->findById($id);
         if ($sale) {
             return view('sale.detail', ['sale' => $sale]);

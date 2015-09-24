@@ -23,9 +23,19 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             });
         }
 
-        $scope.$watch('selectedCampaign', function(newValue, oldValue) {
-            $scope.selectedCampaign = newValue;
+        $scope.$watch('campaign', function(newValue, oldValue) {
+            if (newValue !== undefined) {
+                $scope.selectedCampaign = {'id': newValue};
+            }
             getSaleList();
         });
+
+        $scope.setSelectedCampaign = function() {
+            if ($scope.selectedCampaign === undefined) {
+                $scope.campaign = undefined;
+            }
+            getSaleList();
+
+        }
     }
 ]);

@@ -24,7 +24,14 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-1 col-lg-1" style="padding-top: 10px">
+                                    <label class="input-label pull-right" for="query">Filter</label>
+                                </div>
                                 <div class="col-md-5 col-lg-5">
+                                    <div class="input-group">
+                                        <input id="query" class="form-control" placeholder="Order number, Product ..." ng-model="query" />
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +49,7 @@
                                         <th>Remarks</th>
                                         <th>Customer</th>
                                         <th>Phone</th>
-                                        <th>Processed by</th>
+                                        <th>Agent</th>
                                     </tr>
                                     </thead>
                                     <tbody>

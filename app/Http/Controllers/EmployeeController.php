@@ -4,7 +4,6 @@ namespace app\Http\Controllers;
 
 use app\Dto\EmployeeDto;
 use app\Http\Requests;
-use app\Models\Group;
 use app\Models\UserGroup;
 use app\Repositories\EmployeeRepo;
 use app\Services\EmployeeService;

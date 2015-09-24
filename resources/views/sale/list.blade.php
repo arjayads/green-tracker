@@ -5,7 +5,7 @@
 @section('content')
     <div  ng-app="sale">
         <div ng-controller="listCtrl">
-            <input type="hidden" ng-model="campaign" ng-init="campaign = {{ session('campaign') }}">
+            <input type="hidden" ng-model="campaign" ng-init="campaign = {{ session('campaign') ? session('campaign') : '0'}} ">
             <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">

@@ -24,7 +24,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
         }
 
         $scope.$watch('campaign', function(newValue, oldValue) {
-            if (newValue !== undefined) {
+            if (newValue !== undefined && parseInt(newValue) > 0) {
                 $scope.selectedCampaign = {'id': newValue};
             }
             getSaleList();

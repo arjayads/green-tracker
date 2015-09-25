@@ -9,6 +9,7 @@
 namespace app\Repositories;
 
 
+use app\Models\Employee;
 use Illuminate\Support\Facades\DB;
 
 class EmployeeRepo {
@@ -45,6 +46,16 @@ class EmployeeRepo {
 
         $q = $this->findWhereClause($q, $query);
         return $q->count();
+    }
+
+    function findBy($field, $kwari, array $cols = []) {
+
+        $q = Employee::where($field, $kwari);
+        if ($cols) {
+            $q->select($cols);
+        }
+        return $q->first();
+
     }
 
     private function findWhereClause($q, $kwary) {

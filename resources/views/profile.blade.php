@@ -4,8 +4,11 @@
 
 @section('content')
     <div  ng-app="profile">
-        <div ng-controller="mainCtrl">
-            <div id="primary" class="content-area mg-t-10 mg-b-10">
+
+        <div ng-controller="coverCtrl">
+            @include('includes.cover')
+        </div>
+        <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">
                         <div class="row sm-gutter">
@@ -139,93 +142,34 @@
 
                                     </div>
                                     <div class="col-sm-7 mg-b-10">
-
-                                        <div class="panel panel-default mg-b-10">
-                                            <div class="panel-heading">
-                                                <div class="panel-title block">
-                                                    <div class="vcard">
-                                                        <a href="" class="vcard-heading">
-                                                            <img src="images/avatar-1.png" class="img-circle" width="35" height="35" />
-                                                        </a>
-                                                        <div class="vcard-content pd-l-45">
-                                                            <a href="" class="inline vcard-title text-primary">Greenwire Admin</a>
-                                                            <span class="vcard-meta timestamp fs-12 font-base hint">Yesterday at 10:40 pm</span>
+                                        <div ng-controller="newsfeedCtrl">
+                                            <div class="panel panel-default mg-b-10" ng-repeat="post in posts">
+                                                <div class="panel-heading">
+                                                    <div class="panel-title block">
+                                                        <div class="vcard">
+                                                            <a href="" class="vcard-heading">
+                                                                <img src="images/avatar-1.png" class="img-circle" width="35" height="35" />
+                                                            </a>
+                                                            <div class="vcard-content pd-l-45">
+                                                                <a href="" class="inline vcard-title text-primary"><% post.user.first_name %> <% post.user.last_name %></a>
+                                                                <span class="vcard-meta timestamp fs-12 font-base hint"><% post.created_at %></span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="panel-body">
-                                                <p>Congratulations to Richard Ybias for his new business. Tangkit’s Bakeshop!</p>
-                                                <img src="images/screenshot.png" class="center-block" >
-                                            </div>
+                                                <div class="panel-body">
+                                                    <p><% post.content %></p>
+                                                </div>
 
-                                            <div class="panel-footer bg-white bd-t" style="border-color: rgba(0,0,0,0.10)">
-                                                <ul class="list-inline mg-b-0">
-                                                    <li><a href="" class="text-danger fs-13"><i class="fa fa-heart fa-fw"></i> 192</a></li>
-                                                    <li><a href="" class="text-link fs-13"><i class="fa fa-comment fa-fw"></i> 23</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!--/ .panel -->
-
-                                        <div class="panel panel-default mg-b-10">
-                                            <div class="panel-heading">
-                                                <div class="panel-title block">
-                                                    <div class="vcard">
-                                                        <a href="" class="vcard-heading">
-                                                            <img src="images/avatar-1.png" class="img-circle" width="35" height="35" />
-                                                        </a>
-                                                        <div class="vcard-content pd-l-45">
-                                                            <a href="" class="inline vcard-title text-primary">Greenwire Admin</a>
-                                                            <span class="vcard-meta timestamp fs-12 font-base hint">Yesterday at 10:40 pm</span>
-                                                        </div>
-                                                    </div>
+                                                <div class="panel-footer bg-white bd-t" style="border-color: rgba(0,0,0,0.10)">
+                                                    <ul class="list-inline mg-b-0">
+                                                        <li><a href="" class="text-danger fs-13"><i class="fa fa-heart fa-fw"></i> <% post.loves %></a></li>
+                                                        <li><a href="" class="text-link fs-13"><i class="fa fa-comment fa-fw"></i> <% post.commentsCount %></a></li>
+                                                    </ul>
                                                 </div>
                                             </div>
-
-                                            <div class="panel-body">
-                                                <p>Today is Gabriel Ceniza’s Birthday! Lets Greet him a Happy Birthday!!! wooooooh</p>
-                                            </div>
-
-                                            <div class="panel-footer bg-white bd-t" style="border-color: rgba(0,0,0,0.10)">
-                                                <ul class="list-inline mg-b-0">
-                                                    <li><a href="" class="text-danger fs-13"><i class="fa fa-heart fa-fw"></i> 192</a></li>
-                                                    <li><a href="" class="text-link fs-13"><i class="fa fa-comment fa-fw"></i> 23</a></li>
-                                                </ul>
-                                            </div>
                                         </div>
-                                        <!--/ .panel -->
-
-                                        <div class="panel panel-default mg-b-10">
-                                            <div class="panel-heading">
-                                                <div class="panel-title block">
-                                                    <div class="vcard">
-                                                        <a href="" class="vcard-heading">
-                                                            <img src="images/avatar-1.png" class="img-circle" width="35" height="35" />
-                                                        </a>
-                                                        <div class="vcard-content pd-l-45">
-                                                            <a href="" class="inline vcard-title text-primary">Greenwire Admin</a>
-                                                            <span class="vcard-meta timestamp fs-12 font-base hint">Yesterday at 10:40 pm</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="panel-body">
-                                                <p>Richard Ybias, deserves to have a vacation because of his outstanding performance!</p>
-                                                <img src="images/screenshot-2.png" class="center-block" />
-                                            </div>
-
-                                            <div class="panel-footer bg-white bd-t" style="border-color: rgba(0,0,0,0.10)">
-                                                <ul class="list-inline mg-b-0">
-                                                    <li><a href="" class="text-danger fs-13"><i class="fa fa-heart fa-fw"></i> 192</a></li>
-                                                    <li><a href="" class="text-link fs-13"><i class="fa fa-comment fa-fw"></i> 23</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!--/ .panel -->
-
                                     </div>
                                 </div>
                                 <!--/ .row -->
@@ -235,7 +179,6 @@
                     </div>
                 </main>
             </div>
-        </div>
     </div>
 @stop
 

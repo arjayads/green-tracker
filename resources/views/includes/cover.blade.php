@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-6 col-md-7">
                     <h1 class="h2 text-xs-center text-sm-left">Pabebe Girl</h1>
-                    <p class="mg-t-0 text-xs-center text-sm-left">No client has left in my arms unsatisfied </p>
+                    <p class="mg-t-0 text-xs-center text-sm-left"><% message %></p>
                 </div>
                 <div class="col-sm-4 col-md-3">
                     <div class="incentives bg-white pd-15 text-center text-primary">

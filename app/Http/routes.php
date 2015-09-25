@@ -71,6 +71,11 @@ Route::group(['prefix' => 'group'], function () {
     Route::get('list', ['uses' => 'GroupController@groupList']);
 });
 
+Route::group(['prefix' => 'post'], function () {
+    Route::get('list', ['uses' => 'PostController@posts']);
+    Route::get('{postId}/countComments', ['uses' => 'PostController@countComments']);
+});
+
 // directives
 Route::group(['prefix' => 'common'], function () {
     Route::get('form-field-error-msg', function () {

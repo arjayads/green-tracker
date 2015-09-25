@@ -73,7 +73,8 @@ Route::group(['prefix' => 'group'], function () {
 
 Route::group(['prefix' => 'post'], function () {
     Route::get('list', ['uses' => 'PostController@posts']);
-    Route::get('{postId}/countComments', ['uses' => 'PostController@countComments']);
+    Route::get('{id}', ['uses' => 'PostController@find']);
+    Route::post('create', ['uses' => 'PostController@store']);
 });
 
 // directives

@@ -83,20 +83,6 @@
                                     <div class="col-sm-5 mg-b-10">
 
                                         <div class="panel panel-default mg-b-10">
-
-                                            <div class="panel-body">
-                                                <div class="form-group">
-                                                    <textarea cols="8" rows="5" class="form-control" style="resize: vertical;" placeholder="Write something ..."></textarea>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary pd-y-5 btn-rounded pull-right" value="Send" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/ .panel -->
-
-                                        <div class="panel panel-default mg-b-10">
                                             <div class="panel-heading">
                                                 <div class="panel-title text-primary">Time Log</div>
                                             </div>
@@ -143,7 +129,22 @@
                                     </div>
                                     <div class="col-sm-7 mg-b-10">
                                         <div ng-controller="newsfeedCtrl">
-                                            <div class="panel panel-default mg-b-10" ng-repeat="post in posts">
+
+                                            <div class="panel panel-default mg-b-10">
+
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <textarea ng-model="newPost.content" cols="8" rows="5" class="form-control" style="resize: vertical;" placeholder="Write something ..."></textarea>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <input ng-disable="true" ng-click="post()" type="button" class="btn btn-primary pd-y-5 btn-rounded pull-right" value="Paksi" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/ .panel -->
+
+                                            <div class="panel panel-default mg-b-10" ng-repeat="post in posts track by $index">
                                                 <div class="panel-heading">
                                                     <div class="panel-title block">
                                                         <div class="vcard">

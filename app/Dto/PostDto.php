@@ -29,4 +29,18 @@ class PostDto
         }
         return $data;
     }
+
+    function findOneForNewsFeed($postId) {
+        $p = $this->postRepo->findOneForNewsFeed($postId);
+        if ($p) {
+            $post['id'] = $p->id;
+            $post['content'] = $p->content;
+            $post['loves'] = $p->loves;
+            $post['created_at'] = Carbon::parse($p->created_at)->diffForHumans();
+            $post['commentsCount'] = $p->commentsCount;
+            $post['user'] = $this->employeeRepo->findBy('user_id', $p->user_id, ['first_name', 'last_name']);
+            return $post;
+        }
+        return [];
+    }
 }

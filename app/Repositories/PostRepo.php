@@ -33,4 +33,22 @@ class PostRepo {
             ->groupBy('posts.id')
             ->get();
     }
+
+
+    function findOneForNewsFeed($postId)
+    {
+        $q = DB::table('posts')
+            ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+            ->select([
+                    'posts.id',
+                    'posts.content',
+                    'posts.loves',
+                    'posts.created_at',
+                    'posts.user_id',
+                    DB::raw("COUNT(comments.id) as commentsCount")
+                ]
+            );
+
+        return $q->where('posts.id', $postId)->groupBy('posts.id')->first();
+    }
 }

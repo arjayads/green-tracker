@@ -31,6 +31,11 @@ class ResponseEntity
         $this->success = $success;
     }
 
+    public function isSuccess()
+    {
+        return $this->success;
+    }
+
     /**
      * @param boolean $isAuthorized
      */

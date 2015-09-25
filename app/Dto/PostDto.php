@@ -4,6 +4,7 @@ namespace app\Dto;
 
 use app\Repositories\EmployeeRepo;
 use app\Repositories\PostRepo;
+use Carbon\Carbon;
 
 class PostDto
 {
@@ -21,6 +22,7 @@ class PostDto
         $posts = $this->postRepo->findForNewsFeed($offset, $limit, $direction, $sortCol);
         if ($posts) {
             foreach($posts as $post) {
+                $post->created_at = Carbon::parse($post->created_at)->diffForHumans();
                 $post->user = $this->employeeRepo->findBy('user_id', $post->user_id, ['first_name', 'last_name']);
                 $data[] = $post;
             }

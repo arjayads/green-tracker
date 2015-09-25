@@ -34,7 +34,7 @@ class PostService implements BaseService {
                 $p->user_id = Auth::user()->id;
                 $ok = $p->save();
 
-                if ($ok) { 
+                if ($ok) {
                     $response->setSuccess(true);
                     $response->setData(['post' => $this->postDto->findOneForNewsFeed($p->id)]);
                 } else {

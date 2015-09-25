@@ -160,7 +160,7 @@
                                                 </div>
 
                                                 <div class="panel-body">
-                                                    <p><% post.content %></p>
+                                                    <p style="white-space: pre-wrap"><% post.content%></p>
                                                 </div>
 
                                                 <div class="panel-footer bg-white bd-t" style="border-color: rgba(0,0,0,0.10)">
@@ -185,6 +185,6 @@
 
 
 @section('javascript')
-<script type="text/javascript" src="/js/app/modules/profile.js"></script>
+    <script type="text/javascript" src="/js/app/modules/profile.js"></script>
 
 @stop

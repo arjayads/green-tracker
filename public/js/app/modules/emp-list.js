@@ -47,6 +47,7 @@ userApp.controller('listCtrl', ['$scope', '$http',
                 getEmps();
             } else
             if (searchText === undefined || $.trim(searchText).length == 0) {
+                q = '';
                 getEmps();
             }
 

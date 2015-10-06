@@ -1,4 +1,4 @@
-var profileApp = angular.module('profile', ['config']);
+var profileApp = angular.module('profile', ['config', 'ngImgCrop']);
 
 profileApp.controller('newsfeedCtrl', ['$scope', '$http',
     function ($scope, $http) {
@@ -37,6 +37,48 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
         }
 }]);
 
-profileApp.controller('coverCtrl', ['$scope', function ($scope) {
+profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) {
+
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+
     $scope.message = 'No client has left in my arms unsatisfied';
+
+    var loadProfilePhoto = function() {
+        $scope.profilePhoto = '/profile/photo?t=' + Math.random();
+    }
+
+    $scope.setProfilePic = function() {
+        $("#profile-changer-modal").modal('show');
+    }
+
+    $scope.saveProfilePic = function() {
+        $("#profile-changer-modal").modal('hide');
+
+        $http.post('/profile/updatePhoto', {'image' : $scope.myCroppedImage}).success(function(d) {
+            if (d.success) {
+                $scope.profilePhoto = '/profile/photo?t=' + Math.random();
+            } else {
+                toastr.error('Failed to update profile photo!');
+            }
+        }).error(function(data, a) {
+            toastr.error("Something went wrong!");
+        });
+    }
+
+    var handleFileSelect = function(evt) {
+        var file = evt.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+                $scope.myImage = evt.target.result;
+            });
+        };
+        if (file !== undefined) {
+            reader.readAsDataURL(file);
+        }
+    };
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+    loadProfilePhoto();
 }]);

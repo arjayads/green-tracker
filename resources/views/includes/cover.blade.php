@@ -11,7 +11,7 @@
                 <div class="col-sm-2 col-md-2">
                     <div class="avatar-holder">
                         <a href="" class="avatar-img block text-xs-center text-md-left">
-                            <img src="images/avatar_2x.png" class="img-circle" width="200" height="200"/>
+                            <img ng-cloak="" ng-click="setProfilePic()"  ng-src="<%profilePhoto%>" class="img-circle" width="200" height="200"/>
                         </a>
                     </div>
                 </div>
@@ -46,6 +46,37 @@
                 <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-music"></i></a></li>
                 <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-comment"></i></a></li>
             </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="profile-changer-modal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Update profile photo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div>Select an image file: <input type="file" id="fileInput" /></div>
+                        <div class="cropArea">
+                            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div>Preview</div>
+                        <div><img ng-src="<% myCroppedImage %>" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="saveProfilePic()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>

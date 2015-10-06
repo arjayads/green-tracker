@@ -13,9 +13,13 @@
 
 Route::get('/', ['middleware' => 'auth', 'uses' => 'DefaultPageRouterController@forward']);
 
-Route::get('/profile', ['middleware' => 'auth', 'as' => 'profile', function () {
-    return view('profile');
-}]);
+Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('profile');
+    });
+    Route::post('updatePhoto', ['uses' => 'ProfileController@updatePhoto']);
+    Route::get('photo', ['uses' => 'ProfileController@photo']);
+});
 
 // Authentication routes...
 Route::group(['prefix' => 'auth'], function () {

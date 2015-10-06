@@ -2,6 +2,19 @@
 
 @section('title', 'Home')
 
+@section('css')
+    <link href="{{asset('css/ng-img-crop/ng-img-crop.css')}}" rel="stylesheet">
+
+    <style>
+        .cropArea {
+            background: #E4E4E4;
+            overflow: hidden;
+            width: 100%;
+            height:350px;
+        }
+    </style>
+@stop
+
 @section('content')
     <div  ng-app="profile">
 
@@ -186,5 +199,6 @@
 
 @section('javascript')
     <script type="text/javascript" src="/js/app/modules/profile.js"></script>
+    <script type="text/javascript" src="/js/ng-img-crop/ng-img-crop.js"></script>
 
 @stop

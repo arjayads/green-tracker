@@ -3,6 +3,7 @@ var profileApp = angular.module('profile', ['config', 'ngImgCrop']);
 profileApp.controller('newsfeedCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
+        $scope.profilePhoto = '/profile/photo?t=' + Math.random();
         $scope.posts = [];
 
         $http.get('/post/list').success(function(data) {
@@ -31,9 +32,6 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
             } else {
                 toastr.error("Input something to post!");
             }
-
-
-
         }
 }]);
 

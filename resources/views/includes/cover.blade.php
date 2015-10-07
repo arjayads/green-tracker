@@ -3,7 +3,13 @@
 
         <div class="cover pd-15 relative" ng-mouseenter="hover = true"  ng-mouseleave="hover = false" ng-init="hover = false" style="background-image: url(images/cover.png);">
             <div ng-class="{hidden: !hover}" class="cover-top clearfix">
-                <a href="" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
+                <a href="" ng-click="changeBg = true" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
+                <div ng-class="{hidden: !changeBg}">
+                    <a href="" class="btn btn-link text-white pull-sm-left">Save</a>
+                    <a href="" class="btn btn-link text-white pull-sm-left">Change Image</a>
+                    <a href="" class="btn btn-link text-white pull-sm-left">Remove Image</a>
+                    <a href="" class="btn btn-link text-white pull-sm-left" ng-click="changeBg = false"><i class="fa fa-close"></i></a>
+                </div>
                 <a href="" class="btn btn-default pull-sm-right text-primary pd-y-5">Update Info</a>
             </div>
 

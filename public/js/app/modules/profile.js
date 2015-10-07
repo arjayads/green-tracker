@@ -37,8 +37,13 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
 
 profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) {
 
+    // profile pic
     $scope.myImage='';
     $scope.myCroppedImage='';
+
+    // cover pic
+    $scope.myCoverImage='';
+    $scope.myCroppedCoverImage='';
 
     $scope.message = 'No client has left in my arms unsatisfied';
 
@@ -64,7 +69,7 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
         });
     }
 
-    var handleFileSelect = function(evt) {
+    var handleProfilePicSelect = function(evt) {
         var file = evt.currentTarget.files[0];
 
         if (/^image\/\w+$/.test(file.type)) {
@@ -84,7 +89,7 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
 
 
     };
-    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+    angular.element(document.querySelector('#profilePicInput')).on('change',handleProfilePicSelect);
 
     loadProfilePhoto();
 }]);

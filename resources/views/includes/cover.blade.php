@@ -62,7 +62,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <div>Select an image file: <input type="file" id="fileInput" accept="image/*" /></div>
+                        <div>Select an image file: <input type="file" id="profilePicInput" accept="image/*" /></div>
                         <div class="cropArea">
                             <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
                         </div>

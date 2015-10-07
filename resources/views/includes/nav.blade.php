@@ -20,7 +20,7 @@
         <nav id="menu-bar" class="menu-bar">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle pd-y-10 pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="mg-r-10 hidden-xs hidden-sm">Jobelle</span> <img src="images/avatar.png" class="avatar img-circle"><span class="caret hidden-xs hidden-sm"></span></a>
+                    <a href="#" class="dropdown-toggle pd-y-10 pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="mg-r-10 hidden-xs hidden-sm">Jobelle</span> <img src="/profile/photo" class="avatar img-circle" width="48" height="48"><span class="caret hidden-xs hidden-sm"></span></a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="main">Home</a></li>
                         <li><a ui-sref="sales">Sales</a></li>

@@ -14,9 +14,7 @@
 Route::get('/', ['middleware' => 'auth', 'uses' => 'DefaultPageRouterController@forward']);
 
 Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
-    Route::get('/', function () {
-        return view('profile');
-    });
+    Route::get('/', ['uses' => 'ProfileController@index']);
     Route::post('updatePhoto', ['uses' => 'ProfileController@updatePhoto']);
     Route::get('photo', ['uses' => 'ProfileController@photo']);
 });

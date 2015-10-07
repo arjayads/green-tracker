@@ -20,4 +20,10 @@ class UserRepo {
             ->join('groups', 'user_groups.group_id', '=', 'groups.id');
         return $q->where('user_groups.user_id', '=', $userId)->lists('default_url');
     }
+
+    function findEmployee($userId)
+    {
+        $q = DB::table('employees');
+        return $q->where('user_id', '=', $userId)->first();
+    }
 }

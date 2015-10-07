@@ -3,8 +3,6 @@
 namespace app\Http\Controllers;
 
 use app\Repositories\UserRepo;
-
-use app\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 class DefaultPageRouterController extends Controller

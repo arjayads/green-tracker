@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     public function index() {
         $e = $this->userRepo->findEmployee(Auth::user()->id);
-        return view('profile', ['name' => $e->first_name]);
+        return view('profile', ['myData' => $e]);
     }
 
     public function updatePhoto() {

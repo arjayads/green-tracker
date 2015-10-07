@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
-                    <h1 class="h2 text-xs-center text-sm-left">Pabebe Girl</h1>
+                    <h1 class="h2 text-xs-center text-sm-left">{{ $myData->first_name }} {{ $myData->last_name }}</h1>
                     <p class="mg-t-0 text-xs-center text-sm-left"><% message %></p>
                 </div>
                 <div class="col-sm-4 col-md-3">

@@ -19,29 +19,43 @@ class ProfileController extends Controller
     public function updatePhoto() {
         $response = new ResponseEntity();
 
-        $image = Input::get('image');
-        $user = User::find(Auth::user()->id);
+        try {
 
-        if ($image && $user) {
-            $img = str_replace('data:image/png;base64,', '', $image);
-            $img = str_replace(' ', '+', $img);
-            $data = base64_decode($img);
+            $image = Input::get('image');
+            $user = User::find(Auth::user()->id);
 
-            $file = env('FILE_UPLOAD_PATH') . md5($img) . '.png';
-            $success = file_put_contents($file, $data);
+            if ($image && $user) {
+                $img = str_replace('data:image/png;base64,', '', $image);
+                $img = str_replace(' ', '+', $img);
+                $data = base64_decode($img);
 
-            if ($success) {
-                $f = new File();
-                $f->new_filename = md5($img) . '.png';
-                $f->mime_type = 'image/png';
+                $file = env('FILE_UPLOAD_PATH') . md5($img) . '.png';
+                $success = file_put_contents($file, $data);
 
-                if ($f->save()) {
-                    $user->profile_photo_file_id = $f->id;
-                    $user->save();
+                if ($success) {
+                    $f = new File();
+                    $f->new_filename = md5($img) . '.png';
+                    $f->mime_type = 'image/png';
 
-                    $response->setSuccess(true);
-                };
+                    if ($f->save()) {
+
+                        // delete previous profile photo
+                        $prevFile = File::find($user->profile_photo_file_id);
+                        if ($prevFile) {
+                            \File::delete(env('FILE_UPLOAD_PATH').$prevFile->new_filename);
+                            $prevFile->delete();
+                        }
+
+                        // save new profile photo
+                        $user->profile_photo_file_id = $f->id;
+                        $user->save();
+
+                        $response->setSuccess(true);
+                    };
+                }
             }
+        }catch (\Exception $e) {
+            $response->setMessages([$e->getMessage()]);
         }
         return $response->toArray();
     }

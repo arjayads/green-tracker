@@ -49,12 +49,16 @@ class ProfileController extends Controller
     public function photo() {
         $user = User::find(Auth::user()->id);
 
-        if ($user) {
-            $imageFile = File::find($user->profile_photo_file_id);
-            if ($imageFile) {
-                $img = Image::make(env('FILE_UPLOAD_PATH') . $imageFile->new_filename);
-                return $img->response('png');
+        try {
+
+            if ($user) {
+                $imageFile = File::find($user->profile_photo_file_id);
+                if ($imageFile) {
+                    $img = Image::make(env('FILE_UPLOAD_PATH') . $imageFile->new_filename);
+                    return $img->response('png');
+                }
             }
+        }catch (\Exception $e) {
         }
 
         $img = Image::make('images/avatar_2x.png');

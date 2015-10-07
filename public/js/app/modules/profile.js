@@ -52,21 +52,33 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
     }
 
     $scope.setProfilePic = function() {
+        $scope.myImage='';
+        $scope.myCroppedImage='';
+
         $("#profile-changer-modal").modal('show');
+    }
+
+    $scope.setCoverPic = function() {
+        $scope.myCoverImage='';
+        $scope.myCroppedCoverImage='';
+
+        $("#cover-changer-modal").modal('show');
     }
 
     $scope.saveProfilePic = function() {
         $("#profile-changer-modal").modal('hide');
 
-        $http.post('/profile/updatePhoto', {'image' : $scope.myCroppedImage}).success(function(d) {
-            if (d.success) {
-                $scope.profilePhoto = '/profile/photo?t=' + Math.random();
-            } else {
-                toastr.error('Failed to update profile photo!');
-            }
-        }).error(function(data, a) {
-            toastr.error("Something went wrong!");
-        });
+        if ($scope.myCroppedImage != '' ) {
+            $http.post('/profile/updatePhoto', {'image' : $scope.myCroppedImage}).success(function(d) {
+                if (d.success) {
+                    $scope.profilePhoto = '/profile/photo?t=' + Math.random();
+                } else {
+                    toastr.error('Failed to update profile photo!');
+                }
+            }).error(function(data, a) {
+                toastr.error("Something went wrong!");
+            });
+        } 
     }
 
     var handleProfilePicSelect = function(evt) {
@@ -86,10 +98,30 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
         } else {
             toastr.warning('Please choose an image file.');
         }
-
-
     };
-    angular.element(document.querySelector('#profilePicInput')).on('change',handleProfilePicSelect);
+
+
+    var handleCoverPicSelect = function(evt) {
+        var file = evt.currentTarget.files[0];
+
+        if (/^image\/\w+$/.test(file.type)) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                $scope.$apply(function($scope){
+                    $scope.myCoverImage = evt.target.result;
+                });
+            };
+
+            if (file !== undefined) {
+                reader.readAsDataURL(file);
+            }
+        } else {
+            toastr.warning('Please choose an image file.');
+        }
+    };
+
+    angular.element(document.querySelector('#profilePicInput')).on('change', handleProfilePicSelect);
+    angular.element(document.querySelector('#coverPicInput')).on('change', handleCoverPicSelect);
 
     loadProfilePhoto();
 }]);

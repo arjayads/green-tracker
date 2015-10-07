@@ -3,7 +3,7 @@
 
         <div class="cover pd-15 relative" ng-mousemove="hover = true" ng-mouseleave="hover = false;" ng-init="hover = false" style="background-image: url(images/cover.png);">
             <div ng-class="{hidden: !hover}" class="cover-top clearfix">
-                <a href="" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
+                <a ng-cloak="" ng-click="setCoverPic()" href="" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
                 <a href="" class="btn btn-default pull-sm-right text-primary pd-y-5">Update Info</a>
             </div>
 
@@ -50,8 +50,6 @@
     </div>
 </div>
 
-
-
 <div id="profile-changer-modal" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -76,6 +74,33 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button ng-click="saveProfilePic()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="cover-changer-modal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Update cover photo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div>Select an image file: <input type="file" id="coverPicInput" accept="image/*" /></div>
+                        <div class="cropArea">
+                            <img-crop image="myCoverImage" result-image="myCroppedCoverImage"></img-crop>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="saveCoverPic()" type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

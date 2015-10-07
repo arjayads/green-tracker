@@ -66,15 +66,23 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
 
     var handleFileSelect = function(evt) {
         var file = evt.currentTarget.files[0];
-        var reader = new FileReader();
-        reader.onload = function (evt) {
-            $scope.$apply(function($scope){
-                $scope.myImage = evt.target.result;
-            });
-        };
-        if (file !== undefined) {
-            reader.readAsDataURL(file);
+
+        if (/^image\/\w+$/.test(file.type)) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                $scope.$apply(function($scope){
+                    $scope.myImage = evt.target.result;
+                });
+            };
+
+            if (file !== undefined) {
+                reader.readAsDataURL(file);
+            }
+        } else {
+            toastr.warning('Please choose an image file.');
         }
+
+
     };
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 

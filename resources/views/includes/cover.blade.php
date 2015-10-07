@@ -6,7 +6,7 @@
                 <a href=""  ng-class="{hidden: changeBg}" ng-click="changeBg = true" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
                 <div ng-class="{hidden: !changeBg}">
                     <a href="" class="btn btn-link text-white pull-sm-left">Save</a>
-                    <a href="" class="btn btn-link text-white pull-sm-left">Change Image</a>
+                    <input class="btn btn-link" width="20" type="file" id="bg-image-file" accept="image/*" />
                     <a href="" class="btn btn-link text-white pull-sm-left">Remove Image</a>
                     <a href="" class="btn btn-link text-white pull-sm-left" ng-click="changeBg = false"><i class="fa fa-close"></i></a>
                 </div>
@@ -68,7 +68,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <div>Select an image file: <input type="file" id="fileInput" /></div>
+                        <div>Select an image file: <input type="file" id="fileInput" accept="image/*" /></div>
                         <div class="cropArea">
                             <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
                         </div>

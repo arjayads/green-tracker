@@ -1,7 +1,7 @@
 <div class="cover-holder">
     <div class="container">
 
-        <div class="cover pd-15 relative" ng-mousemove="hover = true" ng-mouseleave="hover = false;" ng-init="hover = false" style="background-image: url(images/cover.png);">
+        <div class="cover pd-15 relative" ng-mousemove="hover = true" ng-mouseleave="hover = false;" ng-init="hover = false" ng-style="{'background-image':'url('+coverPhoto+')'}">
             <div ng-class="{hidden: !hover}" class="cover-top clearfix">
                 <a ng-cloak="" ng-click="setCoverPic()" href="" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
                 <a href="" class="btn btn-default pull-sm-right text-primary pd-y-5">Update Info</a>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-6 col-md-7">
                     <h1 class="h2 text-xs-center text-sm-left">{{ $myData->first_name }} {{ $myData->last_name }}</h1>
-                    <p class="mg-t-0 text-xs-center text-sm-left"><% message %></p>
+                    <p class="mg-t-0 text-xs-center text-sm-left"><% mood %></p>
                 </div>
                 <div class="col-sm-4 col-md-3">
                     <div class="incentives bg-white pd-15 text-center text-primary">
@@ -89,14 +89,12 @@
                 <h4 class="modal-title">Update cover photo</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div>Select an image file: <input type="file" id="coverPicInput" accept="image/*" /></div>
-                        <div class="cropArea">
-                            <img-crop image="myCoverImage" result-image="myCroppedCoverImage"></img-crop>
-                        </div>
-                    </div>
-                </div>
+                    <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc" accept="image/*">
+                    {{--<input type="file" ng-file-select="onFileSelect($files)" multiple>--}}
+                <b>Preview:</b>
+                <br />
+                <i ng-hide="imageSrc">No image choosed</i>
+                <img ng-src="<%imageSrc%>" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

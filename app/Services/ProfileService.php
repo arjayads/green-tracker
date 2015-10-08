@@ -70,6 +70,101 @@ class ProfileService implements BaseService {
         return $response;
     }
 
+
+    function updateCover(array $params)
+    {
+        $response = new ResponseEntity();
+
+        try {
+
+            $image = $params['image'];
+            $user = User::find(Auth::user()->id);
+
+            if ($image && $user) {
+                $dataImageBase64Type = 'data:image/png;base64,';
+                $validImage = false;
+                $test = strpos($image, $dataImageBase64Type); // png
+                if ($test !== FALSE) { // yeah, its png
+                    $validImage = true;
+                } else {
+                    $dataImageBase64Type = 'data:image/jpeg;base64,';
+                    $test = strpos($image, $dataImageBase64Type); // jpeg
+                    if ($test !== FALSE) { // yeah, its jpeg
+                        $validImage = true;
+                    }
+                }
+
+                if ($validImage) {
+                    $img = str_replace($dataImageBase64Type, '', $image);
+
+                    $pos = strpos($image, ';');
+                    $typeArr = explode(':', substr($image, 0, $pos));
+
+                    if (is_array($typeArr) && count($typeArr) == 2) {
+                        $type = $typeArr[1];
+                        $types = ['image/png' => '.png', 'image/jpeg' => '.jpg'];
+
+                        if (array_key_exists($type, $types)) {
+                            $data = base64_decode($img);
+
+                            $file = env('FILE_UPLOAD_PATH') . md5($img) . $types[$type];
+                            $success = file_put_contents($file, $data);
+
+                            if ($success) {
+                                $f = new File();
+                                $f->new_filename = md5($img) . $types[$type];
+                                $f->mime_type = $type;
+
+                                if ($f->save()) {
+
+                                    // delete previous cover photo
+                                    $prevFile = File::find($user->cover_photo_file_id);
+                                    if ($prevFile) {
+                                        \File::delete(env('FILE_UPLOAD_PATH').$prevFile->new_filename);
+                                        $prevFile->delete();
+                                    }
+
+                                    // save new cover photo
+                                    $user->cover_photo_file_id = $f->id;
+                                    $user->save();
+
+                                    $response->setSuccess(true);
+                                };
+                            }
+                        }
+                    }
+                }
+
+            }
+        }catch (\Exception $e) {
+            $response->setMessages([$e->getMessage()]);
+        }
+
+        return $response;
+    }
+
+    function getCover()
+    {
+        $user = User::find(Auth::user()->id);
+
+        try {
+
+            if ($user) {
+                $imageFile = File::find($user->cover_photo_file_id);
+                if ($imageFile) {
+                    $img = Image::make(env('FILE_UPLOAD_PATH') . $imageFile->new_filename);
+                    $types = ['image/png' => 'png', 'image/jpeg' => 'jpg'];
+                    return $img->response($types[$imageFile->mime_type]);
+                }
+            }
+        }catch (\Exception $e) {
+        }
+
+        $img = Image::make('images/cover.png');
+        return $img->response('png');
+    }
+
+
     function getPhoto()
     {
         $user = User::find(Auth::user()->id);

@@ -1,4 +1,4 @@
-var profileApp = angular.module('profile', ['config', 'ngImgCrop']);
+var profileApp = angular.module('profile', ['config', 'ngImgCrop', 'ngupload']);
 
 profileApp.controller('newsfeedCtrl', ['$scope', '$http',
     function ($scope, $http) {
@@ -37,31 +37,31 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
 
 profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) {
 
+    $scope.mood = 'No client has left in my arms unsatisfied';
+
+    $scope.profilePhoto = 'images/avatar_2x.png';
+    $scope.coverPhoto = 'images/cover.png';
+
     // profile pic
     $scope.myImage='';
     $scope.myCroppedImage='';
 
-    // cover pic
-    $scope.myCoverImage='';
-    $scope.myCroppedCoverImage='';
-
-    $scope.message = 'No client has left in my arms unsatisfied';
+    // cover photo
+    $scope.imageSrc = "";
 
     var loadProfilePhoto = function() {
         $scope.profilePhoto = '/profile/photo?t=' + Math.random();
     }
 
-    $scope.setProfilePic = function() {
-        $scope.myImage='';
-        $scope.myCroppedImage='';
+    var loadCoverPhoto = function() {
+        $scope.coverPhoto = '/profile/cover?t=' + Math.random();
+    }
 
+    $scope.setProfilePic = function() {
         $("#profile-changer-modal").modal('show');
     }
 
     $scope.setCoverPic = function() {
-        $scope.myCoverImage='';
-        $scope.myCroppedCoverImage='';
-
         $("#cover-changer-modal").modal('show');
     }
 
@@ -78,7 +78,23 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
             }).error(function(data, a) {
                 toastr.error("Something went wrong!");
             });
-        } 
+        }
+    }
+
+    $scope.saveCoverPic = function() {
+        $("#cover-changer-modal").modal('hide');
+
+        if ($scope.imageSrc != '' ) {
+            $http.post('/profile/updateCover', {'image' : $scope.imageSrc}).success(function(d) {
+                if (d.success) {
+                    $scope.coverPhoto = '/profile/cover?t=' + Math.random();
+                } else {
+                    toastr.error('Failed to update cover photo!');
+                }
+            }).error(function(data, a) {
+                toastr.error("Something went wrong!");
+            });
+        }
     }
 
     var handleProfilePicSelect = function(evt) {
@@ -100,28 +116,8 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
         }
     };
 
-
-    var handleCoverPicSelect = function(evt) {
-        var file = evt.currentTarget.files[0];
-
-        if (/^image\/\w+$/.test(file.type)) {
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                $scope.$apply(function($scope){
-                    $scope.myCoverImage = evt.target.result;
-                });
-            };
-
-            if (file !== undefined) {
-                reader.readAsDataURL(file);
-            }
-        } else {
-            toastr.warning('Please choose an image file.');
-        }
-    };
-
     angular.element(document.querySelector('#profilePicInput')).on('change', handleProfilePicSelect);
-    angular.element(document.querySelector('#coverPicInput')).on('change', handleCoverPicSelect);
 
+    loadCoverPhoto();
     loadProfilePhoto();
 }]);

@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('css')
-    <link href="{{asset('css/ng-img-crop/ng-img-crop.css')}}" rel="stylesheet">
+    <link href="{{asset('css/ng-img-crop/ng-img-crop2.css')}}" rel="stylesheet">
 
     <style>
         .cropArea {
@@ -199,6 +199,7 @@
 
 @section('javascript')
     <script type="text/javascript" src="/js/app/modules/profile.js"></script>
-    <script type="text/javascript" src="/js/ng-img-crop/ng-img-crop.js"></script>
+    <script type="text/javascript" src="/js/ng-img-crop/ng-img-crop-2.0.min.js"></script>
+    <script type="text/javascript" src="/js/app/modules/image-preview-upload.js"></script>
 
 @stop

@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('mood')->nullable();
+            $table->string('alias')->nullable();
             $table->smallInteger('active');
             $table->rememberToken();
             $table->unsignedInteger('profile_photo_file_id')->nullable();

@@ -28,6 +28,7 @@ class ProfileService implements BaseService {
             $user->alias = $params['alias'];
             $user->email = $params['email'];
             $user->mood = $params['mood'];
+            $user->password = bcrypt($params['password']);
 
             if ($user->save()) {
                 $response->setMessages(['Info successfully saved!']);

@@ -127,8 +127,8 @@ profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($sc
                         window.location.reload();
                     }, 3000);
                 } else {
+                    $scope.errors = buildFormErrors($scope.errors, data.messages);
                     $scope.alertType = 'danger';
-                    toastr.error('Something went wrong!');
                     $scope.savingInfo = false;
                 }
 

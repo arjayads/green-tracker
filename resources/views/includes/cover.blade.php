@@ -172,6 +172,7 @@
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
                                     <input ng-model="info.password" type="password" class="form-control" id="password">
                                 </div>
+                                <form-error err_field="errors.password"></form-error>
                             </div>
                         </div>
                     </div>
@@ -186,7 +187,7 @@
                             <div class="col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
-                                    <input ng-model="info.confirmPassword" type="password" class="form-control" id="confirm-password">
+                                    <input ng-model="info.password_confirmation" type="password" class="form-control" id="confirm-password">
                                 </div>
                             </div>
                         </div>

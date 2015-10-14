@@ -1,4 +1,4 @@
-var profileApp = angular.module('profile', ['config', 'ngImgCrop', 'ngupload']);
+var profileApp = angular.module('profile', ['config', 'ngImgCrop', 'ngupload', 'dirFormError']);
 
 profileApp.controller('newsfeedCtrl', ['$scope', '$http',
     function ($scope, $http) {
@@ -35,9 +35,9 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
         }
 }]);
 
-profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) {
-
-    $scope.mood = 'No client has left in my arms unsatisfied';
+profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+    $scope.savingInfo = false;
+    $scope.savingInfoButton = 'Save changes';
 
     $scope.profilePhoto = 'images/avatar_2x.png';
     $scope.coverPhoto = 'images/cover.png';
@@ -100,6 +100,49 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
             });
         }
     }
+    $scope.saveInfo = function() {
+        if ($scope.savingInfo) return; // prevent multiple submission
+        $scope.saveInfoButton ='Saving...';
+        $scope.savingInfo = true;
+        $scope.errors = {};
+
+        var postData = $scope.info;
+
+        if (postData === undefined) {
+            toastr.info("No changes made!");
+            $("#info-changer-modal").modal('hide');
+            $scope.savingInfo = false;
+
+        } else {
+            $http.post('/profile/updateInfo', postData).success(function(data) {
+
+                if (data.success) {
+                    $scope.infoSaved = false;
+                    $scope.alertType = 'info';
+                    toastr.success('Sale successfully created');
+
+                    $scope.updateInfoMessage = 'Redirecting...'
+
+                    $timeout(function() {
+                        window.location.reload();
+                    }, 3000);
+                } else {
+                    $scope.alertType = 'danger';
+                    toastr.error('Something went wrong!');
+                    $scope.savingInfo = false;
+                }
+
+            }).error(function(data, a) {
+                if (a == '422') {
+                    $scope.errors = buildFormErrors($scope.errors, data);
+                }
+                toastr.error('Something went wrong!');
+                $scope.savingInfo = false;
+            });
+        }
+
+    }
+
 
     var handleProfilePicSelect = function(evt) {
         var file = evt.currentTarget.files[0];

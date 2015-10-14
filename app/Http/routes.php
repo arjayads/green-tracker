@@ -17,6 +17,7 @@ Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
     Route::get('/', ['uses' => 'ProfileController@index']);
     Route::post('updatePhoto', ['uses' => 'ProfileController@updatePhoto']);
     Route::post('updateCover', ['uses' => 'ProfileController@updateCover']);
+    Route::post('updateInfo', ['uses' => 'ProfileController@updateInfo']);
     Route::get('photo', ['uses' => 'ProfileController@photo']);
     Route::get('cover', ['uses' => 'ProfileController@cover']);
 });

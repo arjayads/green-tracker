@@ -28,6 +28,10 @@ class ProfileController extends Controller
         return $this->profileService->updateCover(Input::all())->toArray();
     }
 
+    public function updateInfo() {
+        return $this->profileService->save(Input::all())->toArray();
+    }
+
     public function photo() {
         return $this->profileService->getPhoto();
     }

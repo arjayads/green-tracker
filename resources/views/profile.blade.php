@@ -200,6 +200,7 @@
 @section('javascript')
     <script type="text/javascript" src="/js/app/modules/profile.js"></script>
     <script type="text/javascript" src="/js/ng-img-crop/ng-img-crop-2.0.min.js"></script>
+    <script src="{{asset('js/app/directives/form-error.js')}}"></script>
     <script type="text/javascript" src="/js/app/modules/image-preview-upload.js"></script>
 
 @stop

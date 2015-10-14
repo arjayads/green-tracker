@@ -23,7 +23,8 @@ class UserRepo {
 
     function findEmployee($userId)
     {
-        $q = DB::table('employees');
+        $q = DB::table('employees')
+            ->join('users', 'employees.user_id', '=', 'users.id');
         return $q->where('user_id', '=', $userId)->first();
     }
 }

@@ -21,7 +21,25 @@ class ProfileService implements BaseService {
 
     function save(array $params)
     {
-        // TODO: Implement save() method.
+        $response = new ResponseEntity();
+
+        $user = User::find(Auth::user()->id);
+        if ($user) {
+            $user->alias = $params['alias'];
+            $user->email = $params['email'];
+            $user->mood = $params['mood'];
+
+            if ($user->save()) {
+                $response->setMessages(['Info successfully saved!']);
+                $response->setSuccess(true);
+            } else {
+                $response->setMessages(['Failed to save info']);
+            }
+        } else {
+            $response->setMessages(['User not available!']);
+        }
+
+        return $response;
     }
 
     function updatePhoto(array $params)

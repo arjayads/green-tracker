@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
-                    <h1 class="h2 text-xs-center text-sm-left">{{ $myData->first_name }} {{ $myData->last_name }} ({{$myData->alias}})</h1>
+                    <h1 class="h2 text-xs-center text-sm-left">{{ $myData->first_name }} {{ $myData->last_name }}  {{$myData->alias ? ('(' . $myData->alias . ')') : ''}}</h1>
                     <p class="mg-t-0 text-xs-center text-sm-left">{{ $myData->mood }}</p>
                 </div>
                 <div class="col-sm-4 col-md-3">
@@ -122,7 +122,7 @@
                             <div class="col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input ng-init="info.alias='{{$myData->alias}}'" ng-model="info.alias" type="text" class="form-control" id="alias"">
+                                    <input ng-init="info.alias='{{$myData->alias}}'" ng-model="info.alias" type="text" class="form-control" id="alias">
                                 </div>
                             </div>
                         </div>

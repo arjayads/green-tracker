@@ -4,7 +4,7 @@
         <div class="cover pd-15 relative" ng-mousemove="hover = true" ng-mouseleave="hover = false;" ng-init="hover = false" ng-style="{'background-image':'url('+coverPhoto+')'}">
             <div ng-class="{hidden: !hover}" class="cover-top clearfix">
                 <a ng-cloak="" ng-click="setCoverPic()" href="" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
-                <a href="" class="btn btn-default pull-sm-right text-primary pd-y-5">Update Info</a>
+                <a ng-cloak="" ng-click="showUpdateInfoModal()" href="" class="btn btn-default pull-sm-right text-primary pd-y-5">Update Info</a>
             </div>
 
             <div class="row cover-avatar">
@@ -79,8 +79,6 @@
     </div>
 </div>
 
-
-
 <div id="cover-changer-modal" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -99,6 +97,100 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button ng-click="saveCoverPic()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="info-changer-modal" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Update Info</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label class="input-label" for="alias">Alias</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input ng-model="info.alias" type="text" class="form-control" id="alias">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label class="input-label" for="email">Email</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input ng-model="info.email" type="email" class="form-control" id="email">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label class="input-label" for="mood">Mood</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-apple"></i></span>
+                                <input ng-model="info.mood" type="text" class="form-control" id="mood">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;"></div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label class="input-label" for="password">Password</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                                <input ng-model="info.password" type="password" class="form-control" id="password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label class="input-label" for="confirm-password">Confirm</label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bullhorn"></i></span>
+                                <input ng-model="info.confirmPassword" type="password" class="form-control" id="confirm-password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="saveInfo()" type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

@@ -65,6 +65,10 @@ profileApp.controller('coverCtrl', ['$scope', '$http', function ($scope, $http) 
         $("#cover-changer-modal").modal('show');
     }
 
+    $scope.showUpdateInfoModal = function() {
+        $("#info-changer-modal").modal('show');
+    }
+
     $scope.saveProfilePic = function() {
         $("#profile-changer-modal").modal('hide');
 

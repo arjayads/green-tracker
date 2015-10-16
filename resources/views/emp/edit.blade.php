@@ -1,4 +1,4 @@
-@extends('layouts.normal')
+@extends('layouts.master')
 
 @section('title', 'Edit Employee')
 
@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-
+@stop
 
 @section('javascript')
     <script src="{{asset('js/datepicker/datepicker.js')}}"></script>

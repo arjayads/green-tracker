@@ -2,8 +2,8 @@
     <div class="container">
         <div class="navbar-header pull-left">
             <a href="#0" class="navbar-brand">
-                <span><img src="images/logo-brandmark.png" alt="" class="brandmark"></span>
-                <span><img src="images/logo-wordmark.png" alt="" class="wordmark hidden-xs"></span>
+                <span><img src="/images/logo-brandmark.png" alt="" class="brandmark"></span>
+                <span><img src="/images/logo-wordmark.png" alt="" class="wordmark hidden-xs"></span>
             </a>
         </div>
         <!--/ .navbar-header -->
@@ -22,9 +22,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle pd-y-10 pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="mg-r-10 hidden-xs hidden-sm">{{ $myData->first_name }}</span> <img src="/profile/photo" class="avatar img-circle" width="48" height="48"><span class="caret hidden-xs hidden-sm"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="main">Home</a></li>
-                        <li><a ui-sref="sales">Sales</a></li>
-                        <li><a ui-sref="user">User</a></li>
+                        <li><a href="/profile">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/auth/logout">Log Off</a></li>
                     </ul>

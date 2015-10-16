@@ -16,6 +16,16 @@ class EmployeeController extends Controller
         $this->empService = $empService;
         $this->empDto = $empDto;
         $this->empRepo = $empRepo;
+
+        parent::__construct();
+    }
+
+    public function index() {
+        return view('emp.list');
+    }
+
+    public function create() {
+        return view('emp.create');
     }
 
     public function store(Requests\CreateEmployeeRequest $request)

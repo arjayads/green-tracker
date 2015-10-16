@@ -31,13 +31,8 @@ Route::group(['prefix' => 'auth'], function () {
 
 // data and actions
 Route::group(['prefix' => 'emp'], function () {
-    Route::get('/', function () {
-        return view('emp.list');
-    });
-    Route::get('create', function () {
-        return view('emp.create');
-    });
-
+    Route::get('', ['uses' => 'EmployeeController@index']);
+    Route::get('create', ['uses' => 'EmployeeController@create']);
     Route::get('countFind', ['uses' => 'EmployeeController@countFind']);
     Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
     Route::get('{id}/edit', ['uses' => 'EmployeeController@edit']);

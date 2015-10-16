@@ -16,11 +16,11 @@ class ProfileController extends Controller
     public function __construct(ProfileService $profileService, UserRepo $userRepo) {
         $this->profileService = $profileService;
         $this->userRepo = $userRepo;
+        parent::__construct();
     }
 
     public function index() {
-        $e = $this->userRepo->findEmployee(Auth::user()->id);
-        return view('profile', ['myData' => $e]);
+        return view('profile');
     }
 
     public function updatePhoto() {

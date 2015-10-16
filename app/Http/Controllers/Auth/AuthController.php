@@ -81,6 +81,6 @@ class AuthController extends Controller
     protected function Logout()
     {
         Auth::logout();
-        return Redirect::route('home');
+        return Redirect::route('/');
     }
 }

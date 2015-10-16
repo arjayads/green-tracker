@@ -17,6 +17,16 @@ class SalesController extends Controller
     {
         $this->saleService = $saleService;
         $this->saleDto = $saleDto;
+
+        parent::__construct();
+    }
+
+    public function index() {
+        return view('sale.list');
+    }
+
+    public function create() {
+        return view('sale.create');
     }
 
     public function store(CreateSaleRequest $request)

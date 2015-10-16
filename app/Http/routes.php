@@ -42,13 +42,8 @@ Route::group(['prefix' => 'emp'], function () {
 });
 
 Route::group(['prefix' => 'sales'], function () {
-    Route::get('/', function () {
-        return view('sale.list');
-    });
-
-    Route::get('create', function () {
-        return view('sale.create', ['patientId' => null]);
-    });
+    Route::get('/', ['uses' => 'Sales\SalesController@index']);
+    Route::get('create', ['uses' => 'Sales\SalesController@create']);
 
     Route::post('create', ['uses' => 'Sales\SalesController@store']);
     Route::post('process', ['uses' => 'Sales\SalesController@process']);

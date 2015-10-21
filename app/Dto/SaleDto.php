@@ -5,6 +5,7 @@ namespace app\Dto;
 
 use app\Models\Sale;
 use app\Repositories\SaleRepo;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class SaleDto
@@ -42,6 +43,17 @@ class SaleDto
             $saleArr['created_at'] = $s->created_at;
         }
         return $saleArr;
+    }
+
+    function countTodayByAgent($agentId)
+    {
+        $now = Carbon::now();
+        $today = $now->format('Y-m-d');
+
+        $data['today'] = $this->saleRepo->countByAgentAndDate($agentId, $today);
+        $data['toDate'] = $this->saleRepo->countByAgentAndDate($agentId);
+
+        return $data;
     }
 
     private  function composeSaleData($s)

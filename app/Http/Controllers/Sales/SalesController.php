@@ -5,9 +5,11 @@ namespace app\Http\Controllers\Sales;
 use app\Dto\SaleDto;
 use app\Http\Controllers\Controller;
 use app\Http\Requests\CreateSaleRequest;
+use app\Models\Sale;
 use app\Models\SaleStatus;
 use app\Services\SaleService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class SalesController extends Controller
@@ -65,5 +67,11 @@ class SalesController extends Controller
     public function statuses()
     {
         return SaleStatus::all();
+    }
+
+
+    public function myCountToday()
+    {
+        return $this->saleDto->countTodayByAgent(Auth::user()->id);
     }
 }

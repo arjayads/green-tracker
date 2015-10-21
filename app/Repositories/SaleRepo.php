@@ -2,6 +2,7 @@
 
 namespace app\Repositories;
 
+use app\Models\Sale;
 use Illuminate\Support\Facades\DB;
 
 class SaleRepo
@@ -80,5 +81,21 @@ class SaleRepo
             );
         }
         return $query->first();
+    }
+
+    function countByAgentAndDate($agentId, $fromSql = null, $toSql = null)
+    {
+        if ($toSql == null && $fromSql) {
+            $q = Sale::where('date_sold', $fromSql);
+        } else if ($fromSql && $toSql) {
+            $q = Sale::where('date_sold', '>=', $fromSql)->where('date_sold', '<=', $toSql);
+        } else {
+
+            $first = DB::table('sales')->where('user_id', $agentId)->count();
+            $second = DB::table('sales_processed')->where('user_id', $agentId)->count();
+
+            return $first + $second;
+        }
+        return $q->where('user_id', $agentId)->count();
     }
 }

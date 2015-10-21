@@ -50,6 +50,8 @@ Route::group(['prefix' => 'sales'], function () {
     Route::get('list', ['as' => 'sales-list', 'uses' => 'Sales\SalesController@salesList']);
     Route::get('{id}/detail', ['uses' => 'Sales\SalesController@detail']);
     Route::get('statuses', ['uses' => 'Sales\SalesController@statuses']);
+
+    Route::get('/my/count/today', ['uses' => 'Sales\SalesController@myCountToday']);
 });
 
 Route::group(['prefix' => 'campaign'], function () {

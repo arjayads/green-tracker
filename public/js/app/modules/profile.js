@@ -35,6 +35,17 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
         }
 }]);
 
+profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.salesToday = { 'today' : 0, 'toDate': 0 };
+
+    $http.get('/sales/my/count/today').success(function(data) {
+        $scope.salesToday = data;
+    }).error(function() {
+        toastr.error('Error loading today\'s sales!');
+    });
+
+}]);
+
 profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
     $scope.savingInfo = false;
     $scope.savingInfoButton = 'Save changes';

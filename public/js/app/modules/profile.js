@@ -38,12 +38,61 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
 profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.salesToday = { 'today' : 0, 'toDate': 0 };
 
-    $http.get('/sales/my/count/today').success(function(data) {
-        $scope.salesToday = data;
-    }).error(function() {
-        toastr.error('Error loading today\'s sales!');
-    });
+    angular.element(document).ready(function () {
+        $http.get('/sales/my/count/today').success(function(data) {
+            $scope.salesToday = data;
+        }).error(function() {
+            toastr.error('Error loading today\'s sales!');
+        });
 
+        $('#weekly-chart').highcharts({
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: 'Historic and Estimated Worldwide Population Growth by Region'
+            },
+            subtitle: {
+                text: 'Source: Wikipedia.org'
+            },
+            xAxis: {
+                categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+                tickmarkPlacement: 'on',
+                title: {
+                    enabled: false
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Billions'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value / 1000;
+                    }
+                }
+            },
+            tooltip: {
+                shared: true,
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                area: {
+                    stacking: 'normal',
+                    lineColor: '#666666',
+                    lineWidth: 1,
+                    marker: {
+                        lineWidth: 1,
+                        lineColor: '#666666'
+                    }
+                }
+            },
+            series: [{
+                name: 'Asia',
+                data: [502, 635, 809, 947, 1402, 3634, 5268]
+            }]
+        });
+    });
 }]);
 
 profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {

@@ -48,7 +48,6 @@
                                     <div class="panel-title text-white">Sales Weekly Chart</div>
                                 </div>
                                 <div class="panel-body">
-                                    <img src="images/sales-weekly-chart.png" class="center-block">
                                     <div id="weekly-chart"></div>
                                 </div>
                             </div>

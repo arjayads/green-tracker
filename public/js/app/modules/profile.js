@@ -47,49 +47,60 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
 
         $('#weekly-chart').highcharts({
             chart: {
-                type: 'area'
+                type: 'area',
+                backgroundColor: null,
+                tickPixelInterval: 1
+            },
+            legend: {
+                enabled: false
             },
             title: {
-                text: 'Historic and Estimated Worldwide Population Growth by Region'
+                text: ''
             },
             subtitle: {
-                text: 'Source: Wikipedia.org'
+                text: ''
             },
             xAxis: {
-                categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+                categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 tickmarkPlacement: 'on',
                 title: {
                     enabled: false
+                },
+                labels: {
+                    style: {
+                        color: 'white'
+                    }
                 }
             },
             yAxis: {
                 title: {
-                    text: 'Billions'
+                    text: ''
                 },
                 labels: {
-                    formatter: function () {
-                        return this.value / 1000;
+                    style: {
+                        color: 'white'
                     }
-                }
+                },
+                tickInterval: 0.25
             },
             tooltip: {
-                shared: true,
-                valueSuffix: ' millions'
+                shared: true
             },
             plotOptions: {
                 area: {
                     stacking: 'normal',
-                    lineColor: '#666666',
+                    lineColor: 'white',
                     lineWidth: 1,
                     marker: {
                         lineWidth: 1,
-                        lineColor: '#666666'
+                        lineColor: 'white',
+                        fillColor: 'white'
                     }
                 }
             },
             series: [{
-                name: 'Asia',
-                data: [502, 635, 809, 947, 1402, 3634, 5268]
+                name: 'Sales',
+                data: [2, 6, 1, 4, 3, 1]
             }]
         });
     });

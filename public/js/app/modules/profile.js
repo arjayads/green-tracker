@@ -80,8 +80,7 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
                     style: {
                         color: 'white'
                     }
-                },
-                tickInterval: 0.25
+                }
             },
             tooltip: {
                 shared: true

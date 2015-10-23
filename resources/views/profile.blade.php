@@ -47,7 +47,7 @@
                                 <div class="panel-heading">
                                     <div class="panel-title text-white">Sales Weekly Chart</div>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body"> 
                                     <div id="weekly-chart"></div>
                                 </div>
                             </div>

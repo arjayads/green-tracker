@@ -49,7 +49,7 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
             chart: {
                 type: 'area',
                 backgroundColor: null,
-                tickPixelInterval: 1
+                height: 150
             },
             legend: {
                 enabled: false
@@ -70,16 +70,17 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
                     style: {
                         color: 'white'
                     }
-                }
+                },
+                min: 0.4,
+                max: 4.5
             },
             yAxis: {
                 title: {
                     text: ''
                 },
+                tickInterval: 1.5,
                 labels: {
-                    style: {
-                        color: 'white'
-                    }
+                    enabled: false
                 }
             },
             tooltip: {

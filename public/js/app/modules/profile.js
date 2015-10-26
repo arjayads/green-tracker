@@ -37,14 +37,24 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
 
 profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.salesToday = { 'today' : 0, 'toDate': 0 };
+    $scope.weeklyChart = { 'values' : [], 'xLabels': [] };
 
-    angular.element(document).ready(function () {
-        $http.get('/sales/my/count/today').success(function(data) {
-            $scope.salesToday = data;
+    $http.get('/sales/my/count/today').success(function(data) {
+        $scope.salesToday = data;
+    }).error(function() {
+        toastr.error('Error loading today\'s sales!');
+    });
+
+    $scope.$watch('weeklyChart', function(newValue, oldValue) {
+        $http.get('/sales/my/weekly-chart').success(function(data) {
+            console.log(data);
+            drawWeeklyChart(data);
         }).error(function() {
-            toastr.error('Error loading today\'s sales!');
+            toastr.error('Error loading weekly sales!');
         });
+    });
 
+    var drawWeeklyChart = function(values) {
         $('#weekly-chart').highcharts({
             chart: {
                 type: 'area',
@@ -78,7 +88,7 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
                 title: {
                     text: ''
                 },
-                tickInterval: 1.5,
+                tickInterval: 0.5,
                 labels: {
                     enabled: false
                 }
@@ -100,10 +110,11 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
             },
             series: [{
                 name: 'Sales',
-                data: [2, 6, 1, 4, 3, 1]
+                data: values
             }]
         });
-    });
+    }
+
 }]);
 
 profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {

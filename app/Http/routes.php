@@ -52,6 +52,7 @@ Route::group(['prefix' => 'sales'], function () {
     Route::get('statuses', ['uses' => 'Sales\SalesController@statuses']);
 
     Route::get('/my/count/today', ['uses' => 'Sales\SalesController@myCountToday']);
+    Route::get('/my/weekly-chart', ['uses' => 'Sales\SalesController@myWeeklyChart']);
 });
 
 Route::group(['prefix' => 'campaign'], function () {

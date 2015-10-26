@@ -7,7 +7,9 @@ use app\Http\Controllers\Controller;
 use app\Http\Requests\CreateSaleRequest;
 use app\Models\Sale;
 use app\Models\SaleStatus;
+use app\Repositories\SaleRepo;
 use app\Services\SaleService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -15,10 +17,11 @@ use Illuminate\Support\Facades\Input;
 class SalesController extends Controller
 {
 
-    public function __construct(SaleService $saleService, SaleDto $saleDto)
+    public function __construct(SaleService $saleService, SaleDto $saleDto, SaleRepo $saleRepo)
     {
         $this->saleService = $saleService;
         $this->saleDto = $saleDto;
+        $this->saleRepo = $saleRepo;
 
         parent::__construct();
     }
@@ -73,5 +76,27 @@ class SalesController extends Controller
     public function myCountToday()
     {
         return $this->saleDto->countTodayByAgent(Auth::user()->id);
+    }
+
+    public function myWeeklyChart()
+    {
+        $now = Carbon::now();
+        $wStart = clone $now->startOfWeek();
+        $wEnd = clone $now->endOfWeek();
+
+        $result = $this->saleRepo->countByAgentAndDateGroupByDate(Auth::user()->id, $wStart->toDateString(), $wEnd->toDateString());
+
+        $data = [];
+        if (is_array($result)) {
+            while ($wStart->toDateString() <= $wEnd->toDateString()) {
+                $cur = clone $wStart;
+
+                $count = isset($result[$cur->toDateString()]) ? $result[$cur->toDateString()] : 0;
+                $data[] = intval($count);
+                $wStart->addDay();
+            }
+        }
+
+        return $data;
     }
 }

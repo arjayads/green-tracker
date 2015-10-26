@@ -79,6 +79,11 @@ class EmployeeController extends Controller
             $data['email'] = $e->user->email;
             $data['shift'] = ['id' => $e->shift->id];
             $data['group'] = ['id' => $ug->group->id];
+
+            $sup = Employee::where('id', $e->supervisor_id)->select(['id', 'first_name', 'last_name'])->first();
+            if ($sup) {
+                $data['supervisor'] = [ 'id' => $sup->id, 'full_name' => $sup->last_name . ', ' . $sup->first_name];
+            }
         }
         return $data;
     }

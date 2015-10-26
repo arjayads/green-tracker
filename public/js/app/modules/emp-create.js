@@ -2,6 +2,7 @@ var employeeApp = angular.module('employee', ['dirFormError', 'config', 'ngTouch
 
 employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.showForm = true;
+    $scope.selectedSupervisor = {};
 
     var resetSubmitBtn = function() {
         $scope.save = "Create";
@@ -14,6 +15,13 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
             $scope.employee.birthday = $.datepicker.formatDate('mm/dd/yy', new Date(data.birthday));
             $scope.selectedShift = data.shift;
             $scope.selectedGroup = data.group;
+
+            if(data.hasOwnProperty('supervisor')){
+                $scope.selectedSupervisor.originalObject = data.supervisor;
+                $scope.selectedSupervisor.description = data.supervisor;
+                $scope.selectedSupervisor.title = data.supervisor.full_name;
+            }
+
         }).error(function() {
             toastr.error('Something went wrong!');
         });
@@ -49,7 +57,7 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
         return {q: str};
     };
 
-    $scope.saveEmp = function(){
+    $scope.saveEmp = function(){ 
         if ($scope.submitting) return; // prevent multiple submission
         $scope.save = 'Saving...';
         $scope.submitting = true;

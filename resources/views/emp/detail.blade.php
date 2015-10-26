@@ -95,6 +95,21 @@
             </div>
 
             <div style="margin-top: 10px;"></div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-md-2 col-lg-2">
+                        <label class="input-label" for="last_name">Supervisor / TL</label>
+                    </div>
+                    <div class="col-md-5 col-lg-5">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                            <label class="input-label form-control">{{ @$employee->supervisor->first_name}} {{@$employee->supervisor->last_name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px;"></div>
 
             <div class="row">
                 <div class="col-md-12 col-lg-12">

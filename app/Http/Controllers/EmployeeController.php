@@ -4,6 +4,7 @@ namespace app\Http\Controllers;
 
 use app\Dto\EmployeeDto;
 use app\Http\Requests;
+use app\Models\Employee;
 use app\Models\UserGroup;
 use app\Repositories\EmployeeRepo;
 use app\Services\EmployeeService;
@@ -40,6 +41,10 @@ class EmployeeController extends Controller
             $ug = UserGroup::where('user_id', $e->user->id)->first();
             $e->group = $ug->group->name;
 
+            $sup = Employee::where('id', $e->supervisor_id)->select(['first_name', 'last_name'])->first();
+            if ($sup) {
+                $e->supervisor = $sup;
+            }
             return view('emp.detail', ['employee' => $e]);
         } else {
             abort(404);

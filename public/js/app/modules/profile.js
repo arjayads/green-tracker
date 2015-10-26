@@ -47,7 +47,6 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
 
     $scope.$watch('weeklyChart', function(newValue, oldValue) {
         $http.get('/sales/my/weekly-chart').success(function(data) {
-            console.log(data);
             drawWeeklyChart(data);
         }).error(function() {
             toastr.error('Error loading weekly sales!');

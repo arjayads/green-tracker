@@ -1,4 +1,4 @@
-var employeeApp = angular.module('employee', ['dirFormError', 'config']);
+var employeeApp = angular.module('employee', ['dirFormError', 'config', 'ngTouch', 'angucomplete-alt']);
 
 employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.showForm = true;
@@ -45,6 +45,10 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
         });
     }
 
+    $scope.remoteUrlRequestFn = function(str) {
+        return {q: str};
+    };
+
     $scope.saveEmp = function(){
         if ($scope.submitting) return; // prevent multiple submission
         $scope.save = 'Saving...';
@@ -55,6 +59,9 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
         postData['birthday'] = $('#birthday').val();
         postData['shift_id'] = $scope.selectedShift.id;
         postData['group_id'] = $scope.selectedGroup.id;
+        if ($scope.selectedSupervisor) {
+            postData['supervisor_id'] = $scope.selectedSupervisor.originalObject.id;
+        }
 
         $http.post('/emp/create', postData).success(function(d) {
             if (d.success) {

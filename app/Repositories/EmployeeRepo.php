@@ -10,6 +10,7 @@ namespace app\Repositories;
 
 
 use app\Models\Employee;
+use app\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class EmployeeRepo {
@@ -39,6 +40,19 @@ class EmployeeRepo {
             ->get();
     }
 
+    function find2($query = '')
+    {
+        return Employee::where('first_name', 'LIKE', ('%'.$query.'%'))->orWhere('last_name', 'LIKE', ('%'.$query.'%'))
+            ->select([
+                    'id',
+                    DB::raw("CONCAT(last_name, ', ', first_name, ' ', middle_name) as full_name")
+                ]
+            )
+            ->orderBy('last_name', 'asc')
+            ->take(5)
+            ->get();
+    }
+
     function countFind($query = '') {
         $q = DB::table('employees')
             ->join('users', 'employees.user_id', '=', 'users.id')
@@ -57,6 +71,7 @@ class EmployeeRepo {
         return $q->first();
 
     }
+
 
     private function findWhereClause($q, $kwary) {
         if ($kwary && strlen($kwary) > 0) {

@@ -75,6 +75,9 @@ class EmployeeService implements BaseService
                 if (isset($params['middle_name'])) {
                     $employee->middle_name = $params['middle_name'];
                 }
+                if (isset($params['supervisor_id'])) {
+                    $employee->supervisor_id = $params['supervisor_id'];
+                }
                 $employee->sex = $params['sex'];
                 $employee->birthday = Carbon::createFromFormat('m/d/Y', $params['birthday']);
                 $employee->shift_id = $params['shift_id'];

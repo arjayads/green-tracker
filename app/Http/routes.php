@@ -39,6 +39,7 @@ Route::group(['prefix' => 'emp'], function () {
     Route::get('{id}/getForEdit', ['as' => 'emp-get', 'uses' => 'EmployeeController@getForEdit']);
     Route::get('list', ['as' => 'emp-list', 'uses' => 'EmployeeController@empList']);
     Route::post('create', ['as' => 'store-emp', 'uses' => 'EmployeeController@store']);
+    Route::get('find', ['uses' => 'EmployeeController@find']);
 });
 
 Route::group(['prefix' => 'sales'], function () {

@@ -29,6 +29,7 @@
         <!-- Assets -->
         <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/font-awesome/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/custom.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
         <link href="{{asset('css/toastr/toastr.min.css')}}" rel="stylesheet" type="text/css">

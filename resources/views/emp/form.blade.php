@@ -85,6 +85,31 @@
             </div>
         </div>
     </div>
+    <div style="margin-top: 10px;"></div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-2 col-lg-2">
+                <label class="input-label" for="supervisor">Supervisor/TL</label>
+            </div>
+            <div class="col-md-5 col-lg-5">
+                <div angucomplete-alt
+                     id="supervisor"
+                     placeholder="Search..."
+                     pause="500"
+                     selected-object="selectedSupervisor"
+                     remote-url="/emp/find"
+                     remote-url-request-formatter="remoteUrlRequestFn"
+                     remote-url-data-field="names"
+                     title-field="full_name"
+                     input-class="form-control form-control-small"
+                     match-class="highlight">
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-5">
+                <form-error err_field="errors.supervisor"></form-error>
+            </div>
+        </div>
+    </div>
 
     <div style="margin-top: 10px;"></div>
 
@@ -168,7 +193,6 @@
             </div>
         </div>
     </div>
-
     <div style="margin-top: 10px;"></div>
     <div class="row">
         <div class="col-md-12 col-lg-12">

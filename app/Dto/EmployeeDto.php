@@ -50,4 +50,8 @@ class EmployeeDto {
 
         return $result;
     }
+
+    function findBasic($q) {
+        return $this->empRepo->find2($q);
+    }
 }

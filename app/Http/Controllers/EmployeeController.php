@@ -99,4 +99,11 @@ class EmployeeController extends Controller
         $query = Input::get('q');
         return $this->empRepo->countFind($query ?: '' );
     }
+
+    public function find()
+    {
+        $query = Input::get('q');
+        return ['names' => $this->empDto->findBasic($query)];
+    }
+
 }

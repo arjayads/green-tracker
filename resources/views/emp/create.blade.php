@@ -27,6 +27,7 @@
 
 @section('javascript')
     <script src="{{asset('js/datepicker/datepicker.js')}}"></script>
+    <script src="{{asset('js/autocomplete/angucomplete-alt.min.js')}}"></script>
     <script src="{{asset('js/app/directives/form-error.js')}}"></script>
     <script src="{{asset('js/app/modules/emp-create.js')}}"></script>
 

@@ -3,6 +3,7 @@
 namespace app\Repositories;
 
 use app\Models\Sale;
+use app\Models\SaleProcessed;
 use Illuminate\Support\Facades\DB;
 
 class SaleRepo
@@ -86,16 +87,20 @@ class SaleRepo
     function countByAgentAndDate($agentId, $fromSql = null, $toSql = null)
     {
         if ($toSql == null && $fromSql) {
-            $q = Sale::where('date_sold', $fromSql);
+            $q = Sale::where('date_sold', $fromSql)->where('user_id', $agentId)->count();
+            $r = SaleProcessed::where('date_sold', $fromSql)->where('user_id', $agentId)->count();
+
+            return $q + $r;
         } else if ($fromSql && $toSql) {
-            $q = Sale::where('date_sold', '>=', $fromSql)->where('date_sold', '<=', $toSql);
+            $q = Sale::where('date_sold', '>=', $fromSql)->where('date_sold', '<=', $toSql)->where('user_id', $agentId);
+            $r = SaleProcessed::where('date_sold', '>=', $fromSql)->where('date_sold', '<=', $toSql)->where('user_id', $agentId);
+
+            return $q + $r;
         } else {
+            $q = Sale::where('user_id', $agentId)->count();
+            $r = SaleProcessed::where('user_id', $agentId)->count();
 
-            $first = DB::table('sales')->where('user_id', $agentId)->count();
-            $second = DB::table('sales_processed')->where('user_id', $agentId)->count();
-
-            return $first + $second;
+            return $q + $r;
         }
-        return $q->where('user_id', $agentId)->count();
     }
 }

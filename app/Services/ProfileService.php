@@ -92,7 +92,6 @@ class ProfileService implements BaseService {
         return $response;
     }
 
-
     function updateCover(array $params)
     {
         $response = new ResponseEntity();
@@ -165,9 +164,9 @@ class ProfileService implements BaseService {
         return $response;
     }
 
-    function getCover()
+    function getCover($userId)
     {
-        $user = User::find(Auth::user()->id);
+        $user = User::find($userId);
 
         try {
 
@@ -187,9 +186,9 @@ class ProfileService implements BaseService {
     }
 
 
-    function getPhoto()
+    function getPhoto($userId)
     {
-        $user = User::find(Auth::user()->id);
+        $user = User::find($userId);
 
         try {
 

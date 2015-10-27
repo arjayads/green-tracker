@@ -38,6 +38,13 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
 profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.salesToday = { 'today' : 0, 'toDate': 0 };
     $scope.weeklyChart = [];
+    $scope.myTeam = [];
+
+    $http.get('/profile/myTeam').success(function(data) {
+        $scope.myTeam = data;
+    }).error(function() {
+        toastr.error('Error loading team members!');
+    });
 
     $http.get('/sales/my/count/today').success(function(data) {
         $scope.salesToday = data;

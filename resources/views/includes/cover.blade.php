@@ -62,12 +62,12 @@
                     <div class="col-md-7">
                         <div>Select an image file: <input type="file" id="profilePicInput" accept="image/*" /></div>
                         <div class="cropArea">
-                            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                            <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div>Preview</div>
-                        <div><img ng-src="<% myCroppedImage %>" /></div>
+                        <div><img class="img-circle" ng-src="<% myCroppedImage %>" /></div>
                     </div>
                 </div>
             </div>

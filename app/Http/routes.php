@@ -20,6 +20,7 @@ Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
     Route::post('updateInfo', ['uses' => 'ProfileController@updateInfo']);
     Route::get('photo', ['uses' => 'ProfileController@photo']);
     Route::get('cover', ['uses' => 'ProfileController@cover']);
+    Route::get('myTeam', ['uses' => 'ProfileController@myTeam']);
 });
 
 // Authentication routes...

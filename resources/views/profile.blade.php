@@ -75,18 +75,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-inline">
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-6.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-7.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-8.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
-                                        <li class="mg-b-10"><a href=""><img src="images/avatar-empty.png"></a></li>
+                                        <li class="mg-b-10"><a href=""><img src="/profile/photo" class="avatar" width="48" height="48"></a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -47,10 +47,14 @@ class ProfileController extends Controller
     }
 
     public function photo() {
-        return $this->profileService->getPhoto();
+        return $this->profileService->getPhoto($this->userId);
     }
 
     public function cover() {
-        return $this->profileService->getCover();
+        return $this->profileService->getCover($this->userId);
+    }
+
+    public function myTeam() {
+
     }
 }

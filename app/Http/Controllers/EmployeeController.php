@@ -56,6 +56,10 @@ class EmployeeController extends Controller
     {
         $e = $this->empDto->findById($id);
         if ($e) {
+            $sup = Employee::where('id', $e->supervisor_id)->select(['id', 'first_name', 'last_name', 'middle_name'])->first();
+            if ($sup) {
+                $e->supervisor = [ 'id' => $sup->id, 'full_name' => $sup->last_name . ', ' . $sup->first_name .' ' . $sup->middle_name];
+            }
             return view('emp.edit', ['employee' => $e]);
         } else {
             abort(404);
@@ -79,11 +83,6 @@ class EmployeeController extends Controller
             $data['email'] = $e->user->email;
             $data['shift'] = ['id' => $e->shift->id];
             $data['group'] = ['id' => $ug->group->id];
-
-            $sup = Employee::where('id', $e->supervisor_id)->select(['id', 'first_name', 'last_name'])->first();
-            if ($sup) {
-                $data['supervisor'] = [ 'id' => $sup->id, 'full_name' => $sup->last_name . ', ' . $sup->first_name];
-            }
         }
         return $data;
     }

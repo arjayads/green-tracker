@@ -16,12 +16,6 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
             $scope.selectedShift = data.shift;
             $scope.selectedGroup = data.group;
 
-            if(data.hasOwnProperty('supervisor')){
-                $scope.selectedSupervisor.originalObject = data.supervisor;
-                $scope.selectedSupervisor.description = data.supervisor;
-                $scope.selectedSupervisor.title = data.supervisor.full_name;
-            }
-
         }).error(function() {
             toastr.error('Something went wrong!');
         });

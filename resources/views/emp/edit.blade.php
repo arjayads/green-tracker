@@ -18,7 +18,7 @@
                     <a href="/emp" class="btn btn-primary">Back to list</a>
                     <h2>Edit employee record</h2>
                     <hr/>
-                    <input type="hidden" ng-cloak ng-model="empId" ng-init="empId = {{$employee['id']}}">
+                    <input type="hidden" ng-cloak ng-model="empId" ng-init="empId = {{$employee['id']}}; selectedSupervisor = {id: {{$employee['supervisor']['id']}}, full_name: '{{$employee['supervisor']['full_name']}}' }">
                     @include('emp.form')
                 </div>
             </main>

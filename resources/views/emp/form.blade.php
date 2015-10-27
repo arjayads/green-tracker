@@ -102,7 +102,8 @@
                      remote-url-data-field="names"
                      title-field="full_name"
                      input-class="form-control form-control-small"
-                     match-class="highlight">
+                     match-class="highlight"
+                     initial-value="selectedSupervisor">
                 </div>
             </div>
             <div class="col-md-5 col-lg-5">

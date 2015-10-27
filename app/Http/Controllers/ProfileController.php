@@ -55,6 +55,6 @@ class ProfileController extends Controller
     }
 
     public function myTeam() {
-
+        return $this->profileService->getTeammates($this->userId);
     }
 }

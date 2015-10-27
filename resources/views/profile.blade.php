@@ -74,9 +74,10 @@
                                     <div class="panel-title text-white">In Your Team</div>
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-inline">
-                                        <li class="mg-b-10"><a href=""><img src="/profile/photo" class="avatar" width="48" height="48"></a></li>
+                                    <ul class="list-inline" ng-hide="myTeam.length == 0">
+                                        <li ng-repeat="player in myTeam" class="mg-b-10"><a href=""><img alt="" title="<%player.email%>" src="/profile/photo?id=<%player.id%>" class="avatar" width="48" height="48"></a></li>
                                     </ul>
+                                    <span ng-hide="myTeam.length > 0">You are not in a team!</span>
                                 </div>
                             </div>
                             <!--/ .panel -->

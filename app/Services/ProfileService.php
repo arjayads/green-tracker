@@ -205,4 +205,19 @@ class ProfileService implements BaseService {
         $img = Image::make('images/avatar_2x.png');
         return $img->response('png');
     }
+
+    function getTeammates($userId)
+    {
+        $user = User::find($userId);
+        if ($user) {
+            $users = User::where('supervisor_id', $user->id)->select(['id', 'email'])->get();
+            if (count($users) > 0) { // you're the boss
+                return $users;
+            } else { // your team mates
+                return User::where('supervisor_id', $user->supervisor_id)->where('id','!=',$user->id)->select(['id', 'email'])->get();
+            }
+        }
+
+        return [];
+    }
 }

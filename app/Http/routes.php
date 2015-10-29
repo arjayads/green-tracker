@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['middleware' => 'auth', 'uses' => 'DefaultPageRouterController@forward']);
+Route::get('/home', ['middleware' => 'auth', 'uses' => 'DefaultPageRouterController@forward']);
 
 Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
     Route::get('/', ['uses' => 'ProfileController@index']);
@@ -31,7 +32,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', function () {
         dd('Coming Soon');
     });
@@ -39,7 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 // data and actions
 Route::group(['prefix' => 'emp', 'middleware' => 'auth'], function () {
-    Route::get('', ['uses' => 'EmployeeController@index']);
+    Route::get('', ['middleware' => 'admin', 'uses' => 'EmployeeController@index']);
     Route::get('create', ['uses' => 'EmployeeController@create']);
     Route::get('countFind', ['uses' => 'EmployeeController@countFind']);
     Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);

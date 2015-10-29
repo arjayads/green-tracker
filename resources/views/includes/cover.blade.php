@@ -33,11 +33,9 @@
 
 
             <ul class="list-inline mg-b-0 pull-sm-left tab-list">
-                <li class="active"><a target="_blank" href="/sales/create" class="block pd-y-20 pd-x-10">Create Sale</a></li>
-                <li><a href="" class="block pd-y-20 pd-x-10">Post Sale</a></li>
-                <li><a href="" class="block pd-y-20 pd-x-10">Profile</a></li>
-                <li><a href="" class="block pd-y-20 pd-x-10">Agents</a></li>
-                <li><a href="" class="block pd-y-20 pd-x-10">Campaigns</a></li>
+                @foreach($menu as $m)
+                    <li><a href="{{$m['url']}}" class="block pd-y-20 pd-x-10">{{$m['text']}}</a></li>
+                @endforeach
             </ul>
 
             <ul class="list-inline mg-b-0 pull-sm-right">

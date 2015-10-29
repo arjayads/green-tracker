@@ -30,8 +30,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', 'Auth\AuthController@getLogout');
 });
 
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', function () {
+        dd('Coming Soon');
+    });
+});
+
 // data and actions
-Route::group(['prefix' => 'emp'], function () {
+Route::group(['prefix' => 'emp', 'middleware' => 'auth'], function () {
     Route::get('', ['uses' => 'EmployeeController@index']);
     Route::get('create', ['uses' => 'EmployeeController@create']);
     Route::get('countFind', ['uses' => 'EmployeeController@countFind']);
@@ -43,7 +50,7 @@ Route::group(['prefix' => 'emp'], function () {
     Route::get('find', ['uses' => 'EmployeeController@find']);
 });
 
-Route::group(['prefix' => 'sales'], function () {
+Route::group(['prefix' => 'sales', 'middleware' => 'auth'], function () {
     Route::get('/', ['uses' => 'Sales\SalesController@index']);
     Route::get('create', ['uses' => 'Sales\SalesController@create']);
 
@@ -57,28 +64,28 @@ Route::group(['prefix' => 'sales'], function () {
     Route::get('/my/weekly-chart', ['uses' => 'Sales\SalesController@myWeeklyChart']);
 });
 
-Route::group(['prefix' => 'campaign'], function () {
+Route::group(['prefix' => 'campaign', 'middleware' => 'auth'], function () {
     Route::get('list', ['uses' => 'CampaignController@campaignList']);
     Route::get('{campaignId}/products', ['uses' => 'CampaignController@products']);
 });
 
 
-Route::group(['prefix' => 'shift'], function () {
+Route::group(['prefix' => 'shift', 'middleware' => 'auth'], function () {
     Route::get('list', ['uses' => 'ShiftController@shiftList']);
 });
 
-Route::group(['prefix' => 'group'], function () {
+Route::group(['prefix' => 'group', 'middleware' => 'auth'], function () {
     Route::get('list', ['uses' => 'GroupController@groupList']);
 });
 
-Route::group(['prefix' => 'post'], function () {
+Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::get('list', ['uses' => 'PostController@posts']);
     Route::get('{id}', ['uses' => 'PostController@find']);
     Route::post('create', ['uses' => 'PostController@store']);
 });
 
 // directives
-Route::group(['prefix' => 'common'], function () {
+Route::group(['prefix' => 'common', 'middleware' => 'auth'], function () {
     Route::get('form-field-error-msg', function () {
         return view('common.form-field-error-msg');
     });

@@ -103,6 +103,7 @@
                      title-field="full_name"
                      input-class="form-control form-control-small"
                      match-class="highlight"
+                     minlength="2"
                      initial-value="selectedSupervisor">
                 </div>
             </div>

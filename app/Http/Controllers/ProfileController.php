@@ -20,7 +20,21 @@ class ProfileController extends Controller
     }
 
     public function index() {
-        return view('profile');
+
+        $menu = [];
+        $groups = Auth::user()->groups();
+
+        if (in_array('Administrator', $groups)) {
+            $menu[] = ['text' => 'Sales', 'url' => '/sales'];
+            $menu[] = ['text' => 'Create Sale', 'url' => '/sales/create'];
+            $menu[] = ['text' => 'Admin', 'url' => '/admin'];
+        } else if (in_array('Agent', $groups)) {
+            $menu[] = ['text' => 'Create Sale', 'url' => '/sales/create'];
+        } else if (in_array('QC', $groups)) {
+            $menu[] = ['text' => 'Sales', 'url' => '/sales'];
+        }
+
+        return view('profile')->with('menu', $menu);
     }
 
     public function updatePhoto() {

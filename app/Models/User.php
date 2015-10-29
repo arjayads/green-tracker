@@ -2,6 +2,7 @@
 
 namespace app\Models;
 
+use app\Repositories\UserRepo;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -36,5 +37,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function employee()
     {
         return $this->belongsTo('app\Models\Employee', 'user_id');
+    }
+
+    public function groups() {
+        $repo = new UserRepo();
+        return $repo->findGroups($this->id);
     }
 }

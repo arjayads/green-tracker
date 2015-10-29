@@ -5,6 +5,7 @@
 @section('css')
     <link href="{{asset('css/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{asset('css/datapicker/angular-datapicker.css')}}" rel="stylesheet">
+    <link href="{{asset('css/autocomplete/angucomplete-alt.css')}}" rel="stylesheet">
 @stop
 
 @section('content')

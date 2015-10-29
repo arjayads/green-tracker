@@ -27,4 +27,12 @@ class UserRepo {
             ->join('users', 'employees.user_id', '=', 'users.id');
         return $q->where('user_id', '=', $userId)->first();
     }
+
+    function findGroups($userId)
+    {
+        $q = DB::table('users')
+            ->join('user_groups', 'users.id', '=', 'user_groups.user_id')
+            ->join('groups', 'user_groups.group_id', '=', 'groups.id');
+        return $q->where('user_groups.user_id', '=', $userId)->lists('name');
+    }
 }

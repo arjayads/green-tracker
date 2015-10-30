@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->unsignedInteger('profile_photo_file_id')->nullable();
             $table->unsignedInteger('cover_photo_file_id')->nullable();
+            $table->unsignedInteger('supervisor_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 

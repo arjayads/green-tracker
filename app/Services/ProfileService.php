@@ -210,11 +210,20 @@ class ProfileService implements BaseService {
     {
         $user = User::find($userId);
         if ($user) {
-            $users = User::where('supervisor_id', $user->id)->select(['id', 'email'])->get();
-            if (count($users) > 0) { // you're the boss
+            $users = User::where('supervisor_id', $user->id)->select(['id', 'email'])->get(); // get subs
+            if (count($users) == 0) { // no subs
+                // same level
+                $users = User::where('supervisor_id', $user->supervisor_id)->where('id','!=',$user->id)->select(['id', 'email'])->get();
+            }
+
+            // include your tl too
+            $tl = User::where('id', $user->supervisor_id)->select(['id', 'email'])->first();
+
+            if ($users->count() > 0) {
+                if ($tl) $users->prepend($tl);
                 return $users;
-            } else { // your team mates
-                return User::where('supervisor_id', $user->supervisor_id)->where('id','!=',$user->id)->select(['id', 'email'])->get();
+            } else if ($tl) {
+                return [$tl];
             }
         }
 

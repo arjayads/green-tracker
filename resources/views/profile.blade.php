@@ -143,7 +143,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <input ng-disable="true" ng-click="post()" type="button" class="btn btn-primary pd-y-5 btn-rounded pull-right" value="Paksi" />
+                                                    <input ng-disable="true" ng-click="post()" type="button" class="btn btn-primary pd-y-5 btn-rounded pull-right" value="Post" />
                                                 </div>
                                             </div>
                                         </div>

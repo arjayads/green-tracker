@@ -35,10 +35,10 @@ class EmployeesTableSeeder extends Seeder
                 'shift_id'      => '1'
             ],
             [
-                'user_id'       => '2',
+                'user_id'       => '3',
                 'id_number'   => 'GWO-0130',
                 'first_name'    => 'Ben',
-                'last_name'     => 'Ten',
+                'last_name'     => 'Sent',
                 'middle_name'   => '20',
                 'sex'           => 'Female',
                 'birthday'      => '1990-11-20',
@@ -46,7 +46,7 @@ class EmployeesTableSeeder extends Seeder
                 'shift_id'      => '1'
             ],
         ]);
-
+        /*
         $r = range(4, 104);
         foreach($r as $v) {
             DB::table('employees')->insert(
@@ -63,5 +63,6 @@ class EmployeesTableSeeder extends Seeder
                 ]
             );
         }
+        */
     }
 }

@@ -3,6 +3,7 @@
 namespace app\Http\Controllers;
 
 use app\Models\User;
+use app\Repositories\SaleRepo;
 use app\Repositories\UserRepo;
 use app\ResponseEntity;
 use app\Services\ProfileService;
@@ -13,9 +14,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
-    public function __construct(ProfileService $profileService, UserRepo $userRepo) {
+    public function __construct(ProfileService $profileService, UserRepo $userRepo, SaleRepo $saleRepo) {
         $this->profileService = $profileService;
         $this->userRepo = $userRepo;
+        $this->saleRepo = $saleRepo;
         parent::__construct();
     }
 
@@ -70,5 +72,21 @@ class ProfileController extends Controller
 
     public function myTeam() {
         return $this->profileService->getTeammates($this->userId);
+    }
+
+    public function findTopSeller() {
+        $top3 = $this->saleRepo->findTopSeller();
+
+        if ($top3) {
+            $imInTop3 = false;
+            foreach($top3 as $user) {
+                if (Auth::user()->id == $user->user_id) {
+                    $imInTop3 = true;
+                    break;
+                };
+            }
+        } else {
+
+        }
     }
 }

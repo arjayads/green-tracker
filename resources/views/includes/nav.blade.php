@@ -1,7 +1,7 @@
 <header class="navbar navbar-static-top bd-b" id="top" role="banner" style="border-color: #e6e9ea;">
     <div class="container">
         <div class="navbar-header pull-left">
-            <a href="#0" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <span><img src="/images/logo-brandmark.png" alt="" class="brandmark"></span>
                 <span><img src="/images/logo-wordmark.png" alt="" class="wordmark hidden-xs"></span>
             </a>

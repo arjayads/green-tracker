@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'email'    => 'jimcallanta@verticalops.com',
-                'password' => Hash::make('default'),
+                'email'    => 'admin@verticalops.com',
+                'password' => Hash::make('admin@verticalops.com'),
                 'active'   => '1'
             ],
             [
@@ -23,12 +23,12 @@ class UsersTableSeeder extends Seeder
                 'active'   => '1'
             ],
             [
-                'email'    => 'test@verticalops.com',
+                'email'    => 'bensent@verticalops.com',
                 'password' => Hash::make('default'),
                 'active'   => '1'
             ],
         ]);
-
+        /*
         $r = range(4, 104);
         foreach($r as $v) {
             DB::table('users')->insert(
@@ -39,6 +39,6 @@ class UsersTableSeeder extends Seeder
                     'active'   => '1'
                 ]
             );
-        }
+        }*/
     }
 }

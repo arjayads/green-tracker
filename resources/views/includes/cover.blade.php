@@ -151,7 +151,7 @@
                             <div class="col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-apple"></i></span>
-                                    <input ng-init="info.mood='{{$myData->mood}}'" ng-model="info.mood" type="text" class="form-control" id="mood">
+                                    <input ng-init='info.mood="{{$myData->mood}}"' ng-model="info.mood" type="text" class="form-control" id="mood">
                                 </div>
                             </div>
                         </div>

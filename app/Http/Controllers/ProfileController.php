@@ -10,7 +10,7 @@ use app\Services\ProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {

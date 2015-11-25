@@ -1,8 +1,7 @@
 <?php
 
 namespace app\Http\Controllers;
-
-use app\Models\User;
+ 
 use app\Repositories\SaleRepo;
 use app\Repositories\UserRepo;
 use app\ResponseEntity;

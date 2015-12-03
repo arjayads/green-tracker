@@ -62,7 +62,8 @@ class ProfileController extends Controller
     }
 
     public function photo() {
-        return $this->profileService->getPhoto($this->userId);
+        $userId = Input::get("uid");
+        return $this->profileService->getPhoto($userId ? $userId : $this->userId);
     }
 
     public function cover() {

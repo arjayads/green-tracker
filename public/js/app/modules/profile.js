@@ -12,6 +12,10 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
             toastr.error('Error loading news feed!');
         });
 
+        $scope.posterProfilePhoto = function(userId) {
+            return '/profile/photo?uid=' + userId;
+        }
+
 
         $scope.post = function() {
 

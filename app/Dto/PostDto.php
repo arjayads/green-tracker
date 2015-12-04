@@ -23,7 +23,7 @@ class PostDto
         if ($posts) {
             foreach($posts as $post) {
                 $post->created_at = Carbon::parse($post->created_at)->diffForHumans();
-                $post->user = $this->employeeRepo->findBy('user_id', $post->user_id, ['first_name', 'last_name']);
+                $post->user = $this->employeeRepo->findBy('user_id', $post->user_id, ['id', 'first_name', 'last_name']);
                 $data[] = $post;
             }
         }
@@ -38,7 +38,7 @@ class PostDto
             $post['loves'] = $p->loves;
             $post['created_at'] = Carbon::parse($p->created_at)->diffForHumans();
             $post['commentsCount'] = $p->commentsCount;
-            $post['user'] = $this->employeeRepo->findBy('user_id', $p->user_id, ['first_name', 'last_name']);
+            $post['user'] = $this->employeeRepo->findBy('user_id', $p->user_id, ['id','first_name', 'last_name']);
             return $post;
         }
         return [];

@@ -154,7 +154,7 @@
                                                 <div class="panel-title block">
                                                     <div class="vcard">
                                                         <a href="" class="vcard-heading">
-                                                            <img ng-src="<%posterProfilePhoto(post.user_id)%>" class="img-circle" width="35" height="35" />
+                                                            <img ng-src="<%posterProfilePhoto(post.user.id)%>" class="img-circle" width="35" height="35" />
                                                         </a>
                                                         <div class="vcard-content pd-l-45">
                                                             <a href="" class="inline vcard-title text-primary"><% post.user.first_name %> <% post.user.last_name %></a>

@@ -85,6 +85,9 @@ class ProfileController extends Controller
                     break;
                 };
             }
+            if (!$imInTop3) {
+                $all = $this->saleRepo->findTopSeller(0);
+            }
         }
         return $top3;
     }

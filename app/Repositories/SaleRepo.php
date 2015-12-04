@@ -186,18 +186,19 @@ class SaleRepo
         }
     }
 
-    function findTopSeller()
+    function findTopSeller($pila = 3)
     {
-        return DB::table('sales')
+        $q = DB::table('sales')
             ->join('employees', 'employees.user_id', '=', 'sales.user_id')
             ->select(
                 'sales.user_id',
                 'employees.first_name',
                 'employees.last_name',
                 DB::raw('COUNT(sales.id) as score')
-            )->groupBy('sales.user_id')
-            ->limit(3)
-            ->orderBy('score', 'desc')
-            ->get();
+            )->groupBy('sales.user_id');
+        if ($pila > 0) {
+            $q->limit($pila);
+        }
+        return $q->orderBy('score', 'desc')->get();
     }
 }

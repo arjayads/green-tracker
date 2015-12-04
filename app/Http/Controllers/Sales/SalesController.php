@@ -19,7 +19,7 @@ class SalesController extends Controller
 
     public function __construct(SaleService $saleService, SaleDto $saleDto, SaleRepo $saleRepo)
     {
-        $this->middleware('rolefilter:admin,QC', ['except' => ['myCountToday', 'myCountToday']]);
+        $this->middleware('rolefilter:admin,QC', ['only' => ['salesList', 'process']]);
 
         $this->saleService = $saleService;
         $this->saleDto = $saleDto;

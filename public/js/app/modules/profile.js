@@ -43,6 +43,7 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
     $scope.salesToday = { 'today' : 0, 'toDate': 0 };
     $scope.weeklyChart = [];
     $scope.myTeam = [];
+    $scope.topSellers = [];
 
     $http.get('/profile/myTeam').success(function(data) {
         $scope.myTeam = data;
@@ -54,6 +55,12 @@ profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http)
         $scope.salesToday = data;
     }).error(function() {
         toastr.error('Error loading today\'s sales!');
+    });
+
+    $http.get('/profile/topSeller').success(function(data) {
+        $scope.topSellers = data;
+    }).error(function() {
+        toastr.error('Error loading top sellers');
     });
 
     $scope.$watch('weeklyChart', function(newValue, oldValue) {

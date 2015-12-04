@@ -60,10 +60,10 @@
                                 <div class="panel-body">
                                     <ul class="list-unstyled mg-b-0">
                                         <li class="block mg-b-10 pd-b-10"><span class="inline text-white font-heading">Agent</span> <span class="pull-right text-white font-heading">Rank</span></li>
-                                        <li class="block mg-b-10 pd-b-10 bd-b bd-transparent-white"><a href=""><img src="images/avatar-2.png" class="inline img-circle mg-r-5"> <span class="inline text-white">Rommel Belicario</span> <span class="pull-right text-white">1st</span></a></li>
-                                        <li class="block mg-b-10 pd-b-10 bd-b bd-transparent-white"><a href=""><img src="images/avatar-3.png" class="inline img-circle mg-r-5"> <span class="inline text-white">Arjay Adong</span> <span class="pull-right text-white">2nd</span></a></li>
-                                        <li class="block mg-b-10 pd-b-10 bd-b bd-transparent-white"><a href=""><img src="images/avatar-4.png" class="inline img-circle mg-r-5"> <span class="inline text-white">Larry Parangan</span> <span class="pull-right text-white">3rd</span></a></li>
-                                        <li class="block"><a href=""><img src="images/avatar-5.png" class="inline img-circle mg-r-5"> <span class="inline text-white">Gabriel Ceniza</span> <span class="pull-right text-white">4th</span></a></li>
+
+                                        <li ng-repeat="seller in topSellers"
+                                            class="block mg-b-10 pd-b-10 bd-b bd-transparent-white"><a href=""><img width="32" height="32" src="/profile/photo?id=<%seller.user_id%>"
+                                                                                                                    class="inline img-circle mg-r-5"> <span class="inline text-white"><%seller.first_name%> <%seller.last_name%></span> <span class="pull-right text-white"><%$index+1%></span></a></li>
                                     </ul>
                                 </div>
                             </div>

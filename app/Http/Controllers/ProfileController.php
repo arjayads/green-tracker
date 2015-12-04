@@ -85,8 +85,7 @@ class ProfileController extends Controller
                     break;
                 };
             }
-        } else {
-
         }
+        return $top3;
     }
 }

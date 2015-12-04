@@ -63,7 +63,7 @@
 
                                         <li ng-repeat="seller in topSellers"
                                             class="block mg-b-10 pd-b-10 bd-b bd-transparent-white"><a href=""><img width="32" height="32" src="/profile/photo?id=<%seller.user_id%>"
-                                                                                                                    class="inline img-circle mg-r-5"> <span class="inline text-white"><%seller.first_name%> <%seller.last_name%></span> <span class="pull-right text-white"><%$index+1%></span></a></li>
+                                                                                                                    class="inline img-circle mg-r-5"> <span class="inline text-white"><%seller.first_name%> <%seller.last_name%></span> <span class="pull-right text-white"><%seller.rank%></span></a></li>
                                     </ul>
                                 </div>
                             </div>

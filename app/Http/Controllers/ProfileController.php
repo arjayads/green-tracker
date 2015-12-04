@@ -76,7 +76,6 @@ class ProfileController extends Controller
 
     public function findTopSeller() {
         $top3 = $this->saleRepo->findTopSeller();
-
         if ($top3) {
             $imInTop3 = false;
             foreach($top3 as $user) {
@@ -86,7 +85,10 @@ class ProfileController extends Controller
                 };
             }
             if (!$imInTop3) {
-                $all = $this->saleRepo->findTopSeller(0);
+                $data = $this->saleRepo->findUserSpotAsSeller(Auth::user()->id);
+                if (is_array($data) && count($data) == 1) {
+                    $top3[] =$data[0];
+                }
             }
         }
         return $top3;

@@ -186,19 +186,25 @@ class SaleRepo
         }
     }
 
-    function findTopSeller($pila = 3)
+    function findTopSeller($limit = 3)
     {
-        $q = DB::table('sales')
-            ->join('employees', 'employees.user_id', '=', 'sales.user_id')
-            ->select(
-                'sales.user_id',
-                'employees.first_name',
-                'employees.last_name',
-                DB::raw('COUNT(sales.id) as score')
-            )->groupBy('sales.user_id');
-        if ($pila > 0) {
-            $q->limit($pila);
-        }
-        return $q->orderBy('score', 'desc')->get();
+        DB::statement('SET @rank=0');
+        $query = "select *,  @rank:=@rank+1 AS rank FROM (
+                  select `sales`.`user_id`, `employees`.`first_name`, `employees`.`last_name`, COUNT(sales.id) as score
+                  from sales inner join `employees` on `employees`.`user_id` = `sales`.`user_id`
+                  group by `sales`.`user_id` order by `score` desc limit ?
+                  ) as inner_table";
+        return DB::select(DB::raw($query), [$limit]);
+    }
+
+    function findUserSpotAsSeller($userId)
+    {
+        DB::statement('SET @rank=0');
+        $query = "select * from (select *,  @rank:=@rank+1 AS rank FROM (
+                  select `sales`.`user_id`, `employees`.`first_name`, `employees`.`last_name`, COUNT(sales.id) as score
+                  from sales inner join `employees` on `employees`.`user_id` = `sales`.`user_id`
+                  group by `sales`.`user_id` order by `score` desc
+                  ) as inner_table) as inner_table2 where user_id = ? LIMIT 1";
+        return DB::select(DB::raw($query), [$userId]);
     }
 }

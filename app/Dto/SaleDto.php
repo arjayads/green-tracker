@@ -75,6 +75,7 @@ class SaleDto
         $saleArr['remarks'] = $s->remarks;
         $saleArr['customer'] = $customer;
         $saleArr['processed_by'] = $processedBy;
+        $saleArr['status'] = $s->status;
 
         return $saleArr;
     }

@@ -22,4 +22,15 @@ class Sale extends Model
     {
         return $this->belongsTo('app\Models\User', 'user_id');
     }
+
+    public function qualityController()
+    {
+        return $this->belongsTo('app\Models\User', 'qc_user_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('app\Models\SaleStatus', 'sale_status_id');
+    }
+
 }

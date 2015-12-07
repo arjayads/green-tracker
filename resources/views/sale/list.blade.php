@@ -46,11 +46,11 @@
                                         <th>Campaign</th>
                                         <th>Product</th>
                                         <th>Date sold</th>
-                                        <th>Is ninety days</th>
                                         <th>Remarks</th>
                                         <th>Customer</th>
                                         <th>Phone</th>
                                         <th>Agent</th>
+                                        <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,11 +59,11 @@
                                         <td><% sale.campaign_name %></td>
                                         <td><% sale.product_name %></td>
                                         <td><% sale.date_sold | date:'MMM dd, yyyy' %></td>
-                                        <td><% sale.ninety_days == 1 ? 'Yes' : 'No' %></td>
                                         <td><% sale.remarks%></td>
                                         <td><% sale.customer.first_name %> <% sale.customer.last_name %></td>
                                         <td><% sale.customer.phone_number %></td>
                                         <td><% sale.processed_by %></td>
+                                        <td><% sale.status %></td>
                                     </tr>
                                     </tbody>
                                 </table>

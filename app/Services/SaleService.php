@@ -10,6 +10,7 @@ use app\Models\User;
 use app\ResponseEntity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class SaleService implements BaseService
@@ -37,6 +38,7 @@ class SaleService implements BaseService
             {
                 $sale = new Sale();
                 $sale->user_id = $user->id;
+                $sale->sale_status_id = Config::get('constants.sale_status.sale');
                 $sale->product_id = $product->id;
                 $sale->customer_id = $cust->id;
                 $sale->date_sold = Carbon::createFromFormat('m/d/Y', $params['date_sold']);
@@ -73,19 +75,10 @@ class SaleService implements BaseService
                 $sale = Sale::find($saleId);
                 if ($sale)
                 {
-                    $sp = new SaleProcessed();
-                    $sp->qc_user_id = 1;
-                    $sp->sale_status_id = $statusId;
-                    $sp->user_id = $sale->user_id;
-                    $sp->product_id = $sale->product_id;
-                    $sp->customer_id = $sale->customer_id;
-                    $sp->date_sold = $sale->date_sold;
-                    $sp->order_number = $sale->order_number;
-                    $sp->ninety_days = $sale->ninety_days;
-                    $sp->remarks = $sale->remarks;
-                    $sp->entered_datetime = $sale->created_at;
+                    $sale->qc_user_id = Auth::user()->id;
+                    $sale->sale_status_id = $statusId;
 
-                    $ok = $sp->save();
+                    $ok = $sale->save();
 
                     if ($ok) {
 

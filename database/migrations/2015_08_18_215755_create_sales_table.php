@@ -17,7 +17,10 @@ class CreateSalesTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('qc_user_id')->nullable()->index(); // quality control user
+            $table->timestamp('qc_processed_datetime')->nullable();
+            $table->unsignedInteger('sale_status_id')->nullable()->index();
+            $table->unsignedInteger('user_id')->index();    // agent who entered the sale
             $table->unsignedInteger('product_id')->index();
             $table->unsignedInteger('customer_id')->index();
             $table->date('date_sold');
@@ -30,6 +33,8 @@ class CreateSalesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict');
+            $table->foreign('sale_status_id')->references('id')->on('sale_statuses')->onDelete('restrict');
+            $table->foreign('qc_user_id')->references('id')->on('users')->onDelete('restrict');
 
         });
     }

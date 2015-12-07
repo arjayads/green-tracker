@@ -3,7 +3,6 @@
 namespace app\Repositories;
 
 use app\Models\Sale;
-use app\Models\SaleProcessed;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
@@ -90,36 +89,26 @@ class SaleRepo
     function countByAgentAndDate($agentId, $fromSql = null, $toSql = null)
     {
         if ($toSql == null && $fromSql) {
-            $q = Sale::where('date_sold', $fromSql)
-                ->where('user_id', $agentId)
-                ->count();
-
-            $r = SaleProcessed::where('date_sold', $fromSql)
+            $r = Sale::where('date_sold', $fromSql)
                 ->where('user_id', $agentId)
                 ->where('sale_status_id', Config::get('constants.sale_status.sale'))
                 ->count();
 
-            return $q + $r;
+            return $r;
         } else if ($fromSql && $toSql) {
-            $q = Sale::where('date_sold', '>=', $fromSql)
-                ->where('date_sold', '<=', $toSql)
-                ->where('user_id', $agentId)
-                ->count();
-
-            $r = SaleProcessed::where('date_sold', '>=', $fromSql)
+            $r = Sale::where('date_sold', '>=', $fromSql)
                 ->where('date_sold', '<=', $toSql)
                 ->where('user_id', $agentId)
                 ->where('sale_status_id', Config::get('constants.sale_status.sale'))
                 ->count();
 
-            return $q + $r;
+            return $r;
         } else {
-            $q = Sale::where('user_id', $agentId)->count();
-            $r = SaleProcessed::where('user_id', $agentId)
+            $r = Sale::where('user_id', $agentId)
                 ->where('sale_status_id', Config::get('constants.sale_status.sale'))
                 ->count();
 
-            return $q + $r;
+            return $r;
         }
     }
 
@@ -127,18 +116,6 @@ class SaleRepo
     {
 
         if ($toSql == null && $fromSql) {
-
-            $q = Sale::where('date_sold', $fromSql)
-                ->where('user_id', $agentId)
-                ->groupBy('date_sold')
-                ->select([
-                    'date_sold',
-                    DB::raw("count(*) as salesCount")
-                ])
-                ->orderBy('date_sold')
-                ->lists('salesCount', 'date_sold')
-                ->toArray();
-
             $r = SaleProcessed::where('date_sold', $fromSql)
                 ->where('date_sold', '<=', $toSql)
                 ->where('user_id', $agentId)
@@ -151,22 +128,11 @@ class SaleRepo
                 ->lists('salesCount', 'date_sold')
                 ->toArray();
 
-            return array_merge($r, $q);
+            return $r;
 
         } else if ($fromSql && $toSql) {
-            $q = Sale::where('date_sold', '>=', $fromSql)
-                ->where('date_sold', '<=', $toSql)
-                ->where('user_id', $agentId)
-                ->groupBy('date_sold')
-                ->select([
-                        'date_sold',
-                        DB::raw("count(*) as salesCount")
-                ])
-                ->orderBy('date_sold')
-                ->lists('salesCount', 'date_sold')
-                ->toArray();
 
-            $r = SaleProcessed::where('date_sold', '>=', $fromSql)
+            $r = Sale::where('date_sold', '>=', $fromSql)
                 ->where('date_sold', '<=', $toSql)
                 ->where('user_id', $agentId)
                 ->groupBy('date_sold')
@@ -178,10 +144,9 @@ class SaleRepo
                 ->lists('salesCount', 'date_sold')
                 ->toArray();
 
-            return array_merge($r, $q);
+            return $r;
         } else {
-
-            $q = Sale::where('user_id', $agentId)
+            $r = Sale::where('user_id', $agentId)
                 ->groupBy('date_sold')
                 ->select([
                     'date_sold',
@@ -191,17 +156,7 @@ class SaleRepo
                 ->lists('salesCount', 'date_sold')
                 ->toArray();
 
-            $r = SaleProcessed::where('user_id', $agentId)
-                ->groupBy('date_sold')
-                ->select([
-                    'date_sold',
-                    DB::raw("count(*) as salesCount")
-                ])
-                ->orderBy('date_sold')
-                ->lists('salesCount', 'date_sold')
-                ->toArray();
-
-            return array_merge($r, $q);
+            return $r;
         }
     }
 

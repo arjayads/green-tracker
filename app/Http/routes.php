@@ -84,6 +84,7 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::get('list', ['uses' => 'PostController@posts']);
     Route::get('{id}', ['uses' => 'PostController@find']);
     Route::post('create', ['uses' => 'PostController@store']);
+    Route::post('post', ['uses' => 'PostController@love']);
 });
 
 // directives

@@ -170,7 +170,7 @@
 
                                             <div class="panel-footer bg-white bd-t" style="border-color: rgba(0,0,0,0.10)">
                                                 <ul class="list-inline mg-b-0">
-                                                    <li><a href="" class="text-danger fs-13"><i class="fa fa-heart fa-fw"></i> <% post.loves %></a></li>
+                                                    <li><a href="" ng-click="love(post.id)" class="text-danger fs-13"><i class="fa fa-heart fa-fw"></i> <% post.loves %></a></li>
                                                     <li><a href="" class="text-link fs-13"><i class="fa fa-comment fa-fw"></i> <% post.commentsCount %></a></li>
                                                 </ul>
                                             </div>

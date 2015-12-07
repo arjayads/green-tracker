@@ -4,6 +4,7 @@ namespace app\Repositories;
 
 use app\Models\Sale;
 use app\Models\SaleProcessed;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class SaleRepo
@@ -87,18 +88,34 @@ class SaleRepo
     function countByAgentAndDate($agentId, $fromSql = null, $toSql = null)
     {
         if ($toSql == null && $fromSql) {
-            $q = Sale::where('date_sold', $fromSql)->where('user_id', $agentId)->count();
-            $r = SaleProcessed::where('date_sold', $fromSql)->where('user_id', $agentId)->count();
+            $q = Sale::where('date_sold', $fromSql)
+                ->where('user_id', $agentId)
+                ->count();
+
+            $r = SaleProcessed::where('date_sold', $fromSql)
+                ->where('user_id', $agentId)
+                ->where('sale_status_id', Config::get('constants.sale_status.sale'))
+                ->count();
 
             return $q + $r;
         } else if ($fromSql && $toSql) {
-            $q = Sale::where('date_sold', '>=', $fromSql)->where('date_sold', '<=', $toSql)->where('user_id', $agentId)->count();
-            $r = SaleProcessed::where('date_sold', '>=', $fromSql)->where('date_sold', '<=', $toSql)->where('user_id', $agentId)->count();
+            $q = Sale::where('date_sold', '>=', $fromSql)
+                ->where('date_sold', '<=', $toSql)
+                ->where('user_id', $agentId)
+                ->count();
+
+            $r = SaleProcessed::where('date_sold', '>=', $fromSql)
+                ->where('date_sold', '<=', $toSql)
+                ->where('user_id', $agentId)
+                ->where('sale_status_id', Config::get('constants.sale_status.sale'))
+                ->count();
 
             return $q + $r;
         } else {
             $q = Sale::where('user_id', $agentId)->count();
-            $r = SaleProcessed::where('user_id', $agentId)->count();
+            $r = SaleProcessed::where('user_id', $agentId)
+                ->where('sale_status_id', Config::get('constants.sale_status.sale'))
+                ->count();
 
             return $q + $r;
         }

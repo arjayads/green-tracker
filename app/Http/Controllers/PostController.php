@@ -28,4 +28,8 @@ class PostController extends Controller
     public function find($postId) {
         return $this->postDto->findOneForNewsFeed($postId);
     }
+
+    public function love() {
+        return $this->postService->love(Input::all())->toArray();
+    }
 }

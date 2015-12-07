@@ -37,6 +37,18 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
                 toastr.error("Input something to post!");
             }
         }
+
+        $scope.love = function(postId) {
+            $http.post('/post/love', {'postId': postId}).success(function(d) {
+                if (d.success) {
+                    toastr.success(d.messages[0]);
+                } else {
+                    toastr.error(d.messages[0]);
+                }
+            }).error(function(data, a) {
+                toastr.error("Something went wrong!");
+            });
+        }
 }]);
 
 profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http) {

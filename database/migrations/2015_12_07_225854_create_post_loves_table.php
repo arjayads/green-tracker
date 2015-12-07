@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreatePostLovesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,17 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table)
+        Schema::create('post_loves', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->integer('loves')->default(0);
-            $table->text('content');
+            $table->unsignedInteger('post_id')->index();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 
@@ -34,6 +33,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::drop('post_loves');
     }
 }

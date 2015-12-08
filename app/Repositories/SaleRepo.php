@@ -116,50 +116,23 @@ class SaleRepo
 
     function countByAgentAndDateGroupByDate($agentId, $fromSql = null, $toSql = null)
     {
+        $r = Sale::where('user_id', $agentId)
+            ->where('sale_status_id', Config::get('constants.sale_status.sale'));
 
-        if ($toSql == null && $fromSql) {
-            $r = SaleProcessed::where('date_sold', $fromSql)
-                ->where('date_sold', '<=', $toSql)
-                ->where('user_id', $agentId)
-                ->groupBy('date_sold')
-                ->select([
-                    'date_sold',
-                    DB::raw("count(*) as salesCount")
-                ])
-                ->orderBy('date_sold')
-                ->lists('salesCount', 'date_sold')
-                ->toArray();
+        if ($fromSql && $toSql) {
 
-            return $r;
-
-        } else if ($fromSql && $toSql) {
-
-            $r = Sale::where('date_sold', '>=', $fromSql)
-                ->where('date_sold', '<=', $toSql)
-                ->where('user_id', $agentId)
-                ->groupBy('date_sold')
-                ->select([
-                    'date_sold',
-                    DB::raw("count(*) as salesCount")
-                ])
-                ->orderBy('date_sold')
-                ->lists('salesCount', 'date_sold')
-                ->toArray();
-
-            return $r;
-        } else {
-            $r = Sale::where('user_id', $agentId)
-                ->groupBy('date_sold')
-                ->select([
-                    'date_sold',
-                    DB::raw("count(*) as salesCount")
-                ])
-                ->orderBy('date_sold')
-                ->lists('salesCount', 'date_sold')
-                ->toArray();
-
-            return $r;
+            $r->where('date_sold', '>=', $fromSql)
+                ->where('date_sold', '<=', $toSql);
         }
+
+        return $r->groupBy('date_sold')
+            ->select([
+                'date_sold',
+                DB::raw("count(*) as salesCount")
+            ])
+            ->orderBy('date_sold')
+            ->lists('salesCount', 'date_sold')
+            ->toArray();
     }
 
     function findTopSeller($limit = 3)

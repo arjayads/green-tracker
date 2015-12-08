@@ -196,6 +196,9 @@ class ProfileService implements BaseService {
                 $imageFile = File::find($user->profile_photo_file_id);
                 if ($imageFile) {
                     $img = Image::make(env('FILE_UPLOAD_PATH') . $imageFile->new_filename);
+                    $img->resize(300, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
                     return $img->response('png');
                 }
             }

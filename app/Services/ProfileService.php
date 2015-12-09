@@ -9,15 +9,22 @@
 namespace app\Services;
 
 
+use app\Dto\SaleDto;
 use app\Http\Requests;
 use app\Models\File;
 use app\Models\User;
+use app\Repositories\SaleRepo;
 use app\ResponseEntity;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 
 class ProfileService implements BaseService {
+
+
+    public function __construct(SaleRepo $saleRepo) {
+        $this->saleRepo = $saleRepo;
+    }
 
     function save(array $params)
     {
@@ -231,5 +238,20 @@ class ProfileService implements BaseService {
         }
 
         return [];
+    }
+
+    function getIncentive($userId, $date = null)
+    {
+        $saleCount = $this->saleRepo->countByAgentAndDate($userId, $date);
+        if ($saleCount > 0) {
+            if ($saleCount <= 3) {
+                return $saleCount * 25;
+            } else if ($saleCount <= 7) {
+                return $saleCount * 50;
+            } else {
+                return $saleCount * 80;
+            }
+        }
+        return 0;
     }
 }

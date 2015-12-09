@@ -23,6 +23,7 @@ Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
     Route::get('cover', ['uses' => 'ProfileController@cover']);
     Route::get('myTeam', ['uses' => 'ProfileController@myTeam']);
     Route::get('topSeller', ['uses' => 'ProfileController@findTopSeller']);
+    Route::get('incentive', ['uses' => 'ProfileController@totalIncentive']);
 });
 
 // Authentication routes...

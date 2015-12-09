@@ -93,4 +93,10 @@ class ProfileController extends Controller
         }
         return $top3;
     }
+
+
+    public function totalIncentive() {
+        return $this->profileService->getIncentive($this->userId);
+    }
+
 }

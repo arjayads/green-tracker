@@ -56,6 +56,11 @@ class SaleDto
         return $data;
     }
 
+    function countByAgent($agentId, $date = null)
+    {
+        return $this->saleRepo->countByAgentAndDate($agentId, $date);
+    }
+
     private  function composeSaleData($s)
     {
         $processedBy = $s->user_first_name . ' ' .  $s->user_last_name;

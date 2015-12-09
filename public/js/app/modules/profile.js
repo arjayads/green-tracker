@@ -153,6 +153,8 @@ profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($sc
     $scope.profilePhoto = 'images/avatar_2x.png';
     $scope.coverPhoto = 'images/cover.png';
 
+    $scope.incentive = 0;
+
     // profile pic
     $scope.myImage='';
     $scope.myCroppedImage='';
@@ -166,6 +168,14 @@ profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($sc
 
     var loadCoverPhoto = function() {
         $scope.coverPhoto = '/profile/cover?t=' + Math.random();
+    }
+
+    var loadIncentive = function() {
+        $http.get('/profile/incentive').success(function(data) {
+            $scope.incentive = data;
+        }).error(function() {
+            toastr.error('Error loading incentive!');
+        });
     }
 
     $scope.setProfilePic = function() {
@@ -278,4 +288,5 @@ profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($sc
 
     loadCoverPhoto();
     loadProfilePhoto();
+    loadIncentive();
 }]);

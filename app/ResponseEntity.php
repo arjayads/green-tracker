@@ -9,18 +9,29 @@ class ResponseEntity
     protected $isAuthorized;
     protected $messages;
     protected $data;
+    protected $message;
 
-    function __construct($success = false, $isAuthorized = null, array $messages = [], array $data = [])
+    function __construct($success = false, $isAuthorized = null, array $messages = [], array $data = [], $message = null)
     {
         $this->success = $success;
         $this->isAuthorized = $isAuthorized;
         $this->messages = $messages;
         $this->data = $data;
+        $this->message = $message;
     }
 
     public function toArray()
     {
         return get_object_vars($this);
+    }
+
+
+    /**
+     * @param mixed $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
     }
 
     /**

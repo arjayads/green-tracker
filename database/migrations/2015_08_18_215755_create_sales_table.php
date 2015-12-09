@@ -26,6 +26,7 @@ class CreateSalesTable extends Migration
             $table->date('date_sold');
             $table->string('order_number');
             $table->tinyInteger('ninety_days')->default('0');
+            $table->tinyInteger('verified')->default('0');
             $table->text('remarks');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

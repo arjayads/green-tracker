@@ -37,5 +37,18 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             getSaleList();
 
         }
+
+        $scope.setVerified = function(index, saleId) {
+            $http.post('/sales/' + saleId + '/setVerified', {}).success(function(data) {
+                if (data.success) {
+                    toastr.success(data.message);
+                    $scope.sales.splice(index, 1);
+                } else {
+                    toastr.error(data.message);
+                }
+            }).error(function(data, a) {
+                toastr.error('Something went wrong!');
+            });
+        }
     }
 ]);

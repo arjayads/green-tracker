@@ -59,6 +59,8 @@ Route::group(['prefix' => 'sales', 'middleware' => 'auth'], function () {
 
     Route::post('create', ['uses' => 'Sales\SalesController@store']);
     Route::post('process', ['uses' => 'Sales\SalesController@process']);
+    Route::post('{id}/setVerified', ['uses' => 'Sales\SalesController@setVerified']);
+
     Route::get('list', ['as' => 'sales-list', 'uses' => 'Sales\SalesController@salesList']);
     Route::get('{id}/detail', ['uses' => 'Sales\SalesController@detail']);
     Route::get('statuses', ['uses' => 'Sales\SalesController@statuses']);

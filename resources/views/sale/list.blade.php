@@ -2,6 +2,14 @@
 
 @section('title', 'Sales')
 
+@section('css')
+    <style>
+        table#list td {
+            padding: 5px !important;
+        }
+    </style>
+@stop
+
 @section('content')
     <div  ng-app="sale">
         <div ng-controller="listCtrl">
@@ -39,7 +47,7 @@
                         <hr/>
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
-                                <table class="table table-bordered table-striped">
+                                <table id="list" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th>Order number</th>
@@ -51,6 +59,7 @@
                                         <th>Phone</th>
                                         <th>Agent</th>
                                         <th>Status</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -64,6 +73,7 @@
                                         <td><% sale.customer.phone_number %></td>
                                         <td><% sale.processed_by %></td>
                                         <td><% sale.status %></td>
+                                        <td><i title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa fa-check-circle"></i></td>
                                     </tr>
                                     </tbody>
                                 </table>

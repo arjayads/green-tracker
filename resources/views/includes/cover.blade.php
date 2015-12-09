@@ -22,7 +22,7 @@
                 <div class="col-sm-4 col-md-3">
                     <div class="incentives bg-white pd-15 text-center text-primary">
                         <label class="text-uppercase font-heading h4 text-primary incentive-label">Total Incentive</label>
-                        <strong class="incentive-counter text-primary block mg-t-0 mg-b-0">P <% incentive %></strong>
+                        <strong class="incentive-counter text-primary block mg-t-0 mg-b-0"><% incentive | currency:"P ":2 %></strong>
                     </div>
                 </div>
             </div>

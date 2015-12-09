@@ -41,13 +41,13 @@ class ProfileService implements BaseService {
             }
 
             if ($user->save()) {
-                $response->setMessages(['Info successfully saved!']);
+                $response->setMessage('Profile info successfully saved!');
                 $response->setSuccess(true);
             } else {
-                $response->setMessages(['Failed to save info']);
+                $response->setMessage('Failed to save info');
             }
         } else {
-            $response->setMessages(['User not available!']);
+            $response->setMessage('User not available!');
         }
 
         return $response;

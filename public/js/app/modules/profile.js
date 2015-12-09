@@ -240,7 +240,7 @@ profileApp.controller('coverCtrl', ['$scope', '$http', '$timeout', function ($sc
                 if (data.success) {
                     $scope.infoSaved = false;
                     $scope.alertType = 'info';
-                    toastr.success('Sale successfully created');
+                    toastr.success(data.message);
 
                     $scope.updateInfoMessage = 'Redirecting...'
 

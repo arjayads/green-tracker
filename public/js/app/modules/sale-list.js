@@ -15,6 +15,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             if ($scope.selectedCampaign !== undefined) {
                 url += '?campId=' + $scope.selectedCampaign.id;
             }
+            url += '?q=0'; // unverified sales
 
             $http.get(url).success(function(data) {
                 $scope.sales = data;

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class SaleRepo
 {
-    function findAll($campaignId)
+    function findAll($campaignId, $kwari = null)
     {
         $q = DB::table('sales')
             ->join('customers', 'sales.customer_id', '=', 'customers.id')
@@ -19,7 +19,11 @@ class SaleRepo
             ->leftJoin('sale_statuses', 'sales.sale_status_id', '=', 'sale_statuses.id');
 
         if (intval($campaignId) > 0) {
-            $q->where('products.campaign_id', '=', $campaignId);
+            $q->where('products.campaign_id', $campaignId);
+        }
+
+        if ($kwari != null) {
+            $q->where('sales.verified', $kwari);
         }
 
         return $q->select(

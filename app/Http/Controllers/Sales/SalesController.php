@@ -51,10 +51,11 @@ class SalesController extends Controller
     public function salesList(Request $request)
     {
         $campaignId = Input::get('campId');
+        $q = Input::get('q');   // verified, all
         if (!$campaignId) {
             $request->session()->forget('campaign');
         }
-        return $this->saleDto->lists($campaignId);
+        return $this->saleDto->lists($campaignId, $q);
     }
 
     public function detail($id)

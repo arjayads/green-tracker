@@ -12,6 +12,7 @@ namespace app\Services;
 use app\Dto\SaleDto;
 use app\Http\Requests;
 use app\Models\File;
+use app\Models\Incentive;
 use app\Models\User;
 use app\Repositories\SaleRepo;
 use app\ResponseEntity;
@@ -242,16 +243,6 @@ class ProfileService implements BaseService {
 
     function getIncentive($userId, $date = null)
     {
-        $saleCount = $this->saleRepo->countByAgentAndDate($userId, $date);
-        if ($saleCount > 0) {
-            if ($saleCount <= 3) {
-                return $saleCount * 25;
-            } else if ($saleCount <= 7) {
-                return $saleCount * 50;
-            } else {
-                return $saleCount * 80;
-            }
-        }
-        return 0;
+        return Incentive::where('user_id', $userId)->sum('amount');
     }
 }

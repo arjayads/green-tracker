@@ -106,24 +106,6 @@ class SalesController extends Controller
 
     public function setVerified($saleId)
     {
-        $response = new ResponseEntity();
-        try {
-
-            $sale = Sale::find($saleId);
-            if ($sale) {
-                $sale->verified = 1;
-                $sale->save();
-
-                $response->setSuccess(true);
-                $response->setMessage('Sale successfully verified!');
-            }
-            else
-            {
-                $response->setMessage('Sale not available');
-            }
-        } catch (\Exception $ex) {
-            $response->setMessages(['Exception: ' . $ex->getMessage()]);
-        }
-        return $response->toArray();
+        return $this->saleService->setVerified($saleId)->toArray();
     }
 }

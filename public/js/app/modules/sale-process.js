@@ -31,7 +31,7 @@ saleApp.controller('processCtrl', ['$scope', '$http',
                                 window.location = "/sales";
                             }, 3000);
                         } else {
-                            toastr.error(data.messages[0]);
+                            toastr.error(data.message);
                         }
                     }).error(function() {
                         toastr.error('Something went wrong!');

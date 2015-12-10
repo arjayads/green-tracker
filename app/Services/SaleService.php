@@ -3,10 +3,12 @@
 namespace app\Services;
 
 use app\Models\Customer;
+use app\Models\Incentive;
 use app\Models\Product;
 use app\Models\Sale;
 use app\Models\SaleProcessed;
 use app\Models\User;
+use app\Repositories\SaleRepo;
 use app\ResponseEntity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +17,9 @@ use Illuminate\Support\Facades\DB;
 
 class SaleService implements BaseService
 {
-    public function __construct()
+    public function __construct(SaleRepo $saleRepo)
     {
+        $this->saleRepo = $saleRepo;
     }
 
     function save(array $params)
@@ -41,7 +44,7 @@ class SaleService implements BaseService
                 $sale->sale_status_id = Config::get('constants.sale_status.sale');
                 $sale->product_id = $product->id;
                 $sale->customer_id = $cust->id;
-                $sale->date_sold = Carbon::createFromFormat('m/d/Y', $params['date_sold']);
+                $sale->date_sold = Carbon::createFromFormat('m/d/Y', $params['date_sold'])->toDateString();
                 $sale->remarks = isset($params['remarks']) ? $params['remarks'] : '';
                 $sale->order_number = $params['order_number'];
                 $sale->ninety_days = isset($params['ninety_days']) ?: 0;
@@ -50,8 +53,9 @@ class SaleService implements BaseService
 
                 if ($ok)
                 {
-                    $response->setSuccess(true);
-                    $response->setMessages(['Sale successfully created!']);
+                    $ok = $this->setIncentive($sale->user_id, $sale->date_sold);
+                    $response->setMessages($ok ? ['Sale successfully created!']:['Failed to create sale!']);
+                    $response->setSuccess($ok);
                 }
                 else
                 {
@@ -77,21 +81,14 @@ class SaleService implements BaseService
                 {
                     $sale->qc_user_id = Auth::user()->id;
                     $sale->sale_status_id = $statusId;
+                    $sale->verified = 1;
 
                     $ok = $sale->save();
 
                     if ($ok) {
-
-                        $deleted = Sale::destroy($saleId);
-                        if ($deleted)
-                        {
-                            $response->setSuccess(true);
-                            $response->setMessages(['Sale successfully processed!']);
-                        }
-                        else
-                        {
-                            $response->setMessages(['Failed to process sale!']);
-                        }
+                        $ok = $this->setIncentive($sale->user_id, $sale->date_sold);
+                        $response->setMessages($ok ? ['Sale successfully processed!']:['Failed to process sale!']);
+                        $response->setSuccess($ok);
                     } else {
                         $response->setMessages(['Failed to process sale!']);
                     }
@@ -107,5 +104,84 @@ class SaleService implements BaseService
             $response->setMessages(['Exception: ' . $ex->getMessage()]);
         }
         return $response;
+    }
+
+    public function setVerified($saleId)
+    {
+        $response = new ResponseEntity();
+        try {
+
+            $sale = Sale::find($saleId);
+            if ($sale) {
+                $sale->verified = 1;
+                $sale->save();
+
+                $response->setSuccess(true);
+                $response->setMessage('Sale successfully verified!');
+            }
+            else
+            {
+                $response->setMessage('Sale not available');
+            }
+        } catch (\Exception $ex) {
+            $response->setMessages(['Exception: ' . $ex->getMessage()]);
+        }
+        return $response;
+    }
+
+    private function setIncentive($userId, $dateSold) {
+        $saleCount = $this->saleRepo->countByAgentAndDate($userId, $dateSold);
+        $incentive = Incentive::where('date', $dateSold)->where('user_id', $userId)->first();
+
+        if ($saleCount > 0) {
+
+            $data = $this->getIncentiveData($saleCount);
+
+            if($incentive) {
+                $incentive->sale_count = $saleCount;
+                $incentive->multiplier = $data['multiplier'];
+                $incentive->amount = $data['amount'];
+                $incentive->save();
+
+                return true;
+
+            } else {
+                $data = [
+                    'user_id' => $userId,
+                    'date' => $dateSold,
+                    'sale_count' => $saleCount,
+                    'multiplier' => $data['multiplier'],
+                    'amount' => $data['amount']
+                ];
+                $incentive = Incentive::create($data);
+
+                if ($incentive) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else if ($incentive) {
+            $incentive->delete();
+            return true;
+        }
+        return false;
+    }
+
+    private function getIncentiveData($saleCount) {
+        if ($saleCount <= 3) {
+            $multiplier = 25;
+        } else if ($saleCount <= 7) {
+            $multiplier = 50;
+        } else {
+            $multiplier = 80;
+        }
+        $amount = $saleCount * $multiplier;
+
+        return  [
+            'sale_count' => $saleCount,
+            'multiplier' => $multiplier,
+            'amount' => $amount
+        ];
     }
 }

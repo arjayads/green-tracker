@@ -5,10 +5,10 @@
 @section('css')
     <style>
         table#list td {
-            padding: 7px !important;
+            padding: 9px 5px !important;
         }
         .fa-2x {
-            font-size: 1.7em !important;
+            font-size: 1.6em !important;
         }
     </style>
 @stop

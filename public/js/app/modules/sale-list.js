@@ -45,7 +45,11 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             $http.post('/sales/' + saleId + '/setVerified', {}).success(function(data) {
                 if (data.success) {
                     toastr.success(data.message);
-                    $scope.sales.splice(index, 1);
+                    if ($scope.saleFlag.flag == 0) {
+                        $scope.sales.splice(index, 1);
+                    } else {
+                        $scope.sales[index].verified = 1;
+                    }
                 } else {
                     toastr.error(data.message);
                 }

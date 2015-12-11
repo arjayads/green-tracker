@@ -81,6 +81,7 @@ class SaleDto
         $saleArr['customer'] = $customer;
         $saleArr['processed_by'] = $processedBy;
         $saleArr['status'] = $s->status;
+        $saleArr['verified'] = $s->verified;
 
         return $saleArr;
     }

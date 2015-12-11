@@ -44,7 +44,8 @@ class SaleRepo
                 'employees.last_name as user_last_name',
 
                 'campaigns.id as campaign_id',
-                'sale_statuses.status'
+                'sale_statuses.status',
+                'sales.verified'
             )
             ->groupBy('sales.id')
             ->get();

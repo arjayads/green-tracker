@@ -80,7 +80,7 @@
                                         <td><% sale.customer.phone_number %></td>
                                         <td><% sale.processed_by %></td>
                                         <td><% sale.status %></td>
-                                        <td><i title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa fa-check-circle"></i></td>
+                                        <td><i ng-class="{'fa-check-circle':sale.verified == '0'}" title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa"></i></td>
                                     </tr>
                                     </tbody>
                                 </table>

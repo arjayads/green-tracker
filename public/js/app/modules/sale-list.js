@@ -3,6 +3,8 @@ var saleApp = angular.module('sale', ['config']);
 saleApp.controller('listCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.sales = [];
+        $scope.saleFlag = {};
+        $scope.saleFlag['flag'] = 0;
 
         $http.get('/campaign/list').success(function(data) {
             $scope.campaigns = data;
@@ -15,7 +17,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             if ($scope.selectedCampaign !== undefined) {
                 url += '?campId=' + $scope.selectedCampaign.id;
             }
-            url += '?q=0'; // unverified sales
+            url += '?q=' + $scope.saleFlag.flag;
 
             $http.get(url).success(function(data) {
                 $scope.sales = data;
@@ -51,5 +53,11 @@ saleApp.controller('listCtrl', ['$scope', '$http',
                 toastr.error('Something went wrong!');
             });
         }
+
+        $scope.$watch('saleFlag.flag', function(newValue, oldValue) {
+            if (newValue != oldValue) {
+                getSaleList();
+            }
+        });
     }
 ]);

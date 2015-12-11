@@ -51,7 +51,7 @@ class SalesController extends Controller
     public function salesList(Request $request)
     {
         $campaignId = Input::get('campId');
-        $q = Input::get('q');   // verified, all
+        $q = Input::get('q');   // 1 - verified, -1 - all, 0 - unverified
         if (!$campaignId) {
             $request->session()->forget('campaign');
         }

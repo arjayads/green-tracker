@@ -33,13 +33,20 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-1 col-lg-1" style="padding-top: 10px">
-                                    <label class="input-label pull-right" for="query">Filter</label>
-                                </div>
-                                <div class="col-md-5 col-lg-5">
-                                    <div class="input-group">
-                                        <input id="query" class="form-control" placeholder="Order number, Product ..." ng-model="query" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                <div class="col-md-1 col-lg-6" style="padding-top: 10px">
+                                    <div class="pull-right">
+                                        <label>
+                                            <input selected="" type="radio" ng-model="saleFlag.flag" value="-1">
+                                            All
+                                        </label>
+                                        <label>
+                                            <input type="radio" ng-model="saleFlag.flag" value="1">
+                                            Verified
+                                        </label>
+                                        <label>
+                                            <input type="radio" ng-model="saleFlag.flag" value="0">
+                                            Unverified
+                                        </label>
                                     </div>
                                 </div>
                             </div>

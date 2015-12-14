@@ -16,8 +16,11 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             var url = '/sales/list';
             if ($scope.selectedCampaign !== undefined) {
                 url += '?campId=' + $scope.selectedCampaign.id;
+                url += '&';
+            } else {
+                url += '?';
             }
-            url += '?q=' + $scope.saleFlag.flag;
+            url += 'q=' + $scope.saleFlag.flag;
 
             $http.get(url).success(function(data) {
                 $scope.sales = data;

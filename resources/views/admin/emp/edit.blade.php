@@ -15,7 +15,10 @@
         <div id="primary" class="content-area mg-t-10 mg-b-10">
             <main id="main" class="site-main" role="main">
                 <div class="container">
-                    <a href="/emp" class="btn btn-primary">Back to list</a>
+
+                    @include('includes.nav-admin')
+
+                    <a href="/admin/emp" class="btn btn-primary">Back to list</a>
                     <h2>Edit employee record</h2>
                     <hr/>
                     <input type="hidden" ng-cloak ng-model="empId" ng-init="empId = {{$employee['id']}}; selectedSupervisor = @if(isset($employee['supervisor'])) {id: {{$employee['supervisor']['id']}}, full_name: '{{$employee['supervisor']['full_name']}}'} @else {} @endif">

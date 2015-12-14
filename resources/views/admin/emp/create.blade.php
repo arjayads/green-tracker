@@ -15,6 +15,8 @@
         <div id="primary" class="content-area mg-t-10 mg-b-10">
             <main id="main" class="site-main" role="main">
                 <div class="container">
+                    @include('includes.nav-admin')
+
                     <a href="/admin/emp" class="btn btn-primary">Back to list</a>
                     <h2>Create employee record</h2>
                     <hr/>

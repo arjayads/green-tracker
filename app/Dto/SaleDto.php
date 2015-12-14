@@ -18,7 +18,7 @@ class SaleDto
         $this->saleRepo = new SaleRepo();
     }
 
-    function lists($campaignId, $q = null)
+    function lists($campaignId, $q = -1)
     {
         $rows = $this->saleRepo->findAll($campaignId, $q);
 

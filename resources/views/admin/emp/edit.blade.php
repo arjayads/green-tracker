@@ -19,7 +19,7 @@
                     <h2>Edit employee record</h2>
                     <hr/>
                     <input type="hidden" ng-cloak ng-model="empId" ng-init="empId = {{$employee['id']}}; selectedSupervisor = @if(isset($employee['supervisor'])) {id: {{$employee['supervisor']['id']}}, full_name: '{{$employee['supervisor']['full_name']}}'} @else {} @endif">
-                    @include('emp.form')
+                    @include('admin.emp.form')
                 </div>
             </main>
         </div>

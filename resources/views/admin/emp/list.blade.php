@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-md-2 col-lg-2" style="text-align: right !important;">
-                            <a class="btn btn-primary" href="/emp/create">Create</a>
+                            <a class="btn btn-primary" href="/admin/emp/create">Create</a>
                         </div>
                     </div>
                     <hr/>

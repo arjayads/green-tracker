@@ -7,9 +7,10 @@
 <div id="primary" class="content-area mg-t-10 mg-b-10">
     <main id="main" class="site-main" role="main">
         <div class="container">
-            <div class="row">
+            @include('includes.nav-admin')
+            <div class="row" style="padding-top: 20px;">
                 <div class="col-md-8">
-                    <a href="/emp" class="btn btn-primary">Back to list</a>
+                    <a href="/admin/emp" class="btn btn-primary">Back to list</a>
                 </div>
             </div>
             <div class="row">
@@ -17,7 +18,7 @@
                     <h2>Employee detail</h2>
                 </div>
                 <div class="col-md-4">
-                    <a href="/emp/{{$employee->id}}/edit" class="btn btn-primary  pull-right" style="margin-top: 20px;">Edit</a>
+                    <a href="/admin/emp/{{$employee->id}}/edit" class="btn btn-primary  pull-right" style="margin-top: 20px;">Edit</a>
                 </div>
             </div>
 

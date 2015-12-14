@@ -10,7 +10,7 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
     }
 
     var getEmp = function () {
-        $http.get('/emp/'+$scope.empId+'/getForEdit').success(function(data) {
+        $http.get('/admin/emp/'+$scope.empId+'/getForEdit').success(function(data) {
             $scope.employee = data;
             $scope.employee.birthday = $.datepicker.formatDate('mm/dd/yy', new Date(data.birthday));
             $scope.selectedShift = data.shift;
@@ -65,11 +65,11 @@ employeeApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http
             postData['supervisor_id'] = $scope.selectedSupervisor.originalObject.id;
         }
 
-        $http.post('/emp/create', postData).success(function(d) {
+        $http.post('/admin/emp/create', postData).success(function(d) {
             if (d.success) {
                 toastr.success(d.messages[0]);
                 setTimeout(function() {
-                    window.location = "/emp/" + d.data.empId + '/detail';
+                    window.location = "/admin/emp/" + d.data.empId + '/detail';
                 }, 3000);
             } else {
                 toastr.error('Something went wrong!');

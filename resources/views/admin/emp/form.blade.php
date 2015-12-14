@@ -97,7 +97,7 @@
                      placeholder="Search..."
                      pause="500"
                      selected-object="selectedSupervisor"
-                     remote-url="/emp/find"
+                     remote-url="/admin/emp/find"
                      remote-url-request-formatter="remoteUrlRequestFn"
                      remote-url-data-field="names"
                      title-field="full_name"

@@ -36,19 +36,19 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'rolefilter:admin']], function () {
     Route::get('/', ['uses' => 'Admin\MainController@index']);
-});
 
-// data and actions
-Route::group(['prefix' => 'emp', 'middleware' => ['auth', 'rolefilter:admin']], function () {
-    Route::get('', ['uses' => 'EmployeeController@index']);
-    Route::get('create', ['uses' => 'EmployeeController@create']);
-    Route::get('countFind', ['uses' => 'EmployeeController@countFind']);
-    Route::get('{id}/detail', ['uses' => 'EmployeeController@detail']);
-    Route::get('{id}/edit', ['uses' => 'EmployeeController@edit']);
-    Route::get('{id}/getForEdit', ['as' => 'emp-get', 'uses' => 'EmployeeController@getForEdit']);
-    Route::get('list', ['as' => 'emp-list', 'uses' => 'EmployeeController@empList']);
-    Route::post('create', ['as' => 'store-emp', 'uses' => 'EmployeeController@store']);
-    Route::get('find', ['uses' => 'EmployeeController@find']);
+    // data and actions
+    Route::group(['prefix' => 'emp', 'middleware' => ['auth', 'rolefilter:admin']], function () {
+        Route::get('', ['uses' => 'Admin\EmployeeController@index']);
+        Route::get('create', ['uses' => 'Admin\EmployeeController@create']);
+        Route::get('countFind', ['uses' => 'Admin\EmployeeController@countFind']);
+        Route::get('{id}/detail', ['uses' => 'Admin\EmployeeController@detail']);
+        Route::get('{id}/edit', ['uses' => 'Admin\EmployeeController@edit']);
+        Route::get('{id}/getForEdit', ['as' => 'emp-get', 'uses' => 'Admin\EmployeeController@getForEdit']);
+        Route::get('list', ['as' => 'emp-list', 'uses' => 'Admin\EmployeeController@empList']);
+        Route::post('create', ['as' => 'store-emp', 'uses' => 'Admin\EmployeeController@store']);
+        Route::get('find', ['uses' => 'Admin\EmployeeController@find']);
+    });
 });
 
 Route::group(['prefix' => 'sales', 'middleware' => 'auth'], function () {

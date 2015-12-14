@@ -20,6 +20,7 @@
         <div id="primary" class="content-area mg-t-10 mg-b-10">
             <main id="main" class="site-main" role="main">
                 <div class="container">
+                    @include('includes.nav-admin')
                     <h2>Employee list</h2>
                     <div class="row">
                         <div class="col-md-10 col-lg-10">

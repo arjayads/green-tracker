@@ -15,8 +15,8 @@ userApp.controller('listCtrl', ['$scope', '$http',
 
             var query = [];
 
-            var searchUrl = '/emp/list';
-            var countSearchUrl ='emp/countFind';
+            var searchUrl = '/admin/emp/list';
+            var countSearchUrl ='/admin/emp/countFind';
             query.push('sortCol=' + paginationOptions.sortCol);
             query.push('direction=' + paginationOptions.sort);
             query.push('offset=' + ((paginationOptions.pageSize * paginationOptions.pageNumber) - paginationOptions.pageSize));
@@ -54,7 +54,7 @@ userApp.controller('listCtrl', ['$scope', '$http',
         });
 
         $scope.buildCellUrl = function(empId) {
-            return '/emp/' + empId + '/detail' ;
+            return '/admin/emp/' + empId + '/detail' ;
         }
 
         $scope.gridOptions1 = {

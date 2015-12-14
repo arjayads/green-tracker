@@ -1,8 +1,9 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace app\Http\Controllers\Admin;
 
 use app\Dto\EmployeeDto;
+use app\Http\Controllers\Controller;
 use app\Http\Requests;
 use app\Models\Employee;
 use app\Models\UserGroup;
@@ -22,11 +23,11 @@ class EmployeeController extends Controller
     }
 
     public function index() {
-        return view('emp.list');
+        return view('admin.emp.list');
     }
 
     public function create() {
-        return view('emp.create');
+        return view('admin.emp.create');
     }
 
     public function store(Requests\CreateEmployeeRequest $request)
@@ -45,7 +46,7 @@ class EmployeeController extends Controller
             if ($sup) {
                 $e->supervisor = $sup;
             }
-            return view('emp.detail', ['employee' => $e]);
+            return view('admin.emp.detail', ['employee' => $e]);
         } else {
             abort(404);
         }
@@ -60,7 +61,7 @@ class EmployeeController extends Controller
             if ($sup) {
                 $e->supervisor = [ 'id' => $sup->id, 'full_name' => $sup->last_name . ', ' . $sup->first_name .' ' . $sup->middle_name];
             }
-            return view('emp.edit', ['employee' => $e]);
+            return view('admin.emp.edit', ['employee' => $e]);
         } else {
             abort(404);
         }

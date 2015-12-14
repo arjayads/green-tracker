@@ -35,9 +35,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'rolefilter:admin']], function () {
-    Route::get('/', function () {
-        dd('Coming Soon');
-    });
+    Route::get('/', ['uses' => 'Admin\MainController@index']);
 });
 
 // data and actions

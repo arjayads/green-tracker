@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call('CampaignsTableSeeder');
         $this->call('ProductsTableSeeder');
         $this->call('SaleStatusesTableSeeder');
+        $this->call('LeaveTypeTableSeeder');
 
         Model::reguard();
     }

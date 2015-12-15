@@ -88,6 +88,9 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
     Route::post('post', ['uses' => 'PostController@love']);
 });
 
+Route::group(['prefix' => 'my', 'middleware' => 'auth'], function () {
+    Route::get('leaveApplication', 'LeaveController@apply');
+});
 // directives
 Route::group(['prefix' => 'common', 'middleware' => 'auth'], function () {
     Route::get('form-field-error-msg', function () {

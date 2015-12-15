@@ -8,8 +8,8 @@
 @stop
 
 @section('content')
-    <div  ng-app="sale">
-        <div ng-controller="createCtrl">
+    <div  ng-app="leaveApplication">
+        <div ng-controller="mainCtrl">
             <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">
@@ -205,6 +205,7 @@
 @section('javascript')
     <script src="{{asset('js/datepicker/datepicker.js')}}"></script>
     <script src="{{asset('js/app/directives/form-error.js')}}"></script>
+    <script src="{{asset('js/app/modules/leave-apply.js')}}"></script>
 
     <script>
         $(function () {

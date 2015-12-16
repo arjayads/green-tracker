@@ -6,9 +6,16 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     $scope.selectedSupervisor = {};
 
     var resetSubmitBtn = function() {
-        $scope.save = "Create";
+        $scope.save = "Save";
         $scope.submitting = false;
     }
+    $scope.resetForm = function() {
+        $scope.selectedReason = {};
+        $scope.leave = {};
+        resetSubmitBtn();
+    }
+
+
 
     //var getEmp = function () {
     //    $http.get('/admin/emp/'+$scope.empId+'/getForEdit').success(function(data) {
@@ -21,16 +28,7 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     //        toastr.error('Something went wrong!');
     //    });
     //}
-    //$scope.resetForm = function() {
-    //    $scope.selectedProduct = {};
-    //    $scope.selectedCampaign = {};
-    //    $scope.employee = {'birthday' : $.datepicker.formatDate('mm/dd/yy', new Date())};
-    //    resetSubmitBtn();
-    //
-    //    if ($scope.empId !== undefined && parseInt($scope.empId) > 0) {
-    //        getEmp();
-    //    }
-    //}
+
     //
     //$scope.loadShifts = function() {
     //    $http.get('/shift/list').success(function(data) {
@@ -97,7 +95,7 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     //    }
     //});
     //
-    //$scope.resetForm();
+    $scope.resetForm();
     //$scope.loadShifts();
     //$scope.loadGroups();
 

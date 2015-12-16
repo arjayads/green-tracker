@@ -14,11 +14,11 @@ class GroupsTableSeeder extends Seeder
         DB::table('groups')->insert([
             [
                 'name'       => 'Administrator',
-                'default_url'   => '/emp'
+                'default_url'   => '/admin'
             ],
             [
                 'name'       => 'Manager',
-                'default_url'   => '/emp'
+                'default_url'   => '/admin'
             ],
             [
                 'name'       => 'Agent',

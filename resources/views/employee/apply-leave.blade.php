@@ -47,8 +47,11 @@
                                         <label class="input-label" for="purpose">Purpose</label>
                                     </div>
                                     <div class="col-md-5 col-lg-5">
-                                        <textarea rows="5" placeholder="Enter purpose" ng-model="leave.purpose" class="form-control" id="purpose"></textarea>
+                                        <textarea required="" rows="5" placeholder="Enter purpose" ng-model="leave.purpose" class="form-control" id="purpose"></textarea>
                                     </div>
+                                </div>
+                                <div class="col-md-5 col-lg-5">
+                                    <form-error err_field="errors.purpose"></form-error>
                                 </div>
                             </div>
 
@@ -66,7 +69,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-lg-5">
-                                        <form-error err_field="errors.noOfDays"></form-error>
+                                        <form-error err_field="errors.no_of_days"></form-error>
                                     </div>
                                 </div>
                             </div>

@@ -28,7 +28,7 @@ class ProfileController extends Controller
         if (in_array('Administrator', $groups)) {
             $menu[] = ['text' => 'Sales', 'url' => '/sales'];
             $menu[] = ['text' => 'Create Sale', 'url' => '/sales/create'];
-            $menu[] = ['text' => 'Employees', 'url' => '/emp'];
+            $menu[] = ['text' => 'Admin', 'url' => '/admin'];
         } else if (in_array('Agent', $groups)) {
             $menu[] = ['text' => 'Create Sale', 'url' => '/sales/create'];
         } else if (in_array('QC', $groups)) {

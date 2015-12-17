@@ -3,6 +3,7 @@
 namespace app\Http\Controllers;
 
 use app\Models\LeaveApplication;
+use app\Models\LeaveApplicationDetails;
 use app\Models\LeaveType;
 use app\ResponseEntity;
 use Carbon\Carbon;
@@ -42,6 +43,16 @@ class LeaveController extends Controller
 
                 $a = $application->save();
                 if($a) {
+
+                    $dates = $params['dates'];
+                    if (is_array($dates) && count($dates) > 0) {
+                        foreach($dates as $d) {
+                            $lad = new LeaveApplicationDetails();
+                            $lad->date = Carbon::createFromFormat('m/d/Y', $d)->toDateString();
+                            $lad->leave_application_id = $application->id;
+                            $lad->save();
+                        }
+                    }
                     $response->setMessages(['Leave application successfully saved!']);
                     $response->setSuccess(true);
                 } else {

@@ -14,4 +14,11 @@ use Illuminate\Database\Eloquent\Model;
 class LeaveApplicationDetails  extends Model {
 
     protected $table = 'leave_application_details';
+
+    protected $fillable = [
+        'date',
+        'leave_application_id'
+    ];
+
+    public $timestamps = false;
 }

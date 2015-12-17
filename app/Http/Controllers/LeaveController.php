@@ -7,7 +7,6 @@ use app\Models\LeaveApplicationDetails;
 use app\Models\LeaveType;
 use app\ResponseEntity;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 use app\Http\Requests;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +25,7 @@ class LeaveController extends Controller
         return  LeaveType::all();
     }
 
-    public function create(Request $request) {
+    public function create(Requests\ApplyForLeaveRequest $request) {
         $params = $request->all();
 
         $response = new ResponseEntity();

@@ -49,9 +49,9 @@
                                     <div class="col-md-5 col-lg-5">
                                         <textarea required="" rows="5" placeholder="Enter purpose" ng-model="leave.purpose" class="form-control" id="purpose"></textarea>
                                     </div>
-                                </div>
-                                <div class="col-md-5 col-lg-5">
-                                    <form-error err_field="errors.purpose"></form-error>
+                                    <div class="col-md-5 col-lg-5">
+                                        <form-error err_field="errors.purpose"></form-error>
+                                    </div>
                                 </div>
                             </div>
 

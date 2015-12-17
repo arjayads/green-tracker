@@ -75,6 +75,44 @@
                             </div>
 
                             <div style="margin-top: 10px;"></div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="col-md-2 col-lg-2">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            <input required="" placeholder="mm/dd/yyyy" type="text" id="date" class="datepicker form-control">
+                                            <span style="cursor: pointer" ng-click="addDate()" title="Select date and click to add date" class="input-group-addon"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <form-error err_field="errors.date"></form-error>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 10px;"></div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="col-md-2 col-lg-2">
+                                        <label class="input-label" for="date">Dates</label>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <p ng-hide="dates.length > 0">Add leave dates</p>
+                                        <table class="table table-bordered table-hover">
+                                            <tbody>
+                                                <tr ng-repeat="d in dates">
+                                                    <td style="padding: 10px;"><%d%> <i style="cursor: pointer" ng-click="removeDate($index)" title="Click to remove date" class="glyphicon glyphicon-minus-sign pull-right"></i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 10px;"></div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="col-md-2 col-lg-2">

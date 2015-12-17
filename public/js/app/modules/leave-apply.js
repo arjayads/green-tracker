@@ -4,6 +4,7 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     $scope.title = 'Application for Leave';
     $scope.showForm = true;
     $scope.selectedSupervisor = {};
+    $scope.dates = [];
 
     var resetSubmitBtn = function() {
         $scope.save = "Save";
@@ -15,7 +16,22 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
         resetSubmitBtn();
     }
 
+    $scope.addDate = function() {
+        var d = $('#date').val();
+        if (d !== undefined && d != '') {
+            if ($scope.dates.indexOf(d) == -1) { // prevent duplicates
+                $scope.dates.push(d);
+            } else {
+                toastr.warning('Please select different date');
+            }
+        } else {
+            toastr.warning('Please select date');
+        }
+    }
 
+    $scope.removeDate = function(index) {
+        $scope.dates.splice(index, 1);
+    }
 
     //var getEmp = function () {
     //    $http.get('/admin/emp/'+$scope.empId+'/getForEdit').success(function(data) {

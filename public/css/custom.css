@@ -5,3 +5,7 @@
 .input-label {
     padding-top: 10px;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -17,6 +17,10 @@ class LeaveController extends Controller
         parent::__construct();
     }
 
+    public function index() {
+        return view('employee.index-leave');
+    }
+
     public function apply() {
         return view('employee.apply-leave');
     }

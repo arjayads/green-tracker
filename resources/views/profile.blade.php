@@ -85,7 +85,7 @@
 
                         <div class="col-md-9 col-md-pull-3 mg-b-10">
                             <div class="row sm-gutter">
-                                <div class="col-sm-5 mg-b-10">
+                                <div class="col-sm-5 mg-b-10" ng-controller="miscCtrl">
 
                                     <div class="panel panel-default mg-b-10">
                                         <div class="panel-heading">
@@ -109,7 +109,7 @@
                                             <ul class="list-unstyled text-primary">
                                                 <li class="mg-b-5"><i class="fa fa-calendar-minus-o mg-r-5"></i> <span>Absents</span> <span class="pull-right inline">10</span> </li>
                                                 <li class="mg-b-5"><i class="fa fa-clock-o mg-r-5"></i> <span>Tardiness</span> <span class="pull-right inline">00:15:00</span> </li>
-                                                <li class="mg-b-5"><i class="fa fa-calendar-minus-o mg-r-5"></i> <span>Leave</span> <span class="pull-right inline">2</span> </li>
+                                                <li class="mg-b-5"><i class="fa fa-calendar-minus-o mg-r-5"></i> <span class="cursor-pointer"  ng-click="leave()" >Leave</span> <span class="pull-right inline">2</span> </li>
                                             </ul>
                                         </div>
                                     </div>

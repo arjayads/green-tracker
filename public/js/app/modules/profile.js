@@ -1,5 +1,13 @@
 var profileApp = angular.module('profile', ['config', 'ngImgCrop', 'ngupload', 'dirFormError']);
 
+profileApp.controller('miscCtrl', ['$scope', '$http',
+    function ($scope, $http) {
+        $scope.leave = function() {
+            window.location = "/my/leave";
+        }
+    }]
+);
+
 profileApp.controller('newsfeedCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
@@ -49,7 +57,8 @@ profileApp.controller('newsfeedCtrl', ['$scope', '$http',
                 toastr.error("Something went wrong!");
             });
         }
-}]);
+    }]
+);
 
 profileApp.controller('chartsCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.salesToday = { 'today' : 0, 'toDate': 0 };

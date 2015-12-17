@@ -2,6 +2,7 @@ var leaveApplicationApp = angular.module('leaveApplication', ['dirFormError', 'c
 
 leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.title = 'Application for Leave';
+    $scope.errors = {};
     $scope.showForm = true;
     $scope.selectedSupervisor = {};
     $scope.dates = [];
@@ -14,6 +15,12 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
         $scope.selectedReason = {};
         $scope.leave = {};
         resetSubmitBtn();
+    }
+
+    $scope.loadLeaveType = function() {
+        $http.get('/my/leaveTypes').success(function(data){
+            $scope.leaveTypes = data;
+        });
     }
 
     $scope.addDate = function() {
@@ -33,86 +40,56 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
         $scope.dates.splice(index, 1);
     }
 
-    //var getEmp = function () {
-    //    $http.get('/admin/emp/'+$scope.empId+'/getForEdit').success(function(data) {
-    //        $scope.employee = data;
-    //        $scope.employee.birthday = $.datepicker.formatDate('mm/dd/yy', new Date(data.birthday));
-    //        $scope.selectedShift = data.shift;
-    //        $scope.selectedGroup = data.group;
-    //
-    //    }).error(function() {
-    //        toastr.error('Something went wrong!');
-    //    });
-    //}
 
-    //
-    //$scope.loadShifts = function() {
-    //    $http.get('/shift/list').success(function(data) {
-    //        $scope.shifts = data;
-    //    }).error(function() {
-    //        toastr.error('Something went wrong!');
-    //    });
-    //}
-    //
-    //$scope.loadGroups = function() {
-    //    $http.get('/group/list').success(function(data) {
-    //        $scope.groups = data;
-    //    }).error(function() {
-    //        toastr.error('Something went wrong!');
-    //    });
-    //}
-    //
-    //$scope.remoteUrlRequestFn = function(str) {
-    //    return {q: str};
-    //};
-    //
-    //$scope.saveEmp = function(){
-    //    if ($scope.submitting) return; // prevent multiple submission
-    //    $scope.save = 'Saving...';
-    //    $scope.submitting = true;
-    //    $scope.errors = {};
-    //
-    //    var postData = $scope.employee;
-    //    postData['birthday'] = $('#birthday').val();
-    //    postData['shift_id'] = $scope.selectedShift.id;
-    //    postData['group_id'] = $scope.selectedGroup.id;
-    //    if ($scope.selectedSupervisor) {
-    //        postData['supervisor_id'] = $scope.selectedSupervisor.originalObject.id;
-    //    }
-    //
-    //    $http.post('/admin/emp/create', postData).success(function(d) {
-    //        if (d.success) {
-    //            toastr.success(d.messages[0]);
-    //            setTimeout(function() {
-    //                window.location = "/admin/emp/" + d.data.empId + '/detail';
-    //            }, 3000);
-    //        } else {
-    //            toastr.error('Something went wrong!');
-    //            $scope.errors = buildFormErrors($scope.errors, d.messages);
-    //            resetSubmitBtn();
-    //        }
-    //    }).error(function(data, a) {
-    //        if (a == '422') {
-    //            $scope.errors = buildFormErrors($scope.errors, data);
-    //        }
-    //        toastr.error('Something went wrong!');
-    //        resetSubmitBtn();
-    //    });
-    //}
-    //
-    //$scope.$watch('empId', function(newValue, oldValue) {
-    //    $scope.empId = newValue;
-    //    if ($scope.empId !== undefined && parseInt($scope.empId) > 0) {
-    //        $scope.save = "Save";
-    //
-    //        getEmp();
-    //    } else {
-    //        $scope.save = "Create";
-    //    }
-    //});
-    //
+    $scope.setSelectedReason = function(reason) {
+        if(reason !== undefined) {
+            if ($scope.leave.purpose == undefined || '' == $.trim($scope.leave.purpose)) {
+                $scope.leave.purpose = reason.description;
+            }
+        }
+    }
+
+    $scope.processForm = function(){
+        if ($scope.submitting) return; // prevent multiple submission
+        $scope.save = 'Saving...';
+        $scope.submitting = true;
+        $scope.errors = {};
+
+        if ($scope.dates.length == 0) {
+            $scope.errors['date'] = ['Please select date'];
+        }
+
+        if (!$.isEmptyObject($scope.errors)) {
+            resetSubmitBtn();
+            return;
+        }
+
+        var postData = $scope.leave;
+        if ($scope.selectedReason !== undefined) {
+            postData['leave_type_id'] = $scope.selectedReason.id;
+        }
+
+        postData['dates'] = $scope.dates;
+
+        $http.post('/my/leaveApplication', postData).success(function(d) {
+            if (d.success) {
+                toastr.success(d.messages[0]);
+                setTimeout(function() {
+                    window.location = "/profile";
+                }, 3000);
+            } else {
+                toastr.error(d.messages[0]);
+                resetSubmitBtn();
+            }
+        }).error(function(data, a) {
+            if (a == '422') {
+                $scope.errors = buildFormErrors($scope.errors, data);
+            }
+            toastr.error('Something went wrong!');
+            resetSubmitBtn();
+        });
+    }
+
     $scope.resetForm();
-    //$scope.loadShifts();
-    //$scope.loadGroups();
-
+    $scope.loadLeaveType();
 }]);

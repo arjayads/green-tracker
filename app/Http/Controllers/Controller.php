@@ -15,12 +15,17 @@ abstract class Controller extends BaseController
     use DispatchesJobs, ValidatesRequests;
 
     protected $userId;
+    protected $employeeId;
 
     public function __construct()
     {
         if (Auth::check()) {
             $userRepo = new UserRepo();
             $e = $userRepo->findEmployee(Auth::user()->id);
+
+            if ($e) {
+                $this->employeeId = $e->id;
+            }
             View::share('myData', $e);
 
             $id = Input::get('id');

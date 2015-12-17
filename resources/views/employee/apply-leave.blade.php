@@ -65,7 +65,7 @@
                                     <div class="col-md-3 col-lg-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                                            <input required="" placeholder="Enter number of days" ng-model="leave.noOfDays" class="form-control" id="no_of_days" type="number"/>
+                                            <input min="1" step="1" required="" placeholder="Enter number of days" ng-model="leave.no_of_days" class="form-control" id="no_of_days" type="number"/>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-lg-5">
@@ -83,12 +83,9 @@
                                     <div class="col-md-3 col-lg-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                            <input required="" placeholder="mm/dd/yyyy" type="text" id="date" class="datepicker form-control">
+                                            <input placeholder="mm/dd/yyyy" type="text" id="date" class="datepicker form-control">
                                             <span style="cursor: pointer" ng-click="addDate()" title="Select date and click to add date" class="input-group-addon"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                         </div>
-                                    </div>
-                                    <div class="col-md-5 col-lg-5">
-                                        <form-error err_field="errors.date"></form-error>
                                     </div>
                                 </div>
                             </div>
@@ -108,6 +105,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <form-error err_field="errors.date"></form-error>
                                     </div>
                                 </div>
                             </div>

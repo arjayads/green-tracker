@@ -90,6 +90,9 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'my', 'middleware' => 'auth'], function () {
     Route::get('leaveApplication', 'LeaveController@apply');
+    Route::get('leaveTypes', 'LeaveController@types');
+
+    Route::post('leaveApplication', 'LeaveController@create');
 });
 // directives
 Route::group(['prefix' => 'common', 'middleware' => 'auth'], function () {

@@ -18,16 +18,15 @@ class CreateLeaveApplicationTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->string('code');
-            $table->text('purpose');
+            $table->text('purpose')->nullable();
             $table->unsignedInteger('employee_id');
             $table->date('date_filed');
             $table->integer('no_of_days');  // total
             $table->unsignedInteger('created_by_user_id');
-            $table->unsignedInteger('approved1_by_user_id');
-            $table->unsignedInteger('approved2_by_user_id');
+            $table->unsignedInteger('approved1_by_user_id')->nullable();
+            $table->unsignedInteger('approved2_by_user_id')->nullable();
             $table->unsignedInteger('leave_type_id');
-            $table->enum('status', ['Approved', 'Disapproved', 'Pending']);
+            $table->enum('status', ['Approved', 'Disapproved', 'Pending'])->default('Pending');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

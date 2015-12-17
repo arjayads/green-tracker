@@ -9,6 +9,19 @@
                 <main id="main" class="site-main" role="main">
                     <div class="container">
                         <h2><% title %></h2>
+                        <div class="row" style="padding-bottom: 10px;">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="col-md-10 col-lg-10">
+                                    <label class="pull-right input-label">Filter</label>
+                                </div>
+                                <div class="col-md-2 col-lg-2 pull-right">
+                                    <select style="padding: 0" required="" ng-change="setSelectedStatus(selectedStatus)" class="form-control" id="status" ng-model="selectedStatus"
+                                            ng-options="st.status for st in stats track by st.id">
+                                        <option value="">Select Status</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <table class="table table-bordered table-responsive">
                             <thead>
                             <tr>
@@ -20,7 +33,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="leave in leaves">
+                            <tr ng-repeat="leave in leaves track by $index">
                                 <td><%leave.date_filed | date: 'MMM d, yyyy'%></td>
                                 <td><%leave.leave_type%></td>
                                 <td><%leave.purpose%></td>

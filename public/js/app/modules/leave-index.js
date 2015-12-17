@@ -4,10 +4,17 @@ leaveIndexApp.controller('mainCtrl', ['$scope', '$http', '$filter', '$sce', func
     $scope.title = 'Your leave is like a sun!';
     $scope.status = 'Pending';
     $scope.leaves = [];
+    $scope.stats = [
+        {id:1, status: 'Pending'},
+        {id:2, status: 'Approved'},
+        {id:3, status: 'Disapproved'}
+    ];
 
-    $http.get('/my/leaves/' + $scope.status).success(function(data){
-        $scope.leaves = data;
-    });
+    var getLeaves = function() {
+        $http.get('/my/leaves/' + $scope.status).success(function(data){
+            $scope.leaves = data;
+        });
+    }
 
     $scope.parseDates = function(dates) {
         var ds = dates.split(",");
@@ -20,4 +27,11 @@ leaveIndexApp.controller('mainCtrl', ['$scope', '$http', '$filter', '$sce', func
             return $sce.trustAsHtml(str);
         }
     }
+
+    $scope.setSelectedStatus = function(status) {
+        $scope.status = status === undefined ? 'Pending' : status.status;
+        getLeaves();
+    }
+
+    getLeaves();
 }]);

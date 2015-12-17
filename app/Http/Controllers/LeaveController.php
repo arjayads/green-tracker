@@ -25,6 +25,26 @@ class LeaveController extends Controller
         return view('employee.apply-leave');
     }
 
+    public function myList($status = 'Pending') {
+        $q = DB::table('leave_applications')
+            ->join('leave_application_details', 'leave_applications.id', '=', 'leave_application_details.leave_application_id')
+            ->join('leave_types', 'leave_applications.leave_type_id', '=', 'leave_types.id')
+
+            ->where('status', $status);
+
+        return $q->select(
+            'leave_applications.id',
+            'leave_applications.purpose',
+            'leave_types.description as leave_type',
+            'leave_applications.status',
+            'leave_applications.no_of_days',
+            'leave_applications.date_filed',
+            DB::raw('GROUP_CONCAT(leave_application_details.date ORDER BY leave_application_details.date) as dates')
+        )
+            ->groupBy('leave_applications.id')
+            ->get();
+    }
+
     public function types() {
         return  LeaveType::all();
     }

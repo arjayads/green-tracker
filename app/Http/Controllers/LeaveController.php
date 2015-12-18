@@ -30,7 +30,8 @@ class LeaveController extends Controller
             ->join('leave_application_details', 'leave_applications.id', '=', 'leave_application_details.leave_application_id')
             ->join('leave_types', 'leave_applications.leave_type_id', '=', 'leave_types.id')
 
-            ->where('status', $status);
+            ->where('status', $status)
+            ->where('employee_id', $this->employeeId);
 
         return $q->select(
             'leave_applications.id',

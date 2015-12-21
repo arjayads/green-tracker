@@ -126,7 +126,16 @@
                                     </div><!-- end of step 2 -->
 
                                     <div class="setup-content" id="step-3">
-                                       <h4 class="text-gray">Remarks</h4>
+                                       <h4 class="text-gray pull-left">Remarks</h4>
+                                       <div class="checkbox checkbox-primary pull-right">
+                                            <input ng-model="sale.ninety_days" type="checkbox" name="remember" id="ninety-days">
+                                            <label for="ninety-days" class="fs-15 bold text-gray">Ninety Days</label>
+                                        </div>
+
+                                        <!-- <div class="checkbox checkbox-primary">
+                                            <label style="cursor: pointer" class="pull-right" for="checkbox1"> Ninety Days </label>
+                                                <input ng-model="sale.ninety_days" type="checkbox" name="remember" id="ninety-days" id="checkbox1"> 
+                                        </div> -->
 
                                             <div class="col-md-12 col-lg-12 pd-t-20">
                                                 <textarea placeholder="Enter remarks" ng-model="sale.remarks" class="form-control" id="remarks"></textarea>
@@ -140,7 +149,7 @@
                                     <button type="button" ng-click="resetForm()" class="btn btn-default pull-right mg-t-30"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
 
 
-                                    <button ng-mousedown="submit = true" type="submit"class="btn btn-success pull-right mg-t-30"><span class="glyphicon glyphicon-floppy-disk"></span> <% save %></button>
+                                    <button ng-mousedown="submit = true" type="submit"class="btn btn-success pull-right mg-t-30 mg-r-10"><span class="glyphicon glyphicon-floppy-disk"></span> <% save %></button>
 
 
                                     </div><!-- end of step 3  -->

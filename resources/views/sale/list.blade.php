@@ -88,6 +88,67 @@
                                         <td><% sale.status %></td>
                                         <td><i ng-class="{'fa-check-circle':sale.verified == '0'}" title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa"></i></td>
                                     </tr>
+
+                                    <tr  ng-repeat="sale in s = (sales | filter:query) track by $index" style="cursor: pointer;">
+                                        <td><a href="/sales/<% sale.id %>/detail?c=<% selectedCampaign.id %>"><% sale.order_number %></a></td>
+                                        <td><% sale.campaign_name %></td>
+                                        <td><% sale.product_name %></td>
+                                        <td><% sale.date_sold | date:'MMM dd, yyyy' %></td>
+                                        <td><% sale.remarks%></td>
+                                        <td><% sale.customer.first_name %> <% sale.customer.last_name %></td>
+                                        <td><% sale.customer.phone_number %></td>
+                                        <td><% sale.processed_by %></td>
+                                        <td><% sale.status %></td>
+                                        <td><i ng-class="{'fa-check-circle':sale.verified == '0'}" title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa"></i></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

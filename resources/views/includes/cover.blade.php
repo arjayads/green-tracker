@@ -11,7 +11,7 @@
                 <div class="col-sm-2 col-md-2">
                     <div class="avatar-holder">
                         <a href="" class="avatar-img block text-xs-center text-md-left">
-                            <img ng-cloak="" ng-click="setProfilePic()"  ng-src="<%profilePhoto%>" class="img-circle bd-white bd-thick bd-solid" width="200" height="200"/>
+                            <img ng-cloak="" ng-click="setProfilePic()"  ng-src="<%profilePhoto%>" class="img-circle bg-white bd-white bd-thick bd-solid" width="200" height="200"/>
                         </a>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
 </div>
 
 <div id="profile-changer-modal" class="modal">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -54,16 +54,20 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-7">
-                        <div>Select an image file: <input type="file" id="profilePicInput" accept="image/*" /></div>
+                    <div class="col-md-12">
+                        <div>
+                            <span class="btn btn-default btn-file btn-success mg-b-10">
+                                Select an image file <input type="file" id="profilePicInput" class="btn btn-success" accept="image/*">
+                            </span>
+                        </div>
                         <div class="cropArea">
                             <img-crop image="myImage" result-image="myCroppedImage" area-type="square"></img-crop>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <!-- <div class="col-md-5">
                         <div>Preview</div>
                         <div><img class="img-circle" ng-src="<% myCroppedImage %>" /></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -82,10 +86,13 @@
                 <h4 class="modal-title">Update cover photo</h4>
             </div>
             <div class="modal-body">
-                    <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc" accept="image/*">
+                 <span class="btn btn-default btn-file btn-success mg-b-10">
+                    Select an image file <input  type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc" class="btn btn-success" accept="image/*" />
+                </span>
                     {{--<input type="file" ng-file-select="onFileSelect($files)" multiple>--}}
-                <b>Preview:</b>
                 <br />
+                 <b>Preview:</b>
+                 <br />
                 <i ng-hide="imageSrc">No image choosed</i>
                 <img ng-src="<%imageSrc%>" />
             </div>

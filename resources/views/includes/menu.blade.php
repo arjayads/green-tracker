@@ -7,10 +7,10 @@
         </ul>
 
         <ul class="list-inline mg-b-0 pull-sm-right">
-        <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-calendar"></i></a></li>
-        <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-bell"></i></a></li>
-        <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-music"></i></a></li>
-        <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-comment"></i></a></li>
-    </ul>
+            <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-calendar"></i></a></li>
+            <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-bell"></i></a></li>
+            <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-music"></i></a></li>
+            <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-comment"></i></a></li>
+        </ul>
     </div> 
 </div>

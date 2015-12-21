@@ -9,20 +9,28 @@
 @stop
 
 @section('content')
+@include('includes.admin-menu')
 
-<div ng-app="employee">
-    <div ng-controller="createCtrl">
-        <div id="primary" class="content-area mg-t-10 mg-b-10">
-            <main id="main" class="site-main" role="main">
-                <div class="container">
-                    @include('includes.nav-admin')
+<div class="container">
+    <div class="col-md-9">
+        <div class="panel mg-t-20 pd-20">
 
-                    <a href="/admin/emp" class="btn btn-primary">Back to list</a>
-                    <h2>Create employee record</h2>
-                    <hr/>
-                    @include('admin.emp.form')
+            <div ng-app="employee">
+                <div ng-controller="createCtrl">
+                    <div id="primary" class="content-area mg-t-10 mg-b-10">
+                        <main id="main" class="site-main" role="main">
+                            <div class="container">
+                                
+
+                                <a href="/admin/emp" class="btn btn-primary">Back to list</a>
+                                <h2>Create employee record</h2>
+                                <hr/>
+                                @include('admin.emp.form')
+                            </div>
+                        </main>
+                    </div>
                 </div>
-            </main>
+            </div>
         </div>
     </div>
 </div>

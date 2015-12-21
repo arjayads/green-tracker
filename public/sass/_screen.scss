@@ -512,7 +512,7 @@ a {
     }
 }
 
-.cover-holder {
+.cover-holder, .menu-holder {
     position: relative;
 
     .cover {
@@ -572,18 +572,19 @@ a {
     .cover-menu {
         @media screen and (max-width: $screen-sm - 1) {
             text-align: center;
-        }
-
-        ul {
             position: relative;
             z-index: 999;
         }
+
+        ul {}
 
         li {
             a {
                 color: #839098;
                 border-bottom: 4px solid transparent;
                 text-decoration: none !important;
+                z-index: 999;
+                position: relative;
 
                 &:hover,
                 &:focus {
@@ -592,9 +593,11 @@ a {
             }
         }
 
-        .tab-list {
+        .tab-list, .tab-list-2 {
             @media screen and (min-width: $screen-md) {
                 margin-left: 200px;
+                position: relative;
+                z-index: 9999;
             }
 
             li {
@@ -610,6 +613,17 @@ a {
                         border-color: $color-complete;
                     }
                 }
+            }
+        }
+    }
+}
+
+.menu-holder {
+    .cover-menu {
+        .tab-list-2 {
+            @media screen and (min-width: $screen-md) {
+                margin-left: 0;
+                position: relative;
             }
         }
     }

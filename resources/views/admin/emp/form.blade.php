@@ -22,9 +22,8 @@
                 <label class="input-label" for="email">Email</label>
             </div>
             <div class="col-md-5 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input required="" placeholder="Enter email address" type="email" id="email" ng-model="employee.email" class="form-control">
+                <div class="input-group w100">
+                    <input required="" placeholder="Enter email address" type="email" id="email" ng-model="employee.email" class="form-control ">
                 </div>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -39,8 +38,7 @@
                 <label class="input-label" for="first_name">First name</label>
             </div>
             <div class="col-md-5 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                <div class="input-group w100">
                     <input required="" placeholder="Enter first name" type="text" id="first_name" ng-model="employee.first_name" class="form-control">
                 </div>
             </div>
@@ -57,8 +55,7 @@
                 <label class="input-label" for="middle_name">Middle name</label>
             </div>
             <div class="col-md-5 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                <div class="input-group w100">
                     <input placeholder="Enter middle name" type="text" id="middle_name" ng-model="employee.middle_name" class="form-control">
                 </div>
             </div>
@@ -75,8 +72,7 @@
                 <label class="input-label" for="last_name">Last name</label>
             </div>
             <div class="col-md-5 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                <div class="input-group w100">
                     <input required="" placeholder="Enter last name" type="text" id="last_name" ng-model="employee.last_name" class="form-control">
                 </div>
             </div>
@@ -118,12 +114,11 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="col-md-2 col-lg-2">
-                <label class="input-label" for="sex">Sex</label>
+                <label class="input-label " for="sex">Sex</label>
             </div>
             <div class="col-md-5 col-lg-2">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
-                    <select id="sex" ng-model="employee.sex" required="" class="form-control">
+                <div class="input-group w100">
+                    <select id="sex" ng-model="employee.sex" required="" class="form-control w100">
                         <option value="">Select sex</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -143,9 +138,8 @@
                 <label class="input-label" for="birthday">Birthday</label>
             </div>
             <div class="col-md-5 col-lg-2">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input required="" placeholder="mm/dd/yyyy" type="text" id="birthday" ng-model="employee.birthday" class="datepicker form-control">
+                <div class="input-group w100">
+                    <input required="" placeholder="mm/dd/yyyy" type="text" id="birthday" ng-model="employee.birthday" class="datepicker form-control w100">
                 </div>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -161,8 +155,7 @@
                 <label class="input-label" for="shift">Shift</label>
             </div>
             <div class="col-md-5 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                <div class="input-group w100">
                     <select required="" class="form-control" id="shift" ng-model="selectedShift"
                             ng-options="shift.description for shift in shifts track by shift.id">
                         <option value="">Select shift</option>
@@ -182,8 +175,7 @@
                 <label class="input-label" for="group">User Group</label>
             </div>
             <div class="col-md-5 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                <div class="input-group w100">
                     <select required="" class="form-control" id="group" ng-model="selectedGroup"
                             ng-options="group.name for group in groups track by group.id">
                         <option value="">Select group</option>

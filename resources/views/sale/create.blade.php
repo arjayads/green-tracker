@@ -15,7 +15,7 @@
             <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">
-                        <div class="col-md-12">
+                        <div class="col-md-9">
                             <div class="panel pd-20">
                                 <h2><% title %></h2>
 
@@ -24,7 +24,7 @@
                                     
 
                                     <div class="col-md-12">
-                                        <div class="stepwizard">
+                                        <div class="stepwizard mg-b-40">
                                            <div class="stepwizard-row setup-panel">
                                               <div class="stepwizard-step">
                                                  <a href="#step-1" type="button" class="btn btn-circle btn-default btn-active">1</a>
@@ -156,6 +156,63 @@
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
+                        </div>
+
+                        <div  ng-controller="chartsCtrl" class="col-md-3 mg-b-10">
+                            <div class="panel mg-b-10 bg-danger">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-white">Sales</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div style="text-align: center; font-size: 65px;">0</div>
+                                </div>
+                                <div class="panel-footer bg-transparent bd-none">
+                                    <ul class="list-inline mg-b-0">
+                                        <li class="block clearfix"><span>Total sales to date</span>
+                                            <span class="pull-right">Separation Pay</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/ .panel -->
+
+                            <div class="panel mg-b-10 bg-info">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-white">Sales Weekly Chart</div>
+                                </div>
+                                <div class="panel-body"> 
+                                    <div id="weekly-chart"></div>
+                                </div>
+                            </div>
+                            <!--/ .panel -->
+
+                            <div class="panel mg-b-10 bg-success">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-white">Top Sellers</div>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-unstyled mg-b-0">
+                                        <li class="block mg-b-10 pd-b-10"><span class="inline text-white font-heading">Agent</span> <span class="pull-right text-white font-heading">Rank</span></li>
+
+                                        <li ng-repeat="seller in topSellers"
+                                            class="block mg-b-10 pd-b-10 bd-b bd-transparent-white"><a href=""><img width="32" height="32" src="/profile/photo?id=<%seller.user_id%>"
+                                                                                                                    class="inline img-circle mg-r-5"> <span class="inline text-white"><%seller.first_name%> <%seller.last_name%></span> <span class="pull-right text-white"><%seller.rank%></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/ .panel -->
+
+                            <div class="panel mg-b-10 bg-warning">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-white">In Your Team</div>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-inline" ng-hide="myTeam.length == 0">
+                                        <li ng-repeat="player in myTeam" class="mg-b-10"><a href=""><img alt="" title="<%player.email%>" src="/profile/photo?id=<%player.id%>" class="avatar" width="48" height="48"></a></li>
+                                    </ul>
+                                    <span ng-hide="myTeam.length > 0">You are not in a team!</span>
+                                </div>
+                            </div>
+                            <!--/ .panel -->
                         </div>
                     </div>
                 </main>

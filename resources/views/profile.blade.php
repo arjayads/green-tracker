@@ -27,7 +27,7 @@
                 <div class="container">
                     <div class="row sm-gutter">
                         <div  ng-controller="chartsCtrl" class="col-sm-12 col-md-3 col-md-push-9 mg-b-10">
-                            <div class="panel panel-default mg-b-10 bg-danger">
+                            <div class="panel mg-b-10 bg-danger">
                                 <div class="panel-heading">
                                     <div class="panel-title text-white">Sales</div>
                                 </div>
@@ -43,7 +43,7 @@
                             </div>
                             <!--/ .panel -->
 
-                            <div class="panel panel-default mg-b-10 bg-info">
+                            <div class="panel mg-b-10 bg-info">
                                 <div class="panel-heading">
                                     <div class="panel-title text-white">Sales Weekly Chart</div>
                                 </div>
@@ -53,7 +53,7 @@
                             </div>
                             <!--/ .panel -->
 
-                            <div class="panel panel-default mg-b-10 bg-success">
+                            <div class="panel mg-b-10 bg-success">
                                 <div class="panel-heading">
                                     <div class="panel-title text-white">Top Sellers</div>
                                 </div>
@@ -69,7 +69,7 @@
                             </div>
                             <!--/ .panel -->
 
-                            <div class="panel panel-default mg-b-10 bg-warning">
+                            <div class="panel mg-b-10 bg-warning">
                                 <div class="panel-heading">
                                     <div class="panel-title text-white">In Your Team</div>
                                 </div>
@@ -87,7 +87,7 @@
                             <div class="row sm-gutter">
                                 <div class="col-sm-5 mg-b-10" ng-controller="miscCtrl">
 
-                                    <div class="panel panel-default mg-b-10">
+                                    <div class="panel mg-b-10">
                                         <div class="panel-heading">
                                             <div class="panel-title text-primary">Time Log</div>
                                         </div>
@@ -101,7 +101,7 @@
                                     </div>
                                     <!--/ .panel -->
 
-                                    <div class="panel panel-default mg-b-10">
+                                    <div class="panel mg-b-10">
                                         <div class="panel-heading">
                                             <div class="panel-title text-primary">Employee Record</div>
                                         </div>
@@ -115,7 +115,7 @@
                                     </div>
                                     <!--/ .panel -->
 
-                                    <div class="panel panel-default mg-b-10">
+                                    <div class="panel mg-b-10">
                                         <div class="panel-heading">
                                             <div class="panel-title text-primary">Employee Status</div>
                                         </div>
@@ -135,7 +135,7 @@
                                 <div class="col-sm-7 mg-b-10">
                                     <div ng-controller="newsfeedCtrl">
 
-                                        <div class="panel panel-default mg-b-10">
+                                        <div class="panel mg-b-10 bd-rd-lg">
 
                                             <div class="panel-body">
                                                 <div class="form-group">
@@ -149,7 +149,7 @@
                                         </div>
                                         <!--/ .panel -->
 
-                                        <div class="panel panel-default mg-b-10" ng-repeat="post in posts track by $index">
+                                        <div class="panel mg-b-10" ng-repeat="post in posts track by $index">
                                             <div class="panel-heading">
                                                 <div class="panel-title block">
                                                     <div class="vcard">

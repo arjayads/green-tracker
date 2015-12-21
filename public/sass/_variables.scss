@@ -1,60 +1,59 @@
-
 /* Color Swatch
 ------------------------- */
 $color-base: #626262;
 $color-darkest: #000000;
 $color-darker: #1A1A1A;
 $color-darken: #2b303b;
-$color-dark: #2C2C2C;
+$color-dark: #555555;
 
 $color-white: #fff;
 $color-light: #E6E6E6;
 $color-lighter: #F0F0F0;
-$color-lightest: #FAFAFA;
+$color-lightest: #f2f5f7;
 $color-gray: #9199AA;
 $color-menu: #2b303b;
 $color-disabled: #f8f8f8;
 
 $color-primary: #538ac9;
-$color-primary-light: rgba($color-primary, 0.90);
+$color-primary-light: rgba($color-primary, 0.9);
 $color-primary-dark: darken($color-primary, 5%);
 
 $color-complete: #46cabc;
-$color-complete-light: rgba($color-complete, 0.90);
+$color-complete-light: rgba($color-complete, 0.9);
 $color-complete-dark: darken($color-complete, 5%);
 
 $color-info: #26a9cc;
-$color-info-light: rgba($color-info, 0.90);
+$color-info-light: rgba($color-info, 0.9);
 $color-info-dark: darken($color-info, 5%);
 
 $color-success: #53a93e;
-$color-success-light: rgba($color-success, 0.90);
+$color-success-light: rgba($color-success, 0.9);
 $color-success-dark: darken($color-success, 5%);
 
 $color-danger: #e6544b;
-$color-danger-light: rgba($color-danger, 0.90);
+$color-danger-light: rgba($color-danger, 0.9);
 $color-danger-dark: darken($color-danger, 5%);
 
 $color-warning: #e49305;
-$color-warning-light: rgba($color-warning, 0.90);
+$color-warning-light: rgba($color-warning, 0.9);
 $color-warning-dark: darken($color-warning, 5%);
 
 $color-link: #90aedd;
-$color-link-light: rgba( $color-link, 0.90 );
+$color-link-light: rgba($color-link, 0.9);
 $color-link-dark: darken($color-link, 5%);
 
 /* Fonts
 ------------------------- */
-$font-size-base			: 14px; 
-$line-height-base		: 1.7;
-$letter-spacing-base	: 0.01em;
-$font-base				: 'Open Sans', sans-serif;
-$font-heading			: 'Montserrat', sans-serif;
+$font-size-base: 14px;
+$line-height-base: 1.7;
+$letter-spacing-base: 0.01em;
+$font-base: "Open Sans", sans-serif;
+$font-heading: "Montserrat", sans-serif;
 
 /* Media
 ------------------------- */
-$screen-xs		: 270px;
-$screen-phablet	: 640px;
-$screen-sm		: 768px;
-$screen-md 		: 992px;
-$screen-lg 		: 1200px;
+$screen-xs: 270px;
+$screen-phablet: 640px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;

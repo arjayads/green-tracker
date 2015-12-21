@@ -33,58 +33,62 @@
 
 <div class="register-cotainer full-height">
     <div class="container-xs-height full-height">
-        <div class="row-xs-height">
+        <div class="row-xs-height"> 
             <div class="col-xs-height col-middle pad-15">
                 <div class="col-sm-4 col-center">
-                    <img src="/images/logo-brandmark.png" alt="logo" class="mg-b-20" />
-                    <img src="/images/logo-wordmark.png" alt="logo" class="mg-b-20" />
-                    <p>Sign-in to access your account</p>
+                    
+                    <div class="panel pd-25">
 
-                    <form method="POST" action="/auth/login">
-                        <fieldset>
-                            {!! csrf_field() !!}
+                        <p class="cntr">
+                        <img src="/images/logo-wordmark.png" alt="logo" class="mg-b-20" />
+                    </p>
+                        <p class="cntr text-gray">Sign-in to access your account</p>
 
-                            <div class="row">
-                                <div class="col-sm-12 no-padding">
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul style="list-style-type: none; padding-left: 5px;">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
+                        <form method="POST" action="/auth/login">
+                            <fieldset>
+                                {!! csrf_field() !!}
 
-                            <div class="form-group form-group-default">
-                                <label>Email</label>
-                                <div class="controls">
-                                    <input placeholder="Email" class="form-control" type="email" id="email" name="email" value="{{ old('email') }}"  aria-required="true">
-                                </div>
-                            </div>
-
-                            <div class="form-group form-group-default">
-                                <label>Password</label>
-                                <div class="controls">
-                                    <input placeholder="Password" type="password" class="form-control" id="password" name="password" aria-required="true">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6 no-padding">
-                                    <div class="checkbox checkbox-primary">
-                                        <input type="checkbox" name="remember" id="checkbox1">
-                                        <label for="checkbox1">Keep Me Signed in</label>
+                                <div class="row">
+                                    <div class="col-sm-12 no-padding">
+                                        @if (count($errors) > 0)
+                                            <div class="alert alert-danger">
+                                                <ul style="list-style-type: none; padding-left: 5px;">
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                            </div>
 
-                            <button class="btn btn-primary btn-cons mg-t-10" type="submit">Sign in</button>
-                        </fieldset>
-                    </form>
+                                <div class="form-group form-group-default">
+                                    <!-- <label>Email</label> -->
+                                    <div class="controls">
+                                        <input placeholder="Email" class="form-control" type="email" id="email" name="email" value="{{ old('email') }}"  aria-required="true">
+                                    </div>
+                                </div>
 
+                                <div class="form-group form-group-default">
+                                    <!-- <label>Password</label> -->
+                                    <div class="controls">
+                                        <input placeholder="Password" type="password" class="form-control" id="password" name="password" aria-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="checkbox checkbox-primary">
+                                            <input type="checkbox" name="remember" id="checkbox1">
+                                            <label for="checkbox1">Keep Me Signed in</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-success btn-cons mg-t-10 pull-right" type="submit">Sign in</button>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,17 +1,17 @@
-<div class="cover-holder">
+<div class="cover-holder pd-t-20">
     <div class="container">
 
         <div class="cover pd-15 relative" ng-mousemove="hover = true" ng-mouseleave="hover = false;" ng-init="hover = false" ng-style="{'background-image':'url('+coverPhoto+')'}">
             <div ng-class="{hidden: !hover}" class="cover-top clearfix">
                 <a ng-cloak="" ng-click="setCoverPic()" href="" class="btn btn-link text-white pull-sm-left"><i class="fa fa-camera"></i> Change Background</a>
-                <a ng-cloak="" ng-click="showUpdateInfoModal()" href="" class="btn btn-default pull-sm-right text-primary pd-y-5">Update Info</a>
+                <a ng-cloak="" ng-click="showUpdateInfoModal()" href="" class="btn btn-default pull-sm-right text-success pd-y-5">Update Info</a>
             </div>
 
             <div class="row cover-avatar">
                 <div class="col-sm-2 col-md-2">
                     <div class="avatar-holder">
                         <a href="" class="avatar-img block text-xs-center text-md-left">
-                            <img ng-cloak="" ng-click="setProfilePic()"  ng-src="<%profilePhoto%>" class="img-circle" width="200" height="200"/>
+                            <img ng-cloak="" ng-click="setProfilePic()"  ng-src="<%profilePhoto%>" class="img-circle bd-white bd-thick bd-solid" width="200" height="200"/>
                         </a>
                     </div>
                 </div>
@@ -21,17 +21,13 @@
                 </div>
                 <div class="col-sm-4 col-md-3">
                     <div class="incentives bg-white pd-15 text-center text-primary">
-                        <label class="text-uppercase font-heading h4 text-primary incentive-label">Total Incentive</label>
                         <strong class="incentive-counter text-primary block mg-t-0 mg-b-0"><% incentive | currency:"P ":2 %></strong>
                     </div>
                 </div>
             </div>
         </div>
-
-
+        
         <div class="cover-menu bg-white bd-b clearfix" style="border-color: #e6e9ea; position: relative;">
-
-
             <ul class="list-inline mg-b-0 pull-sm-left tab-list">
                 @foreach($menu as $m)
                     <li><a href="{{$m['url']}}" class="block pd-y-20 pd-x-10">{{$m['text']}}</a></li>
@@ -45,10 +41,11 @@
                 <li><a href="" class="block pd-y-20 pd-x-10"><i class="fa fa-comment"></i></a></li>
             </ul>
         </div>
+
     </div>
 </div>
 
-<div id="profile-changer-modal" class="modal fade">
+<div id="profile-changer-modal" class="modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -77,7 +74,7 @@
     </div>
 </div>
 
-<div id="cover-changer-modal" class="modal fade">
+<div id="cover-changer-modal" class="modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,7 +97,7 @@
     </div>
 </div>
 
-<div id="info-changer-modal" class="modal fade">
+<div id="info-changer-modal" class="modal">
     <div class="modal-dialog modal-md">
         <form ng-submit="saveInfo()">
             <div class="modal-content">

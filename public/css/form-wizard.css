@@ -1,0 +1,108 @@
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity = 100) !important;
+}
+
+.stepwizard-row:before {
+    top: 20px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #f0f3f5;
+    z-order: 0;
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.stepwizard-step .btn[disabled] {
+    opacity: 1;
+    border: solid 2px #fff;
+    pointer-events: none;
+}
+
+.stepwizard-step .btn-primary, .stepwizard-step .btn-primary:hover, .stepwizard-step .btn-primary:focus {
+    background: #70b2ff;
+    color: #ffffff;
+}
+
+.stepwizard-step .btn-primary:hover, .stepwizard-step .btn-primary:focus, .btn-circle:hover, .btn-circle:focus {
+    border: solid 2px #fff;
+}
+
+.btn-circle {
+    color: #999;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 30px;
+    background-color: #f2f5f7 !important;
+    border: 1px solid transparent !important;
+}
+
+.btn-circle[disabled] {
+    color: #999;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 30px;
+    background-color: #f2f5f7 !important;
+    border: 1px solid transparent !important;
+}
+
+.btn-active {
+    color: #ffffff;
+    background-color: #53a93e  !important;
+    border: 1px solid transparent !important;
+}
+
+.btn-active:hover {
+    color: #ffffff;
+    background-color: #53a93e  !important;
+    border: 1px solid transparent !important;
+}
+
+.btn-default[disabled] {
+    color: #999;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 30px;
+    background: #f2f2f2;
+}
+
+.btn-default {
+    background-color: #999;
+}

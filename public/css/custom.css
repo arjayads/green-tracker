@@ -9,3 +9,7 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+ul.error {
+    list-style-type: none;
+}

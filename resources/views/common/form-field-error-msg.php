@@ -1,11 +1,5 @@
-<style>
-    ul.error {
-        list-style-type: none;
-        text-align: left;
-    }
-</style>
-<span style="color: red !important;" ng-show="errField">
-    <ul class="error">
-        <li ng-repeat="err in errField track by $index">{{ err }}</li>
+<span ng-show="errField">
+    <ul class="error pd-0 mg-0">
+        <li ng-repeat="err in errField track by $index" class="fs-13 text-danger">{{ err }}</li>
     </ul>
 </span>

@@ -19,7 +19,22 @@ abstract class Controller extends BaseController
 
     public function __construct()
     {
+
         if (Auth::check()) {
+
+            $groups = Auth::user()->groups();
+            $menu = [];
+
+            if (in_array('Administrator', $groups)) {
+                $menu[] = ['text' => 'Sales', 'url' => '/sales'];
+                $menu[] = ['text' => 'Create Sale', 'url' => '/sales/create'];
+                $menu[] = ['text' => 'Admin', 'url' => '/admin'];
+            } else if (in_array('Agent', $groups)) {
+                $menu[] = ['text' => 'Create Sale', 'url' => '/sales/create'];
+            } else if (in_array('QC', $groups)) {
+                $menu[] = ['text' => 'Sales', 'url' => '/sales'];
+            }
+
             $userRepo = new UserRepo();
             $e = $userRepo->findEmployee(Auth::user()->id);
 
@@ -27,6 +42,7 @@ abstract class Controller extends BaseController
                 $this->employeeId = $e->id;
             }
             View::share('myData', $e);
+            View::share('menu', $menu);
 
             $id = Input::get('id');
             if ($id) {

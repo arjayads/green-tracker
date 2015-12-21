@@ -5,19 +5,13 @@
 
 /* Mixins Libraries
 ------------------------- */
-@import '../bourbon/bourbon';
-@import 'mixins';
+@import "mixins";
+@import "../bourbon/bourbon";
 
 /* Core 
-------------------------- */ 
-@import 'variables';
-@import 'helpers';  
+------------------------- */
+@import "variables";
+@import "helpers";
 
 // Custom
-@import 'screen'; 
-
-
- 
- 
-
- 
+@import "screen";

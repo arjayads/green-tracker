@@ -35,6 +35,7 @@
         <link href="{{asset('css/toastr/toastr.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('css/datapicker/datepicker3.css')}}" rel="stylesheet">
         <link href="{{asset('css/datapicker/angular-datapicker.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/form-wizard.css')}}">
 
         @yield('css')
         <script type="text/javascript" src="{{asset('/js/angular/angular.min.js')}}"></script>
@@ -57,6 +58,7 @@
 
 <script src="/js/datepicker/datepicker.js"></script>
 <script src="/js/toastr/toastr.min.js"></script>
+<script src="/js/form-wizard.js"></script>
 <script src="{{asset('js/app.js')}}"></script>
 
 @yield('javascript')

@@ -3,6 +3,7 @@ var saleApp = angular.module('sale', ['config', 'dirFormError']);
 saleApp.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.title = 'Create sale';
     $scope.showForm = true;
+    // $scope.errors = {product_id:['test']};
 
     var resetSubmitBtn = function() {
         $scope.save = "Create";

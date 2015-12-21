@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-md-5 col-lg-5">
                                     <div class="input-group w50">
-                                        <select required="" ng-change="setSelectedCampaign()" class="form-control" id="campaign" ng-model="selectedCampaign"
+                                        <select ng-change="setSelectedCampaign()" class="form-control" id="campaign" ng-model="selectedCampaign"
                                                 ng-options="campaign.name for campaign in campaigns track by campaign.id">
                                             <option value="">All</option>
                                         </select>
@@ -31,13 +31,12 @@
                                     <div class="pull-right dropdown">
 
                                              <div class="col-md-5 col-lg-5">
-                                                <label class="input-label" for="campaign">Campaign</label>
+                                                <label class="input-label" for="status">Status</label>
                                             </div>
 
                                             <div class="col-md-7 col-lg-7">
-                                                <select required="" ng-change="setSelectedCampaign()" class="form-control" id="campaign" ng-model="selectedCampaign"
-                                                    ng-options="campaign.name for campaign in campaigns track by campaign.id">
-                                                    <option value="">Status</option>
+                                                <select ng-change="setSelectedStatus()" class="form-control" id="status" ng-model="selectedStatus"
+                                                    ng-options="status.stat for status in statuses track by status.id">
                                                 </select>
                                             </div>
 

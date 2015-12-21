@@ -4,7 +4,13 @@ saleApp.controller('listCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.sales = [];
         $scope.saleFlag = {};
-        $scope.saleFlag['flag'] = 0;
+        $scope.selectedStatus =  {id: 0, stat: 'Unverified'};
+
+        $scope.statuses = [
+            {id: -1, stat: 'All'},
+            {id: 0, stat: 'Unverified'},
+            {id: 1, stat: 'Verified'}
+        ];
 
         $http.get('/campaign/list').success(function(data) {
             $scope.campaigns = data;
@@ -14,13 +20,13 @@ saleApp.controller('listCtrl', ['$scope', '$http',
 
         var getSaleList = function() {
             var url = '/sales/list';
-            if ($scope.selectedCampaign !== undefined) {
+            if ($scope.selectedCampaign !== undefined && $scope.selectedCampaign != null) {
                 url += '?campId=' + $scope.selectedCampaign.id;
-                url += '&';
+                url += '&q=' + $scope.selectedStatus.id;
             } else {
-                url += '?';
+                url += '?q=' + $scope.selectedStatus.id;
             }
-            url += 'q=' + $scope.saleFlag.flag;
+
 
             $http.get(url).success(function(data) {
                 $scope.sales = data;
@@ -61,10 +67,8 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             });
         }
 
-        $scope.$watch('saleFlag.flag', function(newValue, oldValue) {
-            if (newValue != oldValue) {
-                getSaleList();
-            }
-        });
+        $scope.setSelectedStatus = function() {
+            getSaleList();
+        }
     }
 ]);

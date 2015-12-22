@@ -62,12 +62,9 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             });
         }
 
-        $scope.$watch('campaign', function(newValue, oldValue) {
-            if (newValue !== undefined && parseInt(newValue) > 0) {
-                $scope.selectedCampaign = {'id': newValue};
-            }
+        $scope.setSelectedStatus = function() {
             getSaleList();
-        });
+        }
 
         $scope.setSelectedCampaign = function() {
             if ($scope.selectedCampaign === undefined) {
@@ -98,7 +95,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
 
         $scope.buildCellUrl = function(saleid) {
             var link = '/sales/' + saleid + '/detail';
-            if ($scope.selectedCampaign !== undefined) {
+            if ($scope.selectedCampaign !== undefined && $scope.selectedCampaign != null) {
                 link += '?c=' + $scope.selectedCampaign.id;
             }
 
@@ -171,5 +168,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
                 });
             }
         }
+
+        getSaleList();
     }
 ]);

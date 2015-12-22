@@ -49,7 +49,7 @@
                                                 <label class="input-label" for="status">Status</label>
                                             </div>
 
-                                            <div class="col-md-7 col-lg-7">
+                                            <div class="col-md-7 col-lg-7" style="padding: 0 0">
                                                 <select ng-change="setSelectedStatus()" class="form-control" id="status" ng-model="selectedStatus"
                                                     ng-options="status.stat for status in statuses track by status.id">
                                                 </select>

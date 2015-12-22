@@ -3,7 +3,6 @@ var saleApp = angular.module('sale', ['config','ngTouch', 'ui.grid', 'ui.grid.pa
 saleApp.controller('listCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.sales = [];
-        $scope.saleFlag = {};
         $scope.selectedStatus =  {id: 0, stat: 'Unverified'};
 
         $scope.statuses = [
@@ -72,6 +71,24 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             getSaleList();
         }
 
+        $scope.setVerified1 = function(sale){
+            $http.post('/sales/' + sale.id + '/setVerified', {}).success(function(data) {
+                if (data.success) {
+                    toastr.success(data.message);
+                    var index = $scope.sales.indexOf(sale);
+
+                    if ($scope.selectedStatus.id == 0) {
+                        $scope.sales.splice(index, 1);
+                    } else {
+                        $scope.sales[index].verified = 1;
+                    }
+                } else {
+                    toastr.error(data.message);
+                }
+            }).error(function(data, a) {
+                toastr.error('Something went wrong!');
+            });
+        }
 
         $scope.buildCellUrl = function(saleid) {
             var link = '/sales/' + saleid + '/detail';
@@ -119,8 +136,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
                     enableSorting: false,
                     enableHiding: false,
                     width: '2%',
-                    //cellTemplate: '<div class="ui-grid-cell-contents"><i ng-class="{\'fa-check-circle\':sale.verified == \'0\'}" title="Set as verified" ng-click="setVerified($index, row.entity.id)"  class="fa-2x fa"></i>Test</div>'
-                    cellTemplate: '<div id="sav" class="ui-grid-cell-contents"><i title="Set as verified" class="fa-2x fa {{row.entity.verified == \'0\' ? \'fa-check-circle \':\'\'}} "></i></div>'
+                    cellTemplate: '<div id="sav" class="ui-grid-cell-contents"><i ng-click="grid.appScope.setVerified1(row.entity)" title="Set as verified" class="cursor fa-2x fa {{row.entity.verified == \'0\' ? \'fa-check-circle \':\'\'}} "></i></div>'
                 },
             ],
             onRegisterApi: function(gridApi) {

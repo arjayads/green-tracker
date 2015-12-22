@@ -2,6 +2,20 @@
 
 @section('title', 'Sales')
 
+@section('css')
+    <link href="{{asset('css/ui-grid/ui-grid.min.css')}}" rel="stylesheet" type="text/css">
+
+    <style>
+        .list {
+            width: 100%;
+            height: 530px;
+        }
+
+        #sav i.fa-2x {
+            font-size: 1.9em !important;
+        }
+    </style>
+@stop
 @section('content')
 
 
@@ -40,24 +54,16 @@
                                                     ng-options="status.stat for status in statuses track by status.id">
                                                 </select>
                                             </div>
-
-                                        <!-- <label>
-                                            <input selected="" ng-model="saleFlag.flag" value="-1">
-                                            All
-                                        </label>
-                                        <label>
-                                            <input ng-model="saleFlag.flag" value="1">
-                                            Verified
-                                        </label>
-                                        <label>
-                                            <input ng-model="saleFlag.flag" value="0">
-                                            Unverified
-                                        </label> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr/>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div ui-grid="gridOptions1" ui-grid-pagination ui-grid-resize-columns class="list"></div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
                                 <table id="list" class="table table-striped">
@@ -88,67 +94,6 @@
                                         <td><% sale.status %></td>
                                         <td><i ng-class="{'fa-check-circle':sale.verified == '0'}" title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa"></i></td>
                                     </tr>
-
-                                    <tr  ng-repeat="sale in s = (sales | filter:query) track by $index" style="cursor: pointer;">
-                                        <td><a href="/sales/<% sale.id %>/detail?c=<% selectedCampaign.id %>"><% sale.order_number %></a></td>
-                                        <td><% sale.campaign_name %></td>
-                                        <td><% sale.product_name %></td>
-                                        <td><% sale.date_sold | date:'MMM dd, yyyy' %></td>
-                                        <td><% sale.remarks%></td>
-                                        <td><% sale.customer.first_name %> <% sale.customer.last_name %></td>
-                                        <td><% sale.customer.phone_number %></td>
-                                        <td><% sale.processed_by %></td>
-                                        <td><% sale.status %></td>
-                                        <td><i ng-class="{'fa-check-circle':sale.verified == '0'}" title="Set as verified" ng-click="setVerified($index, sale.id)"  class="fa-2x fa"></i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                        <td>test</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -164,4 +109,11 @@
 
 @section('javascript')
     <script src="{{asset('js/app/modules/sale-list.js')}}"></script>
+    <script src="{{asset('js/ui-grid/ui-grid.min.js')}}"></script>
+
+    <script>
+        $( document ).ready(function() {
+            $('.ui-grid-icon-angle-down').remove();
+        });
+    </script>
 @stop

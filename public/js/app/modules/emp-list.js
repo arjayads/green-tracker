@@ -61,16 +61,18 @@ userApp.controller('listCtrl', ['$scope', '$http',
             paginationPageSizes: [15, 30, 45],
             paginationPageSize: 15,
             useExternalPagination: true,
+            enableSorting: true,
+            enableHiding: false,
             columnDefs: [
                 {
                     field: 'id_number', enableSorting: true, enableHiding: false,
                     cellTemplate: '<a href="{{grid.appScope.buildCellUrl(row.entity.employee_id)}}" class="ui-grid-cell-contents">{{row.entity.id_number}}</a>'
 
                 },
-                {field: 'email', enableSorting: true, enableHiding: false },
-                {field: 'full_name', enableSorting: true, enableHiding: false },
-                {field: 'sex', enableSorting: true, enableHiding: false },
-                {field: 'shift', enableSorting: false, enableHiding: false },
+                {field: 'email' },
+                {field: 'full_name', displayName: 'Name'},
+                {field: 'sex'},
+                {field: 'shift', enableSorting: false},
             ],
             onRegisterApi: function(gridApi) {
                 $scope.gridApi = gridApi;

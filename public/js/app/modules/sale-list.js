@@ -25,7 +25,34 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             } else {
                 url += '?q=' + $scope.selectedStatus.id;
             }
+            /*
+            var query = [];
 
+            var searchUrl = '/admin/emp/list';
+            var countSearchUrl ='/admin/emp/countFind';
+            query.push('sortCol=' + paginationOptions.sortCol);
+            query.push('direction=' + paginationOptions.sort);
+            query.push('offset=' + ((paginationOptions.pageSize * paginationOptions.pageNumber) - paginationOptions.pageSize));
+            query.push('limit=' + paginationOptions.pageSize);
+            query.push(q);
+
+            var params = "";
+            for(var x = 0; x < query.length; x++) {
+                params += query[x] + "&";
+            }
+            searchUrl += "?" + params;
+            countSearchUrl += "?" + params;
+
+            $http.get(countSearchUrl).success(function(data) {
+                $scope.gridOptions1.totalItems = data;
+            });
+
+            $http.get(searchUrl).success(function(data) {
+                $scope.gridOptions1.data = data;
+            }).error(function() {
+                toastr.error('Something went wrong!');
+            });
+            */
 
             $http.get(url).success(function(data) {
                 $scope.sales = data;
@@ -50,28 +77,7 @@ saleApp.controller('listCtrl', ['$scope', '$http',
 
         }
 
-        $scope.setVerified = function(index, saleId) {
-            $http.post('/sales/' + saleId + '/setVerified', {}).success(function(data) {
-                if (data.success) {
-                    toastr.success(data.message);
-                    if ($scope.saleFlag.flag == 0) {
-                        $scope.sales.splice(index, 1);
-                    } else {
-                        $scope.sales[index].verified = 1;
-                    }
-                } else {
-                    toastr.error(data.message);
-                }
-            }).error(function(data, a) {
-                toastr.error('Something went wrong!');
-            });
-        }
-
-        $scope.setSelectedStatus = function() {
-            getSaleList();
-        }
-
-        $scope.setVerified1 = function(sale){
+        $scope.setVerified = function(sale){
             $http.post('/sales/' + sale.id + '/setVerified', {}).success(function(data) {
                 if (data.success) {
                     toastr.success(data.message);
@@ -98,6 +104,13 @@ saleApp.controller('listCtrl', ['$scope', '$http',
 
             return link;
         }
+
+        var paginationOptions = {
+            pageNumber: 1,
+            pageSize: 15,
+            sort: 'asc',
+            sortCol: 'date_sold'
+        };
 
         $scope.gridOptions1 = {
             paginationPageSizes: [15, 30, 45],
@@ -136,26 +149,26 @@ saleApp.controller('listCtrl', ['$scope', '$http',
                     enableSorting: false,
                     enableHiding: false,
                     width: '2%',
-                    cellTemplate: '<div id="sav" class="ui-grid-cell-contents"><i ng-click="grid.appScope.setVerified1(row.entity)" title="Set as verified" class="cursor fa-2x fa {{row.entity.verified == \'0\' ? \'fa-check-circle \':\'\'}} "></i></div>'
+                    cellTemplate: '<div id="sav" class="ui-grid-cell-contents"><i ng-click="grid.appScope.setVerified(row.entity)" title="Set as verified" class="cursor fa-2x fa {{row.entity.verified == \'0\' ? \'fa-check-circle \':\'\'}} "></i></div>'
                 },
             ],
             onRegisterApi: function(gridApi) {
                 $scope.gridApi = gridApi;
-                //$scope.gridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
-                //    if (sortColumns.length == 0) {
-                //        paginationOptions.sort = 'asc';
-                //        paginationOptions.sortCol = 'id_number';
-                //    } else {
-                //        paginationOptions.sort = sortColumns[0].sort.direction;
-                //        paginationOptions.sortCol = sortColumns[0].field;
-                //    }
-                //    getEmps();
-                //});
-                //gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-                //    paginationOptions.pageNumber = newPage;
-                //    paginationOptions.pageSize = pageSize;
-                //    getEmps();
-                //});
+                $scope.gridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
+                    if (sortColumns.length == 0) {
+                        paginationOptions.sort = 'asc';
+                        paginationOptions.sortCol = 'order_number';
+                    } else {
+                        paginationOptions.sort = sortColumns[0].sort.direction;
+                        paginationOptions.sortCol = sortColumns[0].field;
+                    }
+                    getSaleList();
+                });
+                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                    paginationOptions.pageNumber = newPage;
+                    paginationOptions.pageSize = pageSize;
+                    getSaleList();
+                });
             }
         }
     }

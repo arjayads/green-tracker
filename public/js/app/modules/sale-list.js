@@ -28,8 +28,8 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             /*
             var query = [];
 
-            var searchUrl = '/admin/emp/list';
-            var countSearchUrl ='/admin/emp/countFind';
+            var searchUrl = '/sales/list';
+            var countSearchUrl ='/sales/countFind';
             query.push('sortCol=' + paginationOptions.sortCol);
             query.push('direction=' + paginationOptions.sort);
             query.push('offset=' + ((paginationOptions.pageSize * paginationOptions.pageNumber) - paginationOptions.pageSize));

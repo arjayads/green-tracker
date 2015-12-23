@@ -108,4 +108,10 @@ class SalesController extends Controller
     {
         return $this->saleService->setVerified($saleId)->toArray();
     }
+
+    public function countFind() {
+        $query = Input::get('q');
+        $campId = Input::get('campId');
+        return $this->saleRepo->countFind($campId,  $query);
+    }
 }

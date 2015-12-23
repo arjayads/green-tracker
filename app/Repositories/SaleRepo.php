@@ -162,4 +162,20 @@ class SaleRepo
                   ) as inner_table) as inner_table2 where user_id = ? LIMIT 1";
         return DB::select(DB::raw($query), [$userId]);
     }
+
+
+    function countFind($campaignId, $kwari) {
+        $q = DB::table('sales')
+            ->where('sale_status_id', Config::get('constants.sale_status.sale'));
+
+        if (intval($campaignId) > 0) {
+            $q->where('products.campaign_id', $campaignId);
+        }
+
+        if (intval($kwari) >= 0) {
+            $q->where('sales.verified', $kwari);
+        }
+
+        return $q->count();
+    }
 }

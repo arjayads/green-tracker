@@ -107,7 +107,9 @@ class EmployeeController extends Controller
 
     public function countFind() {
         $query = Input::get('q');
-        return $this->empRepo->countFind($query ?: '' );
+        $offset = Input::get('offset');
+        $limit = Input::get('limit');
+        return $this->empRepo->countFind($query ?: '', $offset ?: 0, $limit ?: 15);
     }
 
     public function find()

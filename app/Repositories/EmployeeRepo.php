@@ -53,13 +53,15 @@ class EmployeeRepo {
             ->get();
     }
 
-    function countFind($query = '') {
+    function countFind($query = '', $offset, $limit) {
         $q = DB::table('employees')
             ->join('users', 'employees.user_id', '=', 'users.id')
             ->leftJoin('shifts', 'employees.shift_id', '=', 'shifts.id');
 
         $q = $this->findWhereClause($q, $query);
-        return $q->count();
+        return $q->take($limit)
+            ->skip($offset)
+            ->count();
     }
 
     function findBy($field, $kwari, array $cols = []) {

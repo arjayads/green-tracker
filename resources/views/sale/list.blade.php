@@ -4,17 +4,6 @@
 
 @section('css')
     <link href="{{asset('css/ui-grid/ui-grid.min.css')}}" rel="stylesheet" type="text/css">
-
-    <style>
-        .list {
-            width: 100%;
-            height: 530px;
-        }
-
-        #sav i.fa-2x {
-            font-size: 1.9em !important;
-        }
-    </style>
 @stop
 @section('content')
 
@@ -61,7 +50,7 @@
                         <hr/>
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
-                                <div ui-grid="gridOptions1" ui-grid-pagination ui-grid-resize-columns class="list"></div>
+                                <div ui-grid="gridOptions1" ui-grid-pagination ui-grid-resize-columns id="list"></div>
                             </div>
                         </div>
                     </div>

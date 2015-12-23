@@ -1,7 +1,7 @@
 <div class="cover-holder menu-holder">
     <div class="cover-menu bg-white bd-b">
         <div class="container">
-            <ul class="list-inline mg-b-0 pull-sm-left {{Request::segment(1)=='profile'?'tab-list':'tab-list-2'}}">
+            <ul class="list-inline mg-b-0 pull-sm-left {{in_array(Request::segment(1), ['profile', 'admin'])?'tab-list':'tab-list-2'}}">
                 @foreach($menu as $m)
                     <li><a href="{{$m['url']}}" class="block pd-y-20 pd-x-10">{{$m['text']}}</a></li>
                 @endforeach

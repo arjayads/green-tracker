@@ -15,7 +15,10 @@
                         <h2><% title %></h2>
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
-                                <div class="col-md-10 col-lg-10">
+                                <div class="col-md-2 col-lg-2">
+                                    <a href="/my/leaveApplication" class="btn btn-success">Apply</a>
+                                </div>
+                                <div class="col-md-8 col-lg-8">
                                     <label class="pull-right input-label">Filter</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 pull-right">

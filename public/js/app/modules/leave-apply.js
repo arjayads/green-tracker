@@ -73,9 +73,10 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
 
         $http.post('/my/leaveApplication', postData).success(function(d) {
             if (d.success) {
+                $scope.save = 'Saved';
                 toastr.success(d.messages[0]);
                 setTimeout(function() {
-                    window.location = "/profile";
+                    window.location = "/my/leave";
                 }, 3000);
             } else {
                 toastr.error(d.messages[0]);

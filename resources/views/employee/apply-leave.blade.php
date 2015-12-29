@@ -14,6 +14,7 @@
                 <main id="main" class="site-main" role="main">
                     <div class="container">
                         <h2><% title %></h2>
+                        <a href="/my/leave" class="btn btn-primary">Back</a>
                         <form ng-submit="processForm()" ng-show="showForm">
                             <hr/>
 
@@ -120,7 +121,7 @@
                                     <div class="col-md-5 col-lg-5">
                                         <fieldset ng-disabled="submitting">
                                             <button ng-mousedown="submit = true" type="submit"
-                                                    class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <% save %></button>
+                                                    class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> <% save %></button>
                                             <button type="button" ng-click="resetForm()" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
                                         </fieldset>
                                     </div>

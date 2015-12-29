@@ -2,6 +2,10 @@
 
 @section('title', 'Leave')
 
+@section('css')
+    <link href="{{asset('css/ui-grid/ui-grid.min.css')}}" rel="stylesheet" type="text/css">
+@stop
+
 @section('content')
     <div  ng-app="leaveIndex">
         <div ng-controller="mainCtrl">
@@ -9,7 +13,7 @@
                 <main id="main" class="site-main" role="main">
                     <div class="container">
                         <h2><% title %></h2>
-                        <div class="row" style="padding-bottom: 10px;">
+                        <div class="row">
                             <div class="col-md-12 col-lg-12">
                                 <div class="col-md-10 col-lg-10">
                                     <label class="pull-right input-label">Filter</label>
@@ -20,6 +24,12 @@
                                         <option value="">Select Status</option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div ui-grid="gridOptions1" ui-grid-pagination ui-grid-resize-columns id="list"></div>
                             </div>
                         </div>
                         <table class="table table-bordered table-responsive">
@@ -52,4 +62,5 @@
 
 @section('javascript')
     <script src="{{asset('js/app/modules/leave-index.js')}}"></script>
+    <script src="{{asset('js/ui-grid/ui-grid.min.js')}}"></script>
 @stop

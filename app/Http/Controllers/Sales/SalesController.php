@@ -50,12 +50,23 @@ class SalesController extends Controller
 
     public function salesList(Request $request)
     {
+        $sortCol = Input::get('sortCol');
+        $direction = Input::get('direction');
+        $offset = Input::get('offset');
+        $limit = Input::get('limit');
         $campaignId = Input::get('campId');
-        $q = Input::get('q');   // 1 - verified, -1 - all, 0 - unverified
+        $query = Input::get('q');   // 1 - verified, -1 - all, 0 - unverified
+
         if (!$campaignId) {
             $request->session()->forget('campaign');
         }
-        return $this->saleDto->lists($campaignId, $q);
+
+        return $this->saleDto->lists($campaignId,
+            $query,
+            $sortCol ?: 'id',
+            in_array(strtoupper($direction), ['ASC', 'DESC']) ? $direction : 'ASC',
+            $offset ?: 0,
+            $limit ?: 15);
     }
 
     public function detail($id)
@@ -107,5 +118,13 @@ class SalesController extends Controller
     public function setVerified($saleId)
     {
         return $this->saleService->setVerified($saleId)->toArray();
+    }
+
+    public function countFind() {
+        $query = Input::get('q');
+        $campId = Input::get('campId');
+        $offset = Input::get('offset');
+        $limit = Input::get('limit');
+        return $this->saleRepo->countFind($campId, $query, $offset ?: 0, $limit ?: 15);
     }
 }

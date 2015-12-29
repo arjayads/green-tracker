@@ -18,23 +18,24 @@ saleApp.controller('listCtrl', ['$scope', '$http',
         });
 
         var getSaleList = function() {
-            var url = '/sales/list';
+
+            var searchUrl = '/sales/list';
+            var queryStr = "";
             if ($scope.selectedCampaign !== undefined && $scope.selectedCampaign != null) {
-                url += '?campId=' + $scope.selectedCampaign.id;
-                url += '&q=' + $scope.selectedStatus.id;
+                queryStr += '?campId=' + $scope.selectedCampaign.id;
+                queryStr += '&q=' + $scope.selectedStatus.id;
             } else {
-                url += '?q=' + $scope.selectedStatus.id;
+                queryStr += '?q=' + $scope.selectedStatus.id;
             }
-            /*
+            searchUrl + queryStr;
+
             var query = [];
 
-            var searchUrl = '/admin/emp/list';
-            var countSearchUrl ='/admin/emp/countFind';
+            var countSearchUrl ='/sales/countFind' + queryStr;
             query.push('sortCol=' + paginationOptions.sortCol);
             query.push('direction=' + paginationOptions.sort);
             query.push('offset=' + ((paginationOptions.pageSize * paginationOptions.pageNumber) - paginationOptions.pageSize));
             query.push('limit=' + paginationOptions.pageSize);
-            query.push(q);
 
             var params = "";
             for(var x = 0; x < query.length; x++) {
@@ -48,13 +49,6 @@ saleApp.controller('listCtrl', ['$scope', '$http',
             });
 
             $http.get(searchUrl).success(function(data) {
-                $scope.gridOptions1.data = data;
-            }).error(function() {
-                toastr.error('Something went wrong!');
-            });
-            */
-
-            $http.get(url).success(function(data) {
                 $scope.sales = data;
                 $scope.gridOptions1.data = $scope.sales;
             }).error(function() {

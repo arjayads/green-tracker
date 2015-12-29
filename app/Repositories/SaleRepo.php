@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class SaleRepo
 {
-    function findAll($campaignId, $kwari = -1)
+    function findAll($campaignId, $kwari = -1, $sortCol = 'id', $direction = 'asc', $offset = 0, $limit = 15)
     {
         $q = DB::table('sales')
             ->join('customers', 'sales.customer_id', '=', 'customers.id')
@@ -47,7 +47,10 @@ class SaleRepo
                 'sale_statuses.status',
                 'sales.verified'
             )
+            ->orderBy($sortCol, $direction)
             ->groupBy('sales.id')
+            ->take($limit)
+            ->skip($offset)
             ->get();
     }
 
@@ -161,5 +164,23 @@ class SaleRepo
                   group by `sales`.`user_id` order by `score` desc
                   ) as inner_table) as inner_table2 where user_id = ? LIMIT 1";
         return DB::select(DB::raw($query), [$userId]);
+    }
+
+
+    function countFind($campaignId, $kwari, $offset, $limit) {
+        $q = DB::table('sales')
+            ->where('sale_status_id', Config::get('constants.sale_status.sale'));
+
+        if (intval($campaignId) > 0) {
+            $q->where('products.campaign_id', $campaignId);
+        }
+
+        if (intval($kwari) >= 0) {
+            $q->where('sales.verified', $kwari);
+        }
+
+        return $q->take($limit)
+            ->skip($offset)
+            ->count();
     }
 }

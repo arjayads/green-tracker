@@ -16,7 +16,8 @@ class LeaveApplicationDetails  extends Model {
     protected $table = 'leave_application_details';
 
     protected $fillable = [
-        'date',
+        'date_from',
+        'date_to',
         'leave_application_id'
     ];
 

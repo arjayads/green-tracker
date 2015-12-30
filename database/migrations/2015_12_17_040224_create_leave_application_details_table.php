@@ -18,7 +18,8 @@ class CreateLeaveApplicationDetailsTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->date('date');
+            $table->date('date_from');
+            $table->date('date_to');
             $table->unsignedInteger('leave_application_id');
 
             $table->foreign('leave_application_id')->references('id')->on('leave_applications')->onDelete('restrict');

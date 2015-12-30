@@ -40,7 +40,7 @@ class LeaveController extends Controller
             'leave_applications.status',
             'leave_applications.no_of_days',
             'leave_applications.date_filed',
-            DB::raw('GROUP_CONCAT(leave_application_details.date ORDER BY leave_application_details.date) as dates')
+            DB::raw('GROUP_CONCAT(leave_application_details.date_from ORDER BY leave_application_details.date_from) as dates')
         )
             ->groupBy('leave_applications.id')
             ->get();
@@ -72,7 +72,8 @@ class LeaveController extends Controller
                     if (is_array($dates) && count($dates) > 0) {
                         foreach($dates as $d) {
                             $lad = new LeaveApplicationDetails();
-                            $lad->date = Carbon::createFromFormat('m/d/Y', $d)->toDateString();
+                            $lad->date_from = Carbon::createFromFormat('m/d/Y', $d)->toDateString();
+                            $lad->date_to = Carbon::createFromFormat('m/d/Y', $d)->toDateString();
                             $lad->leave_application_id = $application->id;
                             $lad->save();
                         }

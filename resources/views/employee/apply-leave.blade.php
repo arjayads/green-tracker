@@ -78,15 +78,38 @@
                             <div style="margin-top: 10px;"></div>
 
                             <div class="row">
+                                <div class="col-md-2 col-lg-2">
+                                </div>
+                                <div class="col-md-3 col-lg-3">
+                                    <div class="input-group">
+                                        <label class="input-label" for="date_from">From</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-lg-3">
+                                    <div class="input-group">
+                                        <label class="input-label" for="date_to">To</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="col-md-2 col-lg-2">
                                     </div>
                                     <div class="col-md-3 col-lg-3">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                            <input placeholder="mm/dd/yyyy" type="text" id="date" class="datepicker form-control">
-                                            <span style="cursor: pointer" ng-click="addDate()" title="Select date and click to add date" class="input-group-addon"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                            <input placeholder="mm/dd/yyyy" type="text" id="date_from" class="datepicker form-control">
                                         </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            <input placeholder="mm/dd/yyyy" type="text" id="date_to" class="datepicker form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 col-lg-1">
+                                            <span style="cursor: pointer" ng-click="addDate()" title="Select date and click to add date" class="btn btn-primary-outline"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +118,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="col-md-2 col-lg-2">
-                                        <label class="input-label" for="date">Dates</label>
+                                        <label class="input-label" for="date">Inclusive dates</label>
                                     </div>
                                     <div class="col-md-3 col-lg-3">
                                         <p ng-hide="dates.length > 0">Add leave dates</p>

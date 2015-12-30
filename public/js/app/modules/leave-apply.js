@@ -24,7 +24,7 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     }
 
     $scope.addDate = function() {
-        var d = $('#date').val();
+        var d = $('#date_from').val();
         if (d !== undefined && d != '') {
             if ($scope.dates.indexOf(d) == -1) { // prevent duplicates
                 $scope.dates.push(d);
@@ -56,7 +56,7 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
         $scope.errors = {};
 
         if ($scope.dates.length == 0) {
-            $scope.errors['date'] = ['Please select date'];
+            $scope.errors['date'] = ['Please add inclusive dates'];
         }
 
         if (!$.isEmptyObject($scope.errors)) {

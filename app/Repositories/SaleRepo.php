@@ -22,7 +22,7 @@ class SaleRepo
             $q->where('products.campaign_id', $campaignId);
         }
 
-        if ($kwari != -1) {
+        if ($kwari != null && $kwari != -1) {
             $q->where('sales.verified', $kwari);
         }
 

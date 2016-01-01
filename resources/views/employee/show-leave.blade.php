@@ -10,7 +10,9 @@
                     <div class="container">
                         <h2  ng-cloak=""><% title %></h2>
                         <a href="/my/leave" class="btn btn-primary">Back</a>
-
+                        @if($leave->status == 'Pending')
+                            <button ng-show="!cancelled" ng-init="leaveId = {{$leave->id}}" ng-click="cancel()" class="btn btn-danger-outline pull-right">Cancel</button>
+                        @endif
                         <hr/>
                         <div class="row">
                             <div class="col-md-12 col-lg-12">

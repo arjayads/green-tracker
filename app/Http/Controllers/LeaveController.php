@@ -90,4 +90,26 @@ class LeaveController extends Controller
             throw new NotFoundHttpException();
         }
     }
+
+    function cancel($id) {
+
+        $response = new ResponseEntity();
+        try {
+            $leave = LeaveApplication::where('id', $id)->where('employee_id', $this->employeeId)->where('status', 'Pending')->first();
+            if ($leave) {
+                $leave->status = 'Cancelled';
+                $leave->save();
+
+                $response->setSuccess(true);
+                $response->setMessage('Leave application successfully cancelled!');
+            }
+            else
+            {
+                $response->setMessage('Leave application is not available');
+            }
+        } catch (\Exception $ex) {
+            $response->setMessages(['Exception: ' . $ex->getMessage()]);
+        }
+        return $response->toArray();
+    }
 }

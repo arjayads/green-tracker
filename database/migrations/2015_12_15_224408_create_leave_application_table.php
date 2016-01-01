@@ -26,7 +26,7 @@ class CreateLeaveApplicationTable extends Migration
             $table->unsignedInteger('approved1_by_user_id')->nullable();
             $table->unsignedInteger('approved2_by_user_id')->nullable();
             $table->unsignedInteger('leave_type_id');
-            $table->enum('status', ['Approved', 'Disapproved', 'Pending'])->default('Pending');
+            $table->enum('status', ['Approved', 'Disapproved', 'Pending', 'Cancelled'])->default('Pending');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

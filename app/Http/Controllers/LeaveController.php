@@ -33,17 +33,23 @@ class LeaveController extends Controller
             ->where('status', $status)
             ->where('employee_id', $this->employeeId);
 
-        return $q->select(
+        $leaves = $q->select(
             'leave_applications.id',
             'leave_applications.purpose',
             'leave_types.description as leave_type',
             'leave_applications.status',
             'leave_applications.no_of_days',
-            'leave_applications.date_filed',
-            DB::raw('GROUP_CONCAT(leave_application_details.date_from ORDER BY leave_application_details.date_from) as dates')
+            'leave_applications.date_filed'
         )
-            ->groupBy('leave_applications.id')
             ->get();
+
+        if (is_array($leaves) && count($leaves) > 0) {
+            foreach($leaves as &$leave) {
+                $leave->dates = LeaveApplicationDetails::where('leave_application_id', $leave->id)->select(['date_from', 'date_to'])->get();
+            }
+        }
+
+        return $leaves;
     }
 
     public function types() {
@@ -71,9 +77,11 @@ class LeaveController extends Controller
                     $dates = $params['dates'];
                     if (is_array($dates) && count($dates) > 0) {
                         foreach($dates as $d) {
+                            // e.g. : 01/26/2016 - 01/26/2016
+                            $dArr =  explode(' - ', $d);
                             $lad = new LeaveApplicationDetails();
-                            $lad->date_from = Carbon::createFromFormat('m/d/Y', $d)->toDateString();
-                            $lad->date_to = Carbon::createFromFormat('m/d/Y', $d)->toDateString();
+                            $lad->date_from = Carbon::createFromFormat('m/d/Y', $dArr[0])->toDateString();
+                            $lad->date_to = Carbon::createFromFormat('m/d/Y', $dArr[1])->toDateString();
                             $lad->leave_application_id = $application->id;
                             $lad->save();
                         }

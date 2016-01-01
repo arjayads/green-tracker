@@ -27,11 +27,13 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
 
     $scope.addDate = function() {
         var dFrom = $('#date_from').val();
+        var dTo = $('#date_to').val();
         if (dFrom !== undefined && dFrom != '') {
-            if ($scope.dates.indexOf(dFrom) == -1) { // prevent duplicates
-                $scope.dates.push(dFrom);
+            var d = dFrom + " - " + dTo;
+            if ($scope.dates.indexOf(d) == -1) { // prevent duplicates
+                $scope.dates.push(d);
             } else {
-                toastr.warning('Please select different date');
+                toastr.warning('Please select different date range');
             }
         } else {
             toastr.warning('Please select start date');

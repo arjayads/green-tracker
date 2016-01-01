@@ -13,7 +13,7 @@
             <div id="primary" class="content-area mg-t-10 mg-b-10">
                 <main id="main" class="site-main" role="main">
                     <div class="container">
-                        <h2><% title %></h2>
+                        <h2  ng-cloak=""><% title %></h2>
                         <a href="/my/leave" class="btn btn-primary">Back</a>
                         <form ng-submit="processForm()" ng-show="showForm">
                             <hr/>

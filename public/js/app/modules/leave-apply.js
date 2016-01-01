@@ -1,6 +1,8 @@
 var leaveApplicationApp = angular.module('leaveApplication', ['dirFormError', 'config', 'ngTouch']);
 
 leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
+    var today = $.datepicker.formatDate('mm/dd/yy', new Date());
+
     $scope.title = 'Application for Leave';
     $scope.errors = {};
     $scope.showForm = true;
@@ -24,15 +26,15 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     }
 
     $scope.addDate = function() {
-        var d = $('#date_from').val();
-        if (d !== undefined && d != '') {
-            if ($scope.dates.indexOf(d) == -1) { // prevent duplicates
-                $scope.dates.push(d);
+        var dFrom = $('#date_from').val();
+        if (dFrom !== undefined && dFrom != '') {
+            if ($scope.dates.indexOf(dFrom) == -1) { // prevent duplicates
+                $scope.dates.push(dFrom);
             } else {
                 toastr.warning('Please select different date');
             }
         } else {
-            toastr.warning('Please select date');
+            toastr.warning('Please select start date');
         }
     }
 
@@ -89,6 +91,51 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
             toastr.error('Something went wrong!');
             resetSubmitBtn();
         });
+    }
+
+    // Jkwari
+    $('#date_from').on('change', function(e){
+        setTodayOnInvalidDate($(this));
+
+        var dTo = $('#date_to').val();
+        if (dTo === undefined || dTo == '') {
+            $('#date_to').val($(this).val());
+        }
+        setValidRange($(this), $('#date_to'));
+    });
+
+    $('#date_to').on('change', function(e){
+        setTodayOnInvalidDate($(this));
+
+        var dFrom = $('#date_from').val();
+        if (dFrom === undefined || dFrom == '') {
+            $('#date_from').val($(this).val());
+        }
+
+        setValidRange($('#date_from'), $(this));
+
+        var to = new Date($(this).val());
+        var from = new Date($('#date_from').val());
+
+        if (from.getTime() > to.getTime()) {
+            $('#date_from').val($(this).val());
+        }
+    });
+
+    var setTodayOnInvalidDate = function(el) {
+        var d = new Date(el.val());
+        if(d == 'Invalid Date') {
+            el.val(today);
+        }
+    }
+
+    var setValidRange = function(elFrom, elTo){
+        var from = new Date(elFrom.val());
+        var to = new Date(elTo.val());
+
+        if (from.getTime() > to.getTime()) {
+            elTo.val(elFrom.val());
+        }
     }
 
     $scope.resetForm();

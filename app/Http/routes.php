@@ -91,6 +91,7 @@ Route::group(['prefix' => 'post', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'my', 'middleware' => 'auth'], function () {
     Route::get('leave', 'LeaveController@index');
+    Route::get('leave/{id}', 'LeaveController@show');
     Route::get('leaves/{status?}', 'LeaveController@myList');
     Route::get('leaveApplication', 'LeaveController@apply');
     Route::get('leaveTypes', 'LeaveController@types');

@@ -17,6 +17,10 @@ leaveIndexApp.controller('mainCtrl', ['$scope', '$http', '$filter', '$sce', func
         });
     }
 
+    $scope.detailUrl = function(id) {
+        return "/my/leave/"+id;
+    }
+
     $scope.parseDates = function(dates) {
 
         var str = '';
@@ -45,9 +49,8 @@ leaveIndexApp.controller('mainCtrl', ['$scope', '$http', '$filter', '$sce', func
         columnDefs: [
             {
                 field: 'date_filed',
-                type: 'date',
-                cellFilter: 'date:\'MMM dd, yyyy\'',
-                enableHiding: false
+                enableHiding: false,
+                cellTemplate: '<div class="ui-grid-cell-contents"><a href="{{grid.appScope.detailUrl(row.entity.id)}}">{{row.entity.date_filed | date:\'MMM dd, yyyy\'}}</a></div>'
             },
             {field: 'leave_type', displayName: 'Leave Type', enableHiding: false},
             {field: 'purpose', displayName: 'Purpose', enableHiding: false, width: '25%'},

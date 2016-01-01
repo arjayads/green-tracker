@@ -5,15 +5,19 @@ namespace app\Http\Controllers;
 use app\Models\LeaveApplication;
 use app\Models\LeaveApplicationDetails;
 use app\Models\LeaveType;
+use app\Repositories\LeaveRepo;
 use app\ResponseEntity;
 use Carbon\Carbon;
 
 use app\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LeaveController extends Controller
 {
-    public function __construct() {
+    public function __construct(LeaveRepo $leaveRepo) {
+        $this->leaveRepo = $leaveRepo;
+
         parent::__construct();
     }
 
@@ -26,34 +30,11 @@ class LeaveController extends Controller
     }
 
     public function myList($status = 'Pending') {
-        $q = DB::table('leave_applications')
-            ->join('leave_application_details', 'leave_applications.id', '=', 'leave_application_details.leave_application_id')
-            ->join('leave_types', 'leave_applications.leave_type_id', '=', 'leave_types.id')
-
-            ->where('status', $status)
-            ->where('employee_id', $this->employeeId);
-
-        $leaves = $q->select(
-            'leave_applications.id',
-            'leave_applications.purpose',
-            'leave_types.description as leave_type',
-            'leave_applications.status',
-            'leave_applications.no_of_days',
-            'leave_applications.date_filed'
-        )
-            ->get();
-
-        if (is_array($leaves) && count($leaves) > 0) {
-            foreach($leaves as &$leave) {
-                $leave->dates = LeaveApplicationDetails::where('leave_application_id', $leave->id)->select(['date_from', 'date_to'])->get();
-            }
-        }
-
-        return $leaves;
+        return $this->leaveRepo->findALlByStatus($status, $this->employeeId);
     }
 
     public function types() {
-        return  LeaveType::all();
+        return LeaveType::all();
     }
 
     public function create(Requests\ApplyForLeaveRequest $request) {
@@ -98,5 +79,15 @@ class LeaveController extends Controller
             $response->setMessages(['Exception: ' . $ex->getMessage()]);
         }
         return $response->toArray();
+    }
+
+    function show($id) {
+        $leave = $this->leaveRepo->findByIdAndEmployeeId($id, $this->employeeId);
+        if ($leave) {
+            $leave->dates = LeaveApplicationDetails::where('leave_application_id', $leave->id)->select(['date_from', 'date_to'])->orderBy('date_from', 'asc')->get();
+            return view('employee.show-leave', ['leave' => $leave]);
+        } else {
+            throw new NotFoundHttpException();
+        }
     }
 }

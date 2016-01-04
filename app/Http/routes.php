@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'rolefilter:admin']]
     Route::group(['prefix' => 'leave', 'middleware' => ['auth', 'rolefilter:admin']], function () {
         Route::get('/', 'Admin\LeaveController@index');
         Route::get('leave/{id}', 'Admin\LeaveController@show');
-        Route::get('leaves/{status?}', 'Admin\LeaveController@listByStatus');
+        Route::get('{status?}', 'Admin\LeaveController@listByStatus');
     });
 });
 

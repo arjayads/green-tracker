@@ -17,8 +17,8 @@
                                 </div>
                                 @if($leave->status == 'Pending')
                                     <div class="col-md-3 col-lg-3">
-                                        <button ng-show="!approved" ng-init="leaveId = {{$leave->id}}" ng-click="process('Approved')" class="btn btn-success-outline">Approve</button>
-                                        <button ng-show="!disapproved" ng-init="leaveId = {{$leave->id}}" ng-click="process('Disapproved')" class="btn btn-danger-outline">Disapprove</button>
+                                        <button ng-show="!processed" ng-init="leaveId = {{$leave->id}}" ng-click="process('Approved')" class="btn btn-success-outline">Approve</button>
+                                        <button ng-show="!processed" ng-init="leaveId = {{$leave->id}}" ng-click="process('Disapproved')" class="btn btn-danger-outline">Disapprove</button>
                                     </div>
                                 @endif
                             </div>

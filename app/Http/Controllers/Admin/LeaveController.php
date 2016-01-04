@@ -3,10 +3,12 @@
 namespace app\Http\Controllers\Admin;
 
 use app\Http\Controllers\Controller;
+use app\Models\LeaveApplication;
 use app\Models\LeaveApplicationDetails;
 use app\Repositories\LeaveRepo;
 
-use app\Http\Requests;
+use app\ResponseEntity;
+use Illuminate\Support\Facades\Input;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LeaveController extends Controller
@@ -33,6 +35,32 @@ class LeaveController extends Controller
         } else {
             throw new NotFoundHttpException();
         }
+    }
+
+    function process() {
+
+        $params = Input::get();
+
+        $response = new ResponseEntity();
+        try {
+            if ($params) {
+                $leave = LeaveApplication::where('id', $params['id'])->where('status', 'Pending')->first();
+                if ($leave) {
+                    $leave->status = $params['status'];
+                    $leave->save();
+
+                    $response->setSuccess(true);
+                    $response->setMessage('Leave application successfully processed!');
+                } else {
+                    $response->setMessage('Leave application is not available');
+                }
+            } else {
+                $response->setMessage('Invalid parameters');
+            }
+        } catch (\Exception $ex) {
+            $response->setMessages(['Exception: ' . $ex->getMessage()]);
+        }
+        return $response->toArray();
     }
 
 }

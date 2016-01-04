@@ -21,6 +21,8 @@ class CreateLeaveApplicationTable extends Migration
             $table->text('purpose')->nullable();
             $table->unsignedInteger('employee_id');
             $table->date('date_filed');
+            $table->date('date_processed1')->nullable(); // approved1_by_user_id / disapproved
+            $table->date('date_processed2')->nullable(); // approved2_by_user_id
             $table->integer('no_of_days');  // total
             $table->unsignedInteger('created_by_user_id');
             $table->unsignedInteger('approved1_by_user_id')->nullable();

@@ -25,5 +25,7 @@ class LeaveApplication extends Model {
         'approved2_by_user_id',
         'leave_type_id',
         'status',
+        'date_processed1',
+        'date_processed2'
     ];
 }

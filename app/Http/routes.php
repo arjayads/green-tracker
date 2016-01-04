@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'rolefilter:admin']]
         Route::get('/', 'Admin\LeaveController@index');
         Route::get('/{id}', 'Admin\LeaveController@show');
         Route::get('/{status?}/list', 'Admin\LeaveController@listByStatus');
+
+        Route::post('/process', 'Admin\LeaveController@process');
     });
 });
 

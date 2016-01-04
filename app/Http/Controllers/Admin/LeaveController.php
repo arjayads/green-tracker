@@ -26,10 +26,10 @@ class LeaveController extends Controller
     }
 
     function show($id) {
-        $leave = $this->leaveRepo->findByIdAndEmployeeId($id, $this->employeeId);
+        $leave = $this->leaveRepo->findByIdAndEmployeeId($id);
         if ($leave) {
             $leave->dates = LeaveApplicationDetails::where('leave_application_id', $leave->id)->select(['date_from', 'date_to'])->orderBy('date_from', 'asc')->get();
-            return view('employee.show-leave', ['leave' => $leave]);
+            return view('admin.leave.show', ['leave' => $leave]);
         } else {
             throw new NotFoundHttpException();
         }

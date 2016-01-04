@@ -11,14 +11,14 @@ leaveIndexApp.controller('mainCtrl', ['$scope', '$http', '$filter', '$sce', func
     ];
 
     var getLeaves = function() {
-        $http.get('/admin/leave/' + $scope.selectedStatus.status).success(function(data){
+        $http.get('/admin/leave/' + $scope.selectedStatus.status + "/list").success(function(data){
             $scope.leaves = data;
             $scope.gridOptions1.data = data;
         });
     }
 
     $scope.detailUrl = function(id) {
-        return "/my/leave/"+id;
+        return "/admin/leave/"+id;
     }
 
     $scope.parseDates = function(dates) {

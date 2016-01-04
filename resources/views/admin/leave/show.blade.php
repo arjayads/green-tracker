@@ -9,20 +9,20 @@
                 <main id="main" class="site-main" role="main">
                     <div class="container">
                         <h2  ng-cloak=""><% title %></h2>
-                        <a href="/my/leave" class="btn btn-primary">Back</a>
-                        @if($leave->status == 'Pending')
 
-                            <div class="row">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="col-md-9 col-lg-9">
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="col-md-9 col-lg-9">
+                                    <a href="/admin/leave" class="btn btn-primary">Back</a>
+                                </div>
+                                @if($leave->status == 'Pending')
                                     <div class="col-md-3 col-lg-3">
                                         <button ng-show="!approved" ng-init="leaveId = {{$leave->id}}" ng-click="process('Approved')" class="btn btn-success-outline">Approve</button>
                                         <button ng-show="!disapproved" ng-init="leaveId = {{$leave->id}}" ng-click="process('Disapproved')" class="btn btn-danger-outline">Disapprove</button>
                                     </div>
-                                </div>
+                                @endif
                             </div>
-                        @endif
+                        </div>
                         <hr/>
                         <div class="row">
                             <div class="col-md-12 col-lg-12">

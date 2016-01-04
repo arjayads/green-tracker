@@ -11,7 +11,17 @@
                         <h2  ng-cloak=""><% title %></h2>
                         <a href="/my/leave" class="btn btn-primary">Back</a>
                         @if($leave->status == 'Pending')
-                            <button ng-show="!cancelled" ng-init="leaveId = {{$leave->id}}" ng-click="cancel()" class="btn btn-danger-outline pull-right">Cancel</button>
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="col-md-9 col-lg-9">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <button ng-show="!approved" ng-init="leaveId = {{$leave->id}}" ng-click="process('Approved')" class="btn btn-success-outline">Approve</button>
+                                        <button ng-show="!disapproved" ng-init="leaveId = {{$leave->id}}" ng-click="process('Disapproved')" class="btn btn-danger-outline">Disapprove</button>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                         <hr/>
                         <div class="row">
@@ -101,5 +111,5 @@
 
 
 @section('javascript')
-    <script src="{{asset('js/app/modules/leave-show.js')}}"></script>
+    <script src="{{asset('js/app/modules/admin-leave-show.js')}}"></script>
 @stop

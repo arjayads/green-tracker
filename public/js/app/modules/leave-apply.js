@@ -20,7 +20,7 @@ leaveApplicationApp.controller('mainCtrl', ['$scope', '$http', function ($scope,
     }
 
     $scope.loadLeaveType = function() {
-        $http.get('/my/leaveTypes').success(function(data){
+        $http.get('/common/leaveTypes').success(function(data){
             $scope.leaveTypes = data;
         });
     }

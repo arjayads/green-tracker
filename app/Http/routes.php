@@ -49,6 +49,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'rolefilter:admin']]
         Route::post('create', ['as' => 'store-emp', 'uses' => 'Admin\EmployeeController@store']);
         Route::get('find', ['uses' => 'Admin\EmployeeController@find']);
     });
+    Route::group(['prefix' => 'leave', 'middleware' => ['auth', 'rolefilter:admin']], function () {
+        Route::get('/', 'Admin\LeaveController@index');
+        Route::get('leave/{id}', 'Admin\LeaveController@show');
+        Route::get('leaves/{status?}', 'Admin\LeaveController@listByStatus');
+    });
 });
 
 Route::group(['prefix' => 'sales', 'middleware' => 'auth'], function () {
@@ -94,7 +99,6 @@ Route::group(['prefix' => 'my', 'middleware' => 'auth'], function () {
     Route::get('leave/{id}', 'LeaveController@show');
     Route::get('leaves/{status?}', 'LeaveController@myList');
     Route::get('leaveApplication', 'LeaveController@apply');
-    Route::get('leaveTypes', 'LeaveController@types');
 
     Route::post('leaveApplication', 'LeaveController@create');
     Route::post('leave/{id}/cancel', 'LeaveController@cancel');
@@ -104,4 +108,5 @@ Route::group(['prefix' => 'common', 'middleware' => 'auth'], function () {
     Route::get('form-field-error-msg', function () {
         return view('common.form-field-error-msg');
     });
+    Route::get('leaveTypes', 'LeaveController@types');
 });

@@ -30,7 +30,7 @@
                                     <label class="input-label bold">Date Filed</label>
                                 </div>
                                 <div class="col-md-5 col-lg-5">
-                                    <p class="form-control">{{$leave->date_filed}}</p>
+                                    <p class="form-control">{{date("F d, Y", strtotime($leave->date_filed))}}</p>
                                 </div>
                             </div>
                         </div>
@@ -83,9 +83,9 @@
                                 <ul style="list-style: none;" class="form-control">
                                     @foreach($leave->dates as $d)
                                         @if($d->date_from == $d->date_to)
-                                            <li>{{$d->date_from}}</li>
+                                            <li>{{date("F d, Y", strtotime($d->date_from))}}</li>
                                         @else
-                                            <li>{{$d->date_from}} - {{$d->date_to}}</li>
+                                            <li>{{date("F d, Y", strtotime($d->date_from))}} - {{date("F d, Y", strtotime($d->date_to))}}</li>
                                         @endif
                                     @endforeach
                                 </ul>
